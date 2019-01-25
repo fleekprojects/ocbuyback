@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 26, 2018 at 08:34 AM
--- Server version: 10.2.17-MariaDB
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: Oct 04, 2018 at 02:31 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,8 +19,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ocsupply_db`
+-- Database: `ocsupply`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` int(11) NOT NULL,
+  `post_type` enum('blog','page') NOT NULL,
+  `title` text NOT NULL,
+  `slug` text NOT NULL,
+  `description` text NOT NULL,
+  `content` text NOT NULL,
+  `image` text NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `blogs`
+--
+
+INSERT INTO `blogs` (`id`, `post_type`, `title`, `slug`, `description`, `content`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(7, 'blog', 'ff', 'ffs', 'ff', '<p>ff</p>', '7-ff.jpg', 1, '2018-10-02 06:52:41', '2018-10-02 08:25:58'),
+(8, 'blog', 'Everything Apple Announced During iPhone 2018 Keynote', 'everything-apple-announced-during-iphone-2018-keynote', 'Everything Apple Announced During iPhone 2018 Keynote', '<p><span style=\"padding: 0px; margin: 0px 0px 20px; font-weight: 700; color: rgb(47, 47, 47); font-size: 15px; display: table; font-family: Montserrat;\">Everything Apple Announced During iPhone 2018 Keynote</span></p>', '8-blog.png', 1, '2018-10-04 01:08:44', '2018-10-04 07:00:47'),
+(9, 'page', 'Terms and Conditions', 'terms-and-conditions', '', '<p>Terms and Conditions<br></p>', '', 1, '2018-10-04 07:04:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -31,8 +59,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
+  `image` text NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,11 +70,11 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `title`, `slug`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'iPhone', 'iphone', 1, '2018-08-28 14:11:31', '2018-09-03 08:44:52'),
-(2, 'Samsung', 'samsung', 1, '2018-08-28 14:34:23', '2018-09-03 08:45:00'),
-(3, 'iPad', 'ipad', 1, '2018-09-03 08:14:40', '2018-09-03 08:45:07'),
-(4, 'Google', 'google', 1, '2018-09-03 08:14:49', '2018-09-03 08:45:13');
+INSERT INTO `categories` (`id`, `title`, `image`, `slug`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'iPhone', '1-iphone.jpg', 'iphone', 1, '2018-08-28 14:11:31', '2018-10-04 01:58:18'),
+(2, 'Samsung', '2-samsung.jpg', 'samsung', 1, '2018-08-28 14:34:23', '2018-10-04 02:20:06'),
+(3, 'iPad', '3-ipad.jpg', 'ipad', 1, '2018-09-03 08:14:40', '2018-10-04 02:20:33'),
+(4, 'Google', '4-google.jpg', 'google', 1, '2018-09-03 08:14:49', '2018-10-04 02:20:56');
 
 -- --------------------------------------------------------
 
@@ -58,7 +87,7 @@ CREATE TABLE `conditions` (
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -68,11 +97,11 @@ CREATE TABLE `conditions` (
 --
 
 INSERT INTO `conditions` (`id`, `title`, `slug`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Brand New', 'brand-new', '<p><span class=\"condition_description_title\" style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 18px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: myriad-pro !important;\">If&nbsp;<span style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background: transparent; vertical-align: baseline; font-weight: 700;\">ALL</span>&nbsp;of the following are true:</span><span style=\"color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px;\"></span></p><p style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\"><br></p><p style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">* Sealed in original box</p><p style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">*&nbsp;Device has never been activated or used</p>', 1, '2018-08-30 10:50:47', '2018-09-25 04:05:54'),
-(2, 'Mint', 'mint', '<p><span class=\"condition_description_title\" style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 18px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: myriad-pro !important;\">If&nbsp;<span style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background: transparent; vertical-align: baseline; font-weight: 700;\">ALL</span>&nbsp;of the following are true:</span><span style=\"color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px;\"></span></p><ul id=\"double\" style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 20px 0px 23px 16px; border: 0px; outline: 0px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 14px; vertical-align: baseline; list-style-position: initial; list-style-image: initial; line-height: 26px; width: 856px; overflow: hidden; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;\"><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Like New with no signs of use</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Fully functional with no operational problems</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? No cracks, scratches, dings or dents</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Battery health in good standing</li></ul>', 1, '2018-08-30 10:58:23', '2018-09-03 12:42:21'),
-(3, 'Used', 'used', '<p><span class=\"condition_description_title\" style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 18px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: myriad-pro !important;\">If&nbsp;<span style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background: transparent; vertical-align: baseline; font-weight: 700;\">ALL</span>&nbsp;of the following are true:</span><span style=\"color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px;\"></span></p><ul id=\"double\" style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 20px 0px 23px 16px; border: 0px; outline: 0px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 14px; vertical-align: baseline; list-style-position: initial; list-style-image: initial; line-height: 26px; width: 856px; overflow: hidden; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;\"><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Device has signs of use but no major cosmetic damage</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Fully functional with no operational problems</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? No chips or cracks in front or back glass</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Battery health in good standing</li></ul>', 1, '2018-09-01 09:00:43', '2018-09-03 12:42:26'),
-(4, 'Damaged', 'damaged', '<p><span class=\"condition_description_title\" style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 18px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: myriad-pro !important;\">If&nbsp;<span style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background: transparent; vertical-align: baseline; font-weight: 700;\">ANY</span>&nbsp;of the following are true:</span><span style=\"color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px;\"></span></p><ul id=\"double\" style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 20px 0px 23px 16px; border: 0px; outline: 0px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 14px; vertical-align: baseline; list-style-position: initial; list-style-image: initial; line-height: 26px; width: 856px; overflow: hidden; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;\"><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Cracked front glass with no LCD damage</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Non-working buttons</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Non-working headphone jack</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Non-working speaker or microphone</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 840px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Poor battery life</li></ul>', 1, '2018-09-01 09:01:21', '2018-09-03 12:42:32'),
-(5, 'Broken', 'broken', '<p><span class=\"condition_description_title\" style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 18px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: myriad-pro !important;\">If&nbsp;<span style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background: transparent; vertical-align: baseline; font-weight: 700;\">ANY</span>&nbsp;of the following are true:</span><span style=\"color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px;\"></span></p><ul id=\"double\" class=\"display_in_two_column\" style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 20px 0px 23px 16px; border: 0px; outline: 0px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 14px; vertical-align: baseline; list-style-position: initial; list-style-image: initial; line-height: 26px; width: 856px; overflow: hidden; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;\"><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Does not recognize a SIM card</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Does not connect to Wi-Fi</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Unable to make phone calls</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Non-working fingerprint sensor</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Non-working touchscreen</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Bad LCD (damage, burns, or no display)</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Bent frame</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Passcode lock</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Water damage</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; font-family: myriad-pro, sans-serif !important;\">? Phone does not power on</li><li style=\"margin: 0px; padding: 5px; border: 0px; outline: 0px; background: transparent; font-size: 18px; vertical-align: baseline; width: 420px; display: inline; float: left; line-height: 1.5em; color: rgb(221, 25, 43); font-family: myriad-pro, sans-serif !important;\"><span style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; background: transparent; font-size: 14px; vertical-align: baseline; font-weight: 700;\">We do not accept iCloud locked devices</span></li></ul>', 1, '2018-09-01 09:01:43', '2018-09-03 12:42:38');
+(1, 'Brand New', 'brand-new', '<p><br></p><h4 style=\"font-family: &quot;Helvetica Neue&quot;, Roboto, Arial, &quot;Droid Sans&quot;, sans-serif; color: rgb(0, 0, 0);\">If ALL of the following are true:</h4><ul><li style=\"margin-left: 50px;\">Sealed in original box.</li><li style=\"margin-left: 50px;\">The device has never been activated or used.</li></ul>', 0, '2018-08-30 10:50:47', '2018-10-04 06:51:19'),
+(2, 'Mint', 'mint', '<p><br></p><h4>If ALL of the following are true:</h4><ul><li style=\"margin-left: 50px;\">Like New with no signs of use.</li><li style=\"margin-left: 50px;\">Fully functional with no operational problems.</li><li style=\"margin-left: 50px;\">No cracks, scratches, dings or dents.</li><li style=\"margin-left: 50px;\">Battery health in good standing.</li></ul>', 1, '2018-08-30 10:58:23', '2018-10-04 06:52:15'),
+(3, 'Good Condition', 'good-condition', '<p><br></p><h4 style=\"font-family: &quot;Helvetica Neue&quot;, Roboto, Arial, &quot;Droid Sans&quot;, sans-serif; color: rgb(0, 0, 0);\">If ALL of the following are true:</h4><ul><li style=\"margin-left: 50px;\">The device has signs of use but no major cosmetic damage.</li><li style=\"margin-left: 50px;\">Fully functional with no operational problems.</li><li style=\"margin-left: 50px;\">No chips or cracks in front or back glass.</li><li style=\"margin-left: 50px;\">Battery health in good standing.</li></ul>', 1, '2018-09-01 09:00:43', '2018-10-04 06:51:40'),
+(4, 'Minor Damage', 'minor-damage', '<p><br></p><h4 style=\"font-family: &quot;Helvetica Neue&quot;, Roboto, Arial, &quot;Droid Sans&quot;, sans-serif; color: rgb(0, 0, 0);\">If ALL of the following are true:</h4><ul><li style=\"margin-left: 50px;\">Cracked front glass with no LCD damage.</li><li style=\"margin-left: 50px;\">Non-working buttons.</li><li style=\"margin-left: 50px;\">Non-working headphone jack.</li><li style=\"margin-left: 50px;\">Non-working speaker or microphone.</li><li style=\"margin-left: 50px;\">Poor battery life.</li></ul>', 1, '2018-09-01 09:01:21', '2018-10-04 06:51:50'),
+(5, 'Broken', 'broken', '<p><br></p><h4 style=\"font-family: &quot;Helvetica Neue&quot;, Roboto, Arial, &quot;Droid Sans&quot;, sans-serif; color: rgb(0, 0, 0);\">If ALL of the following are true:</h4><table><tbody><tr><td><ul><li style=\"margin-left: 50px;\">Does not recognize a SIM card.</li><li style=\"margin-left: 50px;\">Does not connect to Wi-Fi.</li><li style=\"margin-left: 50px;\">Unable to make phone calls.</li><li style=\"margin-left: 50px;\">Non-working fingerprint sensor.</li><li style=\"margin-left: 50px;\">Non-working touchscreen.</li></ul></td><td><ul><li style=\"margin-left: 125px;\">Bad LCD (damage, burns, or no display).</li><li style=\"margin-left: 125px;\">Bent frame.</li><li style=\"margin-left: 125px;\">Passcode lock.</li><li style=\"margin-left: 125px;\">Water damage.</li><li style=\"margin-left: 125px;\">The phone does not power on.</li></ul></td></tr></tbody></table>', 1, '2018-09-01 09:01:43', '2018-10-04 06:51:59');
 
 -- --------------------------------------------------------
 
@@ -86,7 +115,7 @@ CREATE TABLE `models` (
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `image` text NOT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -171,7 +200,8 @@ INSERT INTO `orders` (`id`, `email`, `paypal_email`, `first_name`, `last_name`, 
 (35, 'test@yopmail.com', '', 'jim', 'Morris', 'Local Drop Off (19th Sep 2018 at 03:00 PM)', '123, 1321, NY, ', 'New York', '10001', '111-111-1111', 140.00, NULL, '2018-09-18 07:33:32', NULL),
 (36, 'nick.norris@jxcreations.com', '', 'Noman', 'Nadeem', 'Prepaid Label', ', , , ', '', '', '111-111-1111', 140.00, NULL, '2018-09-18 07:35:55', NULL),
 (37, 'cely@ocsupplywholesale.com', '', 'Araceli', 'De Rosas', 'Local Drop Off (19th Sep 2018 at 9:00 AM)', '126, Viking Avenue, CA, ', 'Brea', '92821', '174-248-4468', 280.00, NULL, '2018-09-18 15:20:09', NULL),
-(38, 'developers@scrap.space', 'qmerchant@yopmail.com', 'Q', 'Merchant', 'Local Drop Off (25th Sep 2018 at 10:00 AM)', ', Poppy Tree Lane, GA, ', '', '30084', '111-111-1111', 140.00, NULL, '2018-09-25 04:00:43', NULL);
+(38, 'developers@scrap.space', 'qmerchant@yopmail.com', 'Q', 'Merchant', 'Local Drop Off (25th Sep 2018 at 10:00 AM)', ', Poppy Tree Lane, GA, ', '', '30084', '111-111-1111', 140.00, NULL, '2018-09-25 04:00:43', NULL),
+(39, 'developers@scrap.space', '', 'Q', 'Merchant', 'Local Drop Off (17th Oct 2018 at 10:00 AM)', '5773, Poppy Tree Lane, GA, ', 'Tucker', '30084', '111-111-1111', 423.00, NULL, '2018-10-04 04:14:47', NULL);
 
 -- --------------------------------------------------------
 
@@ -236,7 +266,8 @@ INSERT INTO `order_details` (`id`, `order_id`, `provider`, `device`, `condition`
 (39, 35, 'Sprint', 'iPhone 6S Plus', 'Brand New', 140.00, 1, 140.00),
 (40, 36, 'Sprint', 'iPhone 6S Plus', 'Brand New', 140.00, 1, 140.00),
 (41, 37, 'Sprint', 'iPhone 6S Plus', 'Brand New', 140.00, 2, 280.00),
-(42, 38, 'Sprint', 'iPhone 6S Plus', 'Brand New', 140.00, 1, 140.00);
+(42, 38, 'Sprint', 'iPhone 6S Plus', 'Brand New', 140.00, 1, 140.00),
+(43, 39, 'Sprint', 'iPhone 6S Plus', 'Brand New', 141.00, 3, 423.00);
 
 -- --------------------------------------------------------
 
@@ -252,7 +283,7 @@ CREATE TABLE `pricing` (
   `provider_id` int(11) NOT NULL,
   `storage_id` int(11) NOT NULL,
   `price` float(11,2) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -262,9 +293,9 @@ CREATE TABLE `pricing` (
 --
 
 INSERT INTO `pricing` (`id`, `category_id`, `condition_id`, `model_id`, `provider_id`, `storage_id`, `price`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 1, 1, 141.00, 1, '2018-09-01 08:48:59', '2018-09-25 04:04:33'),
+(1, 1, 5, 1, 1, 1, 141.00, 1, '2018-09-01 08:48:59', '2018-10-04 02:02:21'),
 (2, 1, 2, 1, 1, 1, 120.00, 1, '2018-09-01 08:48:59', '2018-09-17 05:48:37'),
-(3, 1, 1, 1, 2, 1, 111.00, 1, '2018-09-01 12:03:00', '2018-09-17 05:48:42'),
+(3, 1, 5, 1, 2, 1, 111.00, 1, '2018-09-01 12:03:00', '2018-09-17 05:48:42'),
 (4, 1, 0, 0, 0, 0, 0.00, 1, '2018-09-24 08:07:00', NULL),
 (5, 1, 5, 5, 1, 5, 222.00, 1, '2018-09-24 08:09:40', '2018-09-24 08:23:38');
 
@@ -279,7 +310,7 @@ CREATE TABLE `providers` (
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `logo` text NOT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -326,7 +357,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`ID`, `Site_Title`, `Admin_Title`, `Email`, `Address`, `Phone`, `Website`, `Facebook`, `Twitter`, `Linkedin`, `Timezone`, `SMTP_Host`, `SMTP_Email`, `SMTP_Pass`, `SMTP_Port`, `LastUpdated`) VALUES
-(1, 'OC Buyback', 'OC Buyback | Admin', 'support@ocbuyback.com', '126 Viking Ave, Brea, CA, 92821', '+44 208 5531123', 'www.ocbuyback.com', '', '', '', 'America/Chicago', 'smtp.gmail.com', 'bcdeveloper3@gmail.com', 'Developer', 465, '2017-02-23 11:50:41');
+(1, 'OC Buyback', 'OC Buyback | Admin', 'support@ocbuyback.com', '126 Viking Ave, Brea, CA, 92821', '657-286-8274', 'www.ocbuyback.com', '', '', '', 'America/Chicago', 'smtp.gmail.com', 'bcdeveloper3@gmail.com', 'Developer', 465, '2017-02-23 11:50:41');
 
 -- --------------------------------------------------------
 
@@ -338,7 +369,7 @@ CREATE TABLE `storage` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -364,20 +395,26 @@ CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
   `user_name` varchar(15) NOT NULL,
   `password` text NOT NULL,
-  `email` text DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL
+  `email` text,
+  `reset_token` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `user_name`, `password`, `email`, `name`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@ocsupply.com', '');
+INSERT INTO `users` (`ID`, `user_name`, `password`, `email`, `reset_token`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'ocbuyback@yopmail.com', '9wxcUf7AMNbQSaKO');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -447,10 +484,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `conditions`
@@ -462,19 +505,19 @@ ALTER TABLE `conditions`
 -- AUTO_INCREMENT for table `models`
 --
 ALTER TABLE `models`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `pricing`

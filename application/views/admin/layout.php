@@ -64,6 +64,9 @@
                 <ul class="nav side-menu">
 					<li><a href="<?= base_url(); ?>admin/trades"><i class="fa fa-cubes"></i> <span>Trade-ins</span></a></li>		
                 </ul>
+                <ul class="nav side-menu">
+					<li><a href="<?= base_url(); ?>admin/blogs"><i class="fa fa-edit"></i> <span>Blogs</span></a></li>		
+                </ul>
 				
 				<h3>Categories</h3>
                 <ul class="nav side-menu">

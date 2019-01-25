@@ -1,10 +1,27 @@
+<div class="clear"></div>
+
+<div class="latest-sell-title">
+   <!-- Latest blog title start here -->
+   <h2>Sell your device</h2>
+   <p>Get the highest price for your device</p>
+   <div class="back-btn">
+      <!-- Back btn start here -->
+      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+   </div>
+   <!-- Back btn end here -->
+</div>
+<div class="clear"></div>
+</div>
+
+<div id="banner">
+<div class="jumbotron">
 <!-- // being page Header -->
         <div id="page-header">
           <div class="container">
             <div class="row">
               <div class="page-header">
                 <ul class="list-inline brand-tabs">
-                  <li><?= $cat_title; ?> <i class="fas fa-arrow-right"></i></li>
+                  <li><?= $cat_title; ?></li>
                   <li class="completed"><a href="javascript:void(0);">
                     <span class="number">01 </span><span class="text"><?= (isset($mod_title) ? $mod_title : 'Model'); ?></span>
                   </a></li>
@@ -29,7 +46,7 @@
 				 <?php
 					foreach($providers AS $pro){
 						if(!empty($pro['logo'])){
-							echo '<li class="col-md-3 col-sm-3s col-xs-12">
+							echo '<li class="col-md-6 col-sm-3s col-xs-12">
 							  <a href="'.$slug.'/'.$pro['slug'].'" class="btn btn-primary btn-lg btn-block">
 							  <img src="'.base_url().'assets/uploads/providers/'.$pro['logo'].'" class="img-responsive normal" alt="'.$pro['slug'].'">
 							  <img src="'.base_url().'assets/uploads/providers/'.$pro['logo'].'" class="img-responsive normal-hover" alt="'.$pro['slug'].'">
@@ -47,4 +64,6 @@
             </div>
           </div>
         </section>
+        </div>
+        </div>
         <!-- // end content Area -->

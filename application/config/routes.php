@@ -51,6 +51,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['default_controller'] = 'Home';
+$route['how-it-works'] = 'Works';
+$route['blogs'] = 'Blogs';
+$route['contact-us'] = 'Contact';
+
+
+
 $route['admin/categories'] = 'admin/Categories';
 $route['admin/categories/(:any)'] = 'admin/Categories/$1';
 $route['admin/condition'] = 'admin/Condition';
@@ -65,21 +71,25 @@ $route['admin/storage'] = 'admin/Storage';
 $route['admin/storage/(:any)'] = 'admin/Storage/$1';
 $route['admin/trades'] = 'admin/Trades';
 $route['admin/trades/(:any)'] = 'admin/Trades/$1';
+$route['admin/blogs'] = 'admin/Blogs';
+$route['admin/blogs/(:any)'] = 'admin/Blogs/$1';
+$route['admin/blogs/edit/(:any)'] = 'admin/Blogs/Edit/$1';
 $route['admin'] = 'admin/Admin';
 $route['admin/(:any)'] = 'admin/Admin/$1';
 
 
-$route['sell/(:any)/(:any)/(:any)/(:any)'] = 'Home/condition/$1/$2/$3/$4';
-$route['sell/(:any)/(:any)/(:any)'] = 'Home/storage/$1/$2/$3';
-$route['sell/(:any)/(:any)'] = 'Home/providers/$1/$2';
-$route['sell/(:any)'] = 'Home/models/$1';
-$route['get/conditon_details'] = 'Home/get_crecord';
-$route['get/pricing'] = 'Home/get_pricing';
+$route['sell/(:any)/(:any)/(:any)/(:any)'] = 'Sell/condition/$1/$2/$3/$4';
+$route['sell/(:any)/(:any)/(:any)'] = 'Sell/storage/$1/$2/$3';
+$route['sell/(:any)/(:any)'] = 'Sell/providers/$1/$2';
+$route['sell/(:any)'] = 'Sell/models/$1';
+$route['get/conditon_details'] = 'Sell/get_crecord';
+$route['get/pricing'] = 'Sell/get_pricing';
 $route['cart/add'] = 'Order/add_to_cart';
 $route['order/payment'] = 'Order/payment';
 $route['order/contact-details'] = 'Order/contact';
 $route['order/update-item'] = 'Order/update_cart_item';
 $route['order/confirm-order'] = 'Order/place_order';
+
 
 
 //$route['admin/(:any)'] = 'admin/Categories/$1';

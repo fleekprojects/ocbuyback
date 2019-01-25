@@ -1,3 +1,20 @@
+<div class="clear"></div>
+
+<div class="latest-sell-title">
+   <!-- Latest blog title start here -->
+   <h2>Sell your device</h2>
+   <p>Get the highest price for your device</p>
+   <div class="back-btn">
+      <!-- Back btn start here -->
+      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+   </div>
+   <!-- Back btn end here -->
+</div>
+<div class="clear"></div>
+</div>
+<div id="banner">
+<div class="jumbotron">
+
 <!-- // being content Area -->
 <section id="main-content" class="checkout">
   <div class="container">
@@ -75,6 +92,8 @@
 	</div>
   </div>
 </section>
+</div>
+</div>
 <!-- // end content Area -->
 <script>
 $('input[type=radio][name=pay_type]').change(function() {
