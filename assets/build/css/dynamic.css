@@ -66,14 +66,3 @@ body {
 .nav.side-menu>li.active>a {
     background: linear-gradient(#93cd2a,#86c426),#4b9b2e;
 }
-.btn-default{
-    border: 2px solid #87cb16 !important;
-    color: #87cb16 !important;
-	padding: 5px 12px;
-}
-.dt-buttons .btn-default, .note-btn-group .btn-default{
-    border: 1px solid #87cb16 !important;
-}
-.nav li li.current-page a, .nav.child_menu li li a.active, .nav.child_menu li li a:hover {
-    color: #87cb16;
-}

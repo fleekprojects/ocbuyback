@@ -54,7 +54,7 @@
                               <?= date('jS M Y ', strtotime($rec['created_at'])); ?>
                            </td>
                            <td>
-                              <a class="btn btn-warning btn-flat btn-sm" href="javascript:;" onclick="get_details(<?= $rec['id']; ?>)"><i class="fa fa-eye"></i> View Details</a>
+                              <a class="btn btn-info btn-flat btn-sm" href="javascript:;" onclick="get_details(<?= $rec['id']; ?>)"><i class="fa fa-eye"></i> View Details</a>
                               <!--<a class="btn btn-danger btn-sm" onclick="doDelete()"><i class="fa fa-trash"></i></a>-->
                            </td>
                         </tr>

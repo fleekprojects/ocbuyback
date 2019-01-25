@@ -59,15 +59,12 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-				  <li><a href="<?= base_url(); ?>admin/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>	
-				  <li><a><i class="fa fa-edit"></i>CMS <span class="fa fa-chevron-down"></span></a>
-					  <ul class="nav child_menu">
-						<li><a href="<?= base_url(); ?>admin/posts">Blogs/Pages</a></li>
-						<li><a href="<?= base_url(); ?>admin/faqs">Faqs</a></li>
-					  </ul>
-				  </li>
-				  <li><a href="<?= base_url(); ?>admin/trades"><i class="fa fa-cubes"></i> <span>Trade-ins</span></a></li>	
-				</ul>
+					<li><a href="<?= base_url(); ?>admin/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>		
+                </ul>
+                <ul class="nav side-menu">
+					<li><a href="<?= base_url(); ?>admin/trades"><i class="fa fa-cubes"></i> <span>Trade-ins</span></a></li>		
+                </ul>
+				
 				<h3>Categories</h3>
                 <ul class="nav side-menu">
 					<?php

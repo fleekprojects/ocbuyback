@@ -41,7 +41,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-8">
-									<input type="submit" style="float:right;" id="addSubmit" value="Submit" class="btn btn-default" >
+									<input type="submit" style="float:right;" id="addSubmit" value="Submit" class="btn btn-success" >
 								</div>
 							</div>
 							</form>
@@ -140,8 +140,8 @@
 							</div>
                         </div>
                         <div class="modal-footer">
-									<input type="submit" value="Submit" class="btn btn-warning" >
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+									<input type="submit" value="Submit" class="btn btn-success" >
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						  </form>
                         </div>
                       </div>

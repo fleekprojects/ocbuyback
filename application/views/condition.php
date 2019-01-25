@@ -1,27 +1,11 @@
-<div class="clear"></div>
 
-<div class="latest-sell-title">
-   <!-- Latest blog title start here -->
-   <h2>Sell your device</h2>
-   <p>Get the highest price for your device</p>
-   <div class="back-btn">
-      <!-- Back btn start here -->
-      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
-   </div>
-   <!-- Back btn end here -->
-</div>
-<div class="clear"></div>
-</div>
-
-<div id="banner">
-<div class="jumbotron">
 	<!-- // being page Header -->
         <div id="page-header">
           <div class="container">
             <div class="row">
               <div class="page-header">
                 <ul class="list-inline brand-tabs">
-                  <li><?= $cdata['title']; ?></li>
+                  <li><?= $cdata['title']; ?> <i class="fas fa-arrow-right"></i></li>
                   <li class="completed"><a href="javascript:void(0);">
                     <span class="number">01 </span><span class="text"><?= (isset($mdata['title']) ? $mdata['title'] : 'Model'); ?></span>
                   </a></li>
@@ -49,7 +33,7 @@
               <ul class="list-inline model-list">
 				 <?php
 					foreach($condition AS $con){
-						echo '<li class="col-md-6 col-sm-4 col-xs-12">
+						echo '<li class="col-md-3 col-sm-4 col-xs-12">
 						  <a href="javascript:;" onclick="get_cond_des('.$con['id'].')" class="btn btn-primary btn-lg btn-block">'.$con['title'].'</a>
 						</li>';
 					}
@@ -59,6 +43,7 @@
             <div class="row" >
               <div class="col-md-offset-1 col-md-11">
                 <div id="desc" style="display:none;">
+                  <h4>If All of the following are true:</h4>
 				  <div id="con-des"></div>
                 </div>
               </div>
@@ -80,9 +65,10 @@
                   <span id="quantity-group">
                     <input type="number" id="quntity" min="01" max="999" value="01" >
                     <button type="button" class="quantity-right-plus btn btn-link btn-sm btn-number" data-type="plus" data-field="">
-                                            
+                                            <i class="fas fa-sort-up"></i>
                     </button>
                      <button type="button" class="quantity-left-minus btn btn-link btn-sm btn-number"  data-type="minus" data-field="">
+                      <i class="fas fa-sort-down"></i>
                     </button>
                     </span>           
                   </div>
@@ -92,15 +78,15 @@
                   </div>
                 </div>
                 <div class="row">
-            <a href="javascript:;" onclick="add_to_cart(2)" class="add-to-cart ">Add to Cart and Add Another Device</a>
+                  <div class="col-xs-12 ">
+                    <a href="javascript:;" onclick="add_to_cart(2)" class="add-to-cart ">Add to Cart and Add Another Device</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
         <!-- // end content Area -->
-        </div>
-        </div>
 		
 	<script>
 		function get_cond_des(id){

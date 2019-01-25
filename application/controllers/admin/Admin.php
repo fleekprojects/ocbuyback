@@ -4,22 +4,16 @@
 	class Admin extends MY_Controller {
 	
 	
-		public function __construct(){
+		public function __construct()
+		{
 			parent::__construct();
+			
 			$this->load->model('Model_admin','Amodel');
-			$this->load->helper('cookie');
-			$this->load->helper('string');
+			
 		}
 			
 		public function index(){
 			if($this->session->userdata('admin_id') && $this->session->userdata('admin_user_name')){
-				redirect(base_url().'admin/dashboard');
-			}
-			else if($this->input->cookie('a_user') && $this->input->cookie('a_pass')){
-				$data['user_name']=$this->input->cookie('a_user');     
-				$data['password']=$this->input->cookie('a_pass');
-				$result = $this->Amodel->login($data);
-				echo $result;
 				redirect(base_url().'admin/dashboard');
 			}
 			else{
@@ -30,7 +24,6 @@
 		public function login(){
 			$this->index();
 		}
-		
 		public function logout(){
 			$user_data = $this->session->all_userdata();
 			foreach ($user_data as $key => $value) {
@@ -43,23 +36,9 @@
 		}
 		
 		public function login_auth(){
-			$data['user_name']=$_POST['user_name']; 
-			$data['password']=md5($_POST['password']);
-			$data['remember_me']=$_POST['remember_me']; 
+			$data=$_POST;
 			$result = $this->Amodel->login($data);
 			echo $result;
-		}
-		
-		public function fpass(){
-			$email=$_POST['email']; 
-			$string = random_string('alnum', 16);
-			$result = $this->Amodel->fpass($email,$string);
-			echo $result;
-		}
-		public function verify($slug){
-			
-			echo $slug;
-			die;
 		}
 		
 		public function dashboard(){

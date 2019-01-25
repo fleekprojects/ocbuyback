@@ -64,11 +64,11 @@
 			if($this->cart->contents() == NULL){
 				redirect (base_url());
 			}
-			else if(!isset($_SESSION['contact_details']) || empty($_SESSION['contact_details'])){
-				redirect ('order/contact');
-			}
 			else if(!isset($_SESSION['pay_details']) || empty($_SESSION['pay_details'])){
 				redirect ('order/payment');
+			}
+			else if(!isset($_SESSION['contact_details']) || empty($_SESSION['contact_details'])){
+				redirect ('order/contact');
 			}
 			else{
 				$viewdata['pdet']= $_SESSION['pay_details'];
@@ -96,9 +96,6 @@
 				}
 				if($trade_type == "prepaid_label"){
 					$trade_details= 'Prepaid Label'; 
-				}
-				else if($trade_type == "shipping_kit"){
-					$trade_details= 'Shipping Kit with Prepaid Label .'; 
 				}
 				
 				$data=array(

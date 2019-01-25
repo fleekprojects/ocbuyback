@@ -1,26 +1,9 @@
-<div class="clear"></div>
-
-<div class="latest-sell-title">
-   <!-- Latest blog title start here -->
-   <h2>Sell your device</h2>
-   <p>Get the highest price for your device</p>
-   <div class="back-btn">
-      <!-- Back btn start here -->
-      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
-   </div>
-   <!-- Back btn end here -->
-</div>
-<div class="clear"></div>
-</div>
-<div id="banner">
-<div class="jumbotron">
-
 <!-- // being content Area -->
 <section id="main-content" class="checkout">
   <div class="container">
 	<div class="row">
 	  <h3>How would you like to be paid?</h3>
-	  <h5>We will issue payment via Paypal, E-Check or Mailed Check within 1 business day of receving your device.</h5>
+	  <h5>We will issue payment via PayPal or a mailed check within one business day of receiving your device.</h5>
 	</div>
 	<div class="row">
 	  <div class="col-md-12">
@@ -92,8 +75,6 @@
 	</div>
   </div>
 </section>
-</div>
-</div>
 <!-- // end content Area -->
 <script>
 $('input[type=radio][name=pay_type]').change(function() {

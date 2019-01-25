@@ -1,27 +1,12 @@
-<div class="clear"></div>
-
-<div class="latest-sell-title">
-   <!-- Latest blog title start here -->
-   <h2>ORDER CONFIRMATION</h2>
-   <p>Take a minute to review the information below and make any necessary changes.</p>
-   <div class="back-btn">
-      <!-- Back btn start here -->
-      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
-   </div>
-   <!-- Back btn end here -->
-</div>
-<div class="clear"></div>
-</div>
-
-
-
-<div id="banner">
-          <div class="jumbotron checkout-page">
 
 <!-- // being content Area -->
 <section id="main-content" class="checkout  checkout-one">
    <div class="container">
       <div class="row">
+         <h3>Order Confirmation</h3>
+         <h5>Take a minute to review the information below and make any necessary changes.</h5>
+      </div>
+      <div class="row content">
          <div class="col-md-12">
             <table class="table table-bordered responsive-card-table unstriped">
                <thead>
@@ -55,30 +40,31 @@
 					?>
                </tbody>
             </table>
-            <div class="item-text">
-			<p>*Item must be deactivated from you account and/or paid off from any carrier installment agreement (for cellular items only)</p>
-         </div>
+			<p><i>*Item must be deactivated from you account and/or paid off from any carrier installment agreement (for cellular items only)</p>
          </div>
       </div>
 	
-	  <div class="row">
+	  <div class="row content">
+	        <hr noshade>
+         <div class="col-md-12">
 			<div class="col-md-6">
 			  <a href="<?= base_url(); ?>" class="btn btn-primary">
-				Add Another Device
+				Add Another Device &nbsp;<span class="glyphicon-plus"></span>
 			  </a>
 		   </div>
 		   <div class="col-md-6">
-		     <div class="order-total">
 			<h2>Order Total: <span id="total">$<?= $this->cart->format_number($this->cart->total()); ?></span></h2>
 		   </div>
-		   </div>
+		</div>
 	  </div>
 	  
-      <div class="row info-checkout">
-         <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="row content" style="min-height: 50px;">
+          <hr noshade>
+         <div class="col-md-6 col-sm-6 col-xs-12">
 		   <div class="col-xs-2">
 			  <i class="fas fa-portrait" style="font-size: 32px;"></i>
 		   </div>
+		   <div class="col-xs-10">
 			 <h4><b>Contact Information</b> 
 				<a href="<?= base_url(); ?>order/contact"><i class="fa fa-edit"></i></a>
 			 </h4>
@@ -86,13 +72,15 @@
 				<?= $cdet['first_name'].' '.$cdet['last_name']; ?><br/>
 				<?= $pdet['email']; ?><br/>
 				<?= $cdet['phone']; ?><br/><br/>
-				Your prepaid shipping label  will be emailed to this email immediately after checkout.
+				<i style="font-size: 12px;">Your prepaid shipping label  will be emailed to this email immediately after checkout.</i>
 			 </p>
+		   </div>
          </div>
-         <div class="col-md-4 col-sm-6 col-xs-12">
+         <div class="col-md-6 col-sm-6 col-xs-12">
 		   <div class="col-xs-2">
 			  <i class="fas fa-shipping-fast" style="font-size: 32px;"></i>
 		   </div>
+		   <div class="col-xs-10">
 			 <h4><b>Shipping Information</b>  
 				<a href="<?= base_url(); ?>order/contact"><i class="fa fa-edit"></i></a>
 			 </h4>
@@ -115,11 +103,14 @@
 				echo '<p>Prepaid Label.</p>'; 
 			  }
 			?>
+		   </div>
          </div>
       
-         <div class="col-md-4 col-sm-6 col-xs-12">
+         <div class="col-md-6 col-sm-6 col-xs-12">
 		   <div class="col-xs-2">
+			  <i class="fab fa-paypal" style="font-size: 32px;"></i>
 		   </div>
+		   <div class="col-xs-10">
 			 <h4><b>Payment Method</b> 
 				<a href="<?= base_url(); ?>order/payment"><i class="fa fa-edit"></i></a>
 			 </h4>
@@ -127,17 +118,16 @@
 				Payment Method: <?= ($pdet['pay_type']==1 ? 'Paypal' : 'Check'); ?><br/>
 				Email: <?= (!empty($pdet['paypal_email']) ? $pdet['paypal_email'] : $pdet['email']); ?>
 			 </p>
+		   </div>
          </div>
       </div>
 	  
-      <div class="row">
+      <div class="row content">
+          <hr noshade>
          <div class="col-md-12  text-center">
-            <a class="con-order" href="confirm-order" class="btn btn-orange">Complete Order</a>
+            <a href="confirm-order" class="btn btn-orange">Complete Order</a>
          </div>
       </div>
    </div>
 </section>
-
-</div>
-</div>
 <!-- // end content Area -->

@@ -20,7 +20,6 @@
 
     <!-- Custom Theme Style -->
     <link href="<?= base_url(); ?>assets/build/css/custom.min.css" rel="stylesheet">
-    <link href="<?= base_url(); ?>assets/build/css/dynamic.css" rel="stylesheet">
   </head>
 
   <body class="login">
@@ -43,51 +42,22 @@
               <div>
                 <input type="password" class="form-control" placeholder="Password" name="password" required />
               </div>
-              <div style="text-align: left;">
-				<input type="checkbox" name="remember_me" id="reme"/>
-				<label for="reme">Remember Me</label>
-              </div>
               <div>
                 <button type="submit" class="btn btn-default" id="sublog">Log in</button>
-              </div>
-              <div class="separator"></div>
-            </form>
-              <div class="col-sm-12" style="text-align: right;">
-                <a href="javascript:;" data-toggle="modal" data-target="#ModalPass">Lost your password?</a>
+                <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
               <div class="clearfix"></div>
+
+              <div class="separator">
+
                 <div class="clearfix"></div>
                 <br />
+              </div>
+            </form>
           </section>
         </div>
-		
-	  <!-- Forgot Password modal -->
-		  <div class="modal fade bs-example-modal-lg" id="ModalPass" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-			  <div class="modal-content">
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel">Forgot Password</h4>
-				</div>
-				<div class="modal-body">
-				  <div id="msge"></div>
-				  <form class="form-horizontal" method="post" id="adminfpass">
-					<div class="form-group">
-						<label class="control-label" for="example-text-input">Enter Your Registered Email</label>
-						<input type="text" name="email" id="email" class="form-control" required>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<input type="submit" value="Submit" class="btn btn-warning" >
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				  </form>
-				</div>
-			  </div>
-			</div>
-		  </div>
-	  <!-- Forgot Password modal -->
+
       </div>
     </div>
     <!-- jQuery -->
@@ -122,33 +92,6 @@
 			});
 
 		});
-
-		$("#adminfpass").submit(function(e){
-			e.preventDefault();
-			var value =$("#adminfpass").serialize() ;
-			$.ajax({
-				url:'<?php echo base_url();?>admin/fpass',
-				type:'POST',
-				data:value,
-				success:function(result){
-					// if(result==0){
-						// $("#msg").html('<div class="alert alert-danger alert-dismissable"><i class="fa fa-ban"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Invalid UserName/Password.</b></div>');
-						// $("#msg").show();
-						// setTimeout(function(){$("#msg").hide(); }, 3000);
-
-					// }
-					// else{	
-						// window.location.href="<?php echo base_url();?>admin/dashboard";
-					// }
-				},
-				error: function (xhr, textStatus, errorThrown){
-					alert(xhr.responseText);
-				}
-			});
-
-		});
 </script>
- <!-- Bootstrap -->
-    <script src="<?= base_url(); ?>assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

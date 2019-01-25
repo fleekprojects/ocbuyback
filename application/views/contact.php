@@ -1,23 +1,3 @@
-<div class="clear"></div>
-
-<div class="latest-sell-title">
-   <!-- Latest blog title start here -->
-   <h2>Sell your device</h2>
-   <p>Get the highest price for your device</p>
-   <div class="back-btn">
-      <!-- Back btn start here -->
-      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
-   </div>
-   <!-- Back btn end here -->
-</div>
-<div class="clear"></div>
-</div>
-
-
-
-<div id="banner">
-          <div class="jumbotron">
-
 <!-- // being content Area -->
 <section id="main-content" class="checkout">
   <div class="container">
@@ -46,9 +26,8 @@
 					?>
 					<select class="form-control" name="trade_type" id="trade_type" required>
 						<option <?= ($trade_type == "" ? "selected" : ""); ?> value="">Select how to ship us your item</option>
-						<option <?= ($trade_type == "local_dropoff" ? "selected" : ""); ?> value="local_dropoff">Local Drop Off - (<?= Address; ?>).</option>
+						<option <?= ($trade_type == "local_dropoff" ? "selected" : ""); ?> value="local_dropoff">Local Drop Off - Visit Our Location For Payout.</option>
 						<option  <?= ($trade_type == "prepaid_label" ? "selected" : ""); ?> value="prepaid_label">Prepaid Label - Print Label Now and Use Your Own Box For Faster Payout.</option>
-						<option  <?= ($trade_type == "prepaid_label" ? "selected" : ""); ?> value="shipping_kit">Shipping Kit with Prepaid Label .</option>
 					</select>
 			    </div>
 			  </div>
@@ -126,9 +105,6 @@
 	</div>
   </div>
 </section>
-
-</div>
-</div>
 <!-- // end content Area -->
 					
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
