@@ -35,7 +35,7 @@ class Model_admin extends CI_Model {
                 $this->session->set_userdata('_admin',true);
                 $this->session->set_userdata('admin_user_name',$user_name);
                 $this->session->set_userdata('admin_id',$rows->ID);
-                $this->session->set_userdata('admin_email',$rows->Email);
+                $this->session->set_userdata('admin_email',$rows->email);
 				return $rows->ID;
             }
             else{
@@ -97,12 +97,12 @@ class Model_admin extends CI_Model {
 	
 	function get_requote_price($odetails, $req_condition){
 		$this->db->select('p.price');
-		$this->db->join('conditions c', 'p.condition_id=c.id');
 		$this->db->join('models m', 'p.model_id=m.id');
 		$this->db->join('providers pr', 'p.provider_id=pr.id');
 		$this->db->join('storage s', 'p.storage_id=s.id');
-		$res= $this->db->get_where('pricing p', array('pr.title' => $odetails->provider, 'm.title' => $odetails->device, 'c.id' => $req_condition,'s.title' => $odetails->storage))->row();
+		$res= $this->db->get_where('pricing p', array('pr.title' => $odetails->provider, 'm.title' => $odetails->device, 'p.condition_id' => $req_condition,'s.title' => $odetails->storage))->row();
 		$res2= $this->db->get_where('conditions', array('id' => $req_condition))->row();
+		
 		return array('price' =>$res->price,'condition'=>$res2->title);
 	}
 	

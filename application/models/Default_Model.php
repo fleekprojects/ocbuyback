@@ -57,6 +57,7 @@
 		function update_data($tbl,$id,$data,$key){	
 			$this->db->where($key, $id);
 			$query = $this->db->update($tbl,$data);
+		
 			return $query;
 		}
 		

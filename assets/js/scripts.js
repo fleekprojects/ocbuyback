@@ -12,9 +12,7 @@
 		  data: val,
 		  url: 'updatesettings',
 		  success: function (data) {
-			 
 			if(data == 1){
-			  $("#settingsform")[0].reset();
 			  $('#settingsmsg').html('<p><b style="color: green;">Settings Successfully Updated </b></p>');
 			}
 			else{
@@ -23,7 +21,29 @@
 		  },
 		  error: function (xhr, textStatus, errorThrown) 
 		  {
-			alert(xhr.responseText);
+			console.log(xhr.responseText);
+		  }
+		});
+	}); 
+	
+	$( "#profileform" ).on( "submit", function(event){
+		event.preventDefault();
+		var val=$( this ).serialize() ;
+		$.ajax({
+		  type: "POST",
+		  data: val,
+		  url: 'updateprofile',
+		  success: function (data) {
+			if(data == 1){
+			  $('#profilemsg').html('<p><b style="color: green;">Profile Successfully Updated </b></p>');
+			}
+			else{
+			  $('#profilemsg').html('<b style="color: error;">Error Submitting your request. Please Try Again. </b>');
+			}
+		  },
+		  error: function (xhr, textStatus, errorThrown) 
+		  {
+			console.log(xhr.responseText);
 		  }
 		});
 	}); 

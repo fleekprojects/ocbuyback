@@ -29,7 +29,7 @@
     <link href="<?= base_url(); ?>assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/build/css/custom.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/build/css/dynamic.css" rel="stylesheet">
 	<script src="<?= base_url(); ?>assets/vendors/jquery/dist/jquery.min.js"></script>
@@ -125,7 +125,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Update Profile</a></li>
+                    <li><a data-toggle="modal" data-target="#proModal"> Update Profile</a></li>
                     <li><a href="<?= base_url('admin/logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
@@ -135,7 +135,7 @@
         </div>
         <!-- /top navigation -->
          <!-----------------Settings Modal ------------------>
-    <form role="form" action="<?= base_url('/updatesettings') ?>" id="settingsform" method="post" enctype="multipart/form-data" name="frmPage">
+    <form role="form" id="settingsform" method="post" enctype="multipart/form-data" name="frmPage">
     <div class="modal fade" id="conModal"  tabindex="-1" role="dialog" aria-hidden="true">
      <div class="modal-dialog">
       <div class="modal-content">
@@ -181,7 +181,7 @@
           </div>
           <div class="form-group col-md-6">
            <label>SMTP Password:</label>
-           <input type="password" name="SMTP_Pass" value="<?=SMTP_Pass?>" value="" class="form-control">
+           <input type="password" name="SMTP_Pass" value="" class="form-control">
            <p> leave empty if don't want to change </p>
           </div>
           <div class="form-group col-md-6">
@@ -192,6 +192,43 @@
            <label>Timezone:</label>
            <input type="text"   name="Timezone" value="<?=Timezone?>" class="form-control" required />
           </div> 
+          <div class="clearfix"></div>
+         </div>
+         <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"> Close</button>
+          <button type="submit" class="btn btn-warning"><i class="fa fa-plus"></i>   Update</button>
+         </div>
+      </div>
+     </div>
+    </div>
+   </form>
+   <!----------------------/Settings Modal ----------------------->
+   
+         <!-----------------Profile Modal ------------------>
+    <form role="form" id="profileform" method="post" >
+    <div class="modal fade" id="proModal"  tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="panel-title" id="myModalLabel">Update Profile Settings</h3>
+         </div>
+         
+         <div class="modal-body">
+           <div id="profilemsg"></div>
+          <div class="form-group col-md-6">
+           <label>User Name:</label>
+           <input type="text" name="user_name" value="<?= $_SESSION['admin_user_name']; ?>" class="form-control" required />
+          </div>
+          <div class="form-group col-md-6">
+           <label>Admin Email:</label>
+           <input type="text" name="user_email" value="<?= $_SESSION['admin_email']; ?>" class="form-control" required />
+          </div>
+          <div class="form-group col-md-6">
+           <label>Admin Password:</label>
+           <input type="password" name="user_password" value="" class="form-control">
+           <p> leave empty if don't want to change </p>
+          </div>
           <div class="clearfix"></div>
          </div>
          <div class="modal-footer">
@@ -253,7 +290,7 @@
 	<script> var baseurl="<?= base_url();?>";</script>
     <!-- Custom Theme Scripts -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <script src="<?= base_url(); ?>assets/build/js/custom.min.js"></script>
     <script src="<?= base_url(); ?>assets/js/scripts.js"></script>
   </body>

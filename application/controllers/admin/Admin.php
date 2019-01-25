@@ -66,7 +66,8 @@
 			$this->Dmodel->checkLogin();
 			$viewdata['title']="Trade Ins";
 			$viewdata['counters']=$this->Amodel->get_counters();
-			$viewdata['records']=$this->Amodel->get_recent();
+			$viewdata['records']=$this->Amodel->get_current_trades();
+			$viewdata['conditions']=$this->Dmodel->get_tbl_whr_arr('conditions',array('status'=>1));
 			$this->LoadAdminView("admin/dashboard",$viewdata);
 		}
 		
@@ -90,6 +91,25 @@
 			}
 			else {
 				$data=array('Site_Title'=>$Title,'Admin_Title'=>$ATitle,'Email'=>$Email,'Phone'=>$Phone,'Address'=>$Address,'Website'=>$Website,'Timezone'=>$Timezone,'SMTP_Host'=>$SMTP_Host,'SMTP_Email'=>$SMTP_Email,'SMTP_Port'=>$SMTP_Port);
+			}
+			$result=$this->Dmodel->update_data($tbl,$ID,$data,$key);
+		
+			echo $result;
+			die;
+		}
+		
+		public function updateprofile(){
+			$tbl="users";
+			$ID=1;
+			$key="ID";
+			$user_name=$this->input->post('user_name');
+			$user_email=$this->input->post('user_email');
+			if(!empty($this->input->post('user_password'))){
+				$user_password=$this->input->post('user_password');
+				$data=array('user_name'=>$user_name,'email'=>$user_email,'password'=>$user_password);
+			}
+			else {
+				$data=array('user_name'=>$user_name,'email'=>$user_email);
 			}
 			$result=$this->Dmodel->update_data($tbl,$ID,$data,$key);
 		

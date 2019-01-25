@@ -19,20 +19,39 @@
 				?>            
             <tr>
                <td><?= $item['provider']; ?><br>
-			   <?php if($order[0]['status'] == 'received' && $item['action']==1){ ?>
-			   <span class="label label-success"><i class="fa fa-check"></i>&nbsp; Passed Inspection</span>
-                  <?php }
-                  else if($order[0]['status'] == 'received' && $item['action']==2) { ?>
-                  <span class="label label-danger">&nbsp; Failed Inspection</span>
-                  <?php } 
-				  else if($order[0]['status'] == 'received' && $item['action']==3){
-					?>
-					<span class="label label-warning">&nbsp; Requoted</span>
-				  <?php  } 
-				  else  if($order[0]['status'] == 'received' && $item['action']==4){
-					?>
-					<span class="label label-info">&nbsp; Seller Action Required</span>
-				  <?php  } ?> 
+			   <?php
+				if($order[0]['status'] == 'received' && $item['action']==1){ 
+					echo '<span class="label label-success"><i class="fa fa-check"></i>&nbsp; Passed Inspection</span>';
+				}
+				else if($order[0]['status'] == 'received' && $item['action']==2) {
+					echo '<span class="label label-danger">&nbsp; Failed Inspection</span>';
+				}
+				else if($order[0]['status'] == 'received' && $item['action']==3){
+					if($req_status==0){
+						echo '<span class="label label-warning">Requoted</span>';
+					}
+					else if($req_status==1){
+						echo '<span class="label label-success">Requote Accepted</span>';
+					}
+					else if($req_status==2){
+						echo '<span class="label label-danger">Requote Rejected</span>';
+					}
+				}
+				else if($order[0]['status'] == 'received' && $item['action']==4){
+					if($req_status==0){
+						echo '<span class="label label-warning">Seller Action Required</span>';
+					}
+					else if($req_status==1){
+						echo '<span class="label label-success">Issue Resolved</span>';
+					}
+					else if($req_status==2){
+						echo '<span class="label label-danger">Request Rejected</span>';
+					}
+				}
+				else  if($order[0]['status'] == 'received' && $item['action']==4){
+					echo '<span class="label label-info">&nbsp; Seller Action Required</span>';
+				} 
+			   ?> 
                </td>
                <td><?= $item['device'].' '.$item['storage']; ?></td>
                <td><?= $item['condition']; ?></td>

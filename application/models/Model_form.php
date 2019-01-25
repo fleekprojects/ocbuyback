@@ -59,6 +59,16 @@ class Model_form extends CI_Model {
 		return $query->result_array()[0];
 	}
 		
+	function update_total($oid){	
+		$this->db->select_sum('subtotal');
+		$order_total= $this->db->get_where('order_details',array('order_id' => $oid))->row();
+		
+		$this->db->set('amount', $order_total->subtotal);
+		$this->db->where('id', $oid);
+		$this->db->update('orders');
+		return true;
+	}
+		
 	
    
 }

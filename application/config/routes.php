@@ -95,7 +95,10 @@ $route['order/payment'] = 'Order/payment';
 $route['order/contact-details'] = 'Order/contact';
 $route['order/update-item'] = 'Order/update_cart_item';
 $route['order/confirm-order'] = 'Order/place_order';
-$route['trade/requotes/(:any)/(:any)/(:any)'] = 'Order/Requotes/$1/$2/$3';
+$route['trade/requote/accept/(:any)'] = 'Order/requote_accept/$1';
+$route['trade/requote/reject/(:any)'] = 'Order/requote_reject/$1';
+$route['trade/seller-action/accept/(:any)'] = 'Order/seller_accept/$1';
+$route['trade/seller-action/reject/(:any)'] = 'Order/seller_reject/$1';
 
 
 $route['(:any)'] = 'Blogs/page/$1';

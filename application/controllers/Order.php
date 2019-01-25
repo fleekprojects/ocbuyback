@@ -15,6 +15,7 @@
 			$pid=$_POST['pid'];
 			$qty=$_POST['qty'];
 			$pdata=$this->m_form->get_product($pid);
+			
 			$data = array(
 					'id'      => $pdata['id'],
 					'qty'     => $qty,
@@ -130,6 +131,7 @@
 						'provider'=>$item['provider'],
 						'device'=>$item['name'],
 						'condition'=>$item['condition'],
+						'storage'=>$item['storage'],
 						'offer'=>$item['price'],
 						'quantity'=>$item['qty'],
 						'subtotal'=>$item['subtotal']
@@ -144,32 +146,60 @@
 		}
 
 
-
-
-		public function Requotes($guid,$slug,$id)
-		{
-			
-		
-		if($slug=='accepted'):
-			$oexist=$this->Dmodel->IFExist('order_requote','guid',$guid);
-			if($oexist=='false'):
-				$randdata=array('status'=>1);
-				$ranexec=$this->Dmodel->update_data('order_requote',$guid,$randdata,'guid');
-				$requotedetails = $this->Dmodel->get_tbl_whr_arr('order_requote',array('order_detail_id'=>$id));
-			
-		
-				// $orderdetails = $this->Dmodel->update_data('order_requote',$guid,array('offer'=>$order),'guid');;
-				// $this->LoadView('requotesucces',$viewdata);
-			else:
+		public function requote_accept($guid){
+			if($this->Dmodel->IFExist('order_requote','guid',$guid) == false){
+				$this->Dmodel->update_data('order_requote',$guid,array('status'=>1),'guid');
+				$requotedetails=$this->Dmodel->get_tbl_whr_arr('order_requote',array('guid'=>$guid))[0];
+				$tradedetails=$this->Dmodel->get_tbl_whr_arr('order_details',array('id'=>$requotedetails['order_detail_id']))[0];
 				
-			endif;	
-		else:
+				$subtotal=$requotedetails['new_price']*$tradedetails['quantity'];
+				$trade_arr=array('offer'=>$requotedetails['new_price'],'subtotal'=>$subtotal);
+				$this->Dmodel->update_data('order_details',$requotedetails['order_detail_id'],$trade_arr,'id');
+				
+				$this->m_form->update_total($tradedetails['order_id']);
+				$data['content']="<h1><strong>Thank you for resolving this issue.</strong></h1>
+				<h2><strong>We will initiate your payment within one business day. Have a great day, from everyone at OCBuyBack!</strong></h2>";
+				$this->LoadView('thankyou',$data);
+			}
+			else{
+				$data['content']="<h1><strong>Thank you.</strong></h1>
+				<h2><strong>Have a great day, from everyone at OCBuyBack!</strong></h2>";
+				$this->LoadView('thankyou',$data);
+				
+			}
+		}
 
-		endif;
-		
+		public function requote_reject($guid){
+			
+			if($this->Dmodel->IFExist('order_requote','guid',$guid) == false){
+				$this->Dmodel->update_data('order_requote',$guid,array('status'=>2),'guid');
+				
+				$data['content']="<h1><strong>Thank you.</strong></h1>
+				<h2><strong>Have a great day, from everyone at OCBuyBack!</strong></h2>";
+				$this->LoadView('thankyou',$data);
+			}
+		}
+		public function seller_accept($guid){
+			if($this->Dmodel->IFExist('order_seller_issue','guid',$guid) == false){
+				$this->Dmodel->update_data('order_seller_issue',$guid,array('status'=>1),'guid');
+				$data['content']="<h1><strong>Thank you for resolving this issue.</strong></h1>
+				<h2><strong>We will initiate your payment within one business day. Have a great day, from everyone at OCBuyBack!</strong></h2>";
+				$this->LoadView('thankyou',$data);
+			}
+			else{
+				$data['content']="<h1><strong>Thank you.</strong></h1>
+				<h2><strong>Have a great day, from everyone at OCBuyBack!</strong></h2>";
+				$this->LoadView('thankyou',$data);
+			}
+		}
 
-
-
+		public function seller_reject($guid){
+			if($this->Dmodel->IFExist('order_seller_issue','guid',$guid) == false){
+				$this->Dmodel->update_data('order_seller_issue',$guid,array('status'=>2),'guid');
+				$data['content']="<h1><strong>Thank you.</strong></h1>
+				<h2><strong>Have a great day, from everyone at OCBuyBack!</strong></h2>";
+				$this->LoadView('thankyou',$data);
+			}
 		}
 	}
 

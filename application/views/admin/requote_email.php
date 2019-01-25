@@ -23,10 +23,7 @@
                            <p style="margin:0;font-size:16px;line-height:24px;color:#2EB835;"><b><?= $heading ?></b></p>
                            <br><br>                           
                            <p style="margin:0;font-size:16px;line-height:24px;"><?= $firstp ?>                              <br>
-						   <?php
-						   if($Opt=="yes"){ ?>
-						   <br><a href="//ocbuyback.tk/trade/requotes/<?= $random ?>/accepted" style="color:#2EB835;text-decoration:none;float:left;" rel="nofollow"><u>I accept this new offer</u></a>                              <a href="//ocbuyback.tk/trade/requotes/<?= $random ?>/rejected" style="color:#777;text-decoration:none;float:right;" rel="nofollow"><u>I want my device back</u></a>                           </p>
-                           <?php } ?>                           <br>                        
+						   <?= $Opt; ?>     </p>                      <br>                        
                         </td>
                      </tr>
                   </tbody>
