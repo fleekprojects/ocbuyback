@@ -17,7 +17,6 @@
    <hr noshade>
    <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
-		<div id="msg"></div>
          <div class="x_panel">
             <div class="x_title">
                <h2><?= $title; ?> |<small>Add New</small></h2>
@@ -50,6 +49,7 @@
                         <textarea name="content" class="summernote"></textarea>
                      </div>
                      <div class="col-md-12">
+						<div id="msg"></div>
                         <input type="submit" id="addSubmit" value="Submit" class="btn btn-default" style="width:100%" >
                      </div>
                   </form>
@@ -61,16 +61,24 @@
 </div>
 <script type="text/javascript">        
    $(document).ready(function(){
-   	$("#Addform").validate({
-   		rules: {
-   		  title: "required",
-   		  content: "required"
-   		}
-   	});
    	$('.summernote').summernote({
    		placeholder: 'Enter Blog Content here...',
    		tabsize: 2,
    		height: 300
+   	});
+   	$("#Addform").validate({
+   		rules: {
+   		  title: "required",
+   		  content: "required",
+		  image: {
+			extension: "png|jpeg|jpg"
+		  }
+   		},
+		messages: {
+		  image: {
+			extension: "Only PNG, JPG and JPEG files are allowed."
+		  }
+		}
    	});
    });
 </script>

@@ -33,7 +33,8 @@
     <link href="<?= base_url(); ?>assets/build/css/custom.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/build/css/dynamic.css" rel="stylesheet">
 	<script src="<?= base_url(); ?>assets/vendors/jquery/dist/jquery.min.js"></script>
-	<script src="<?= base_url(); ?>assets/js/jquery.validate.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 	<style type="text/css">
   .error{
 	color: #E74C3C;
@@ -250,7 +251,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Powered by OC Supply</a>
+            Powered by OCBuyBack</a>
           </div>
           <div class="clearfix"></div>
         </footer>

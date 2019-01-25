@@ -36,7 +36,7 @@
                   </div>
                   <div class="blog-content">
                      <strong><a href="<?= base_url().$blog['slug']; ?>" target="_blank"><?= $blog['title']; ?></a></strong>
-                     <p>By OC Supply on <?= date('jS M Y',strtotime($blog['created_at'])); ?></p>
+                     <p>By OCBuyBack on <?= date('jS M Y',strtotime($blog['created_at'])); ?></p>
                   </div>
                </div>
             </div>

@@ -4,10 +4,13 @@
     padding: 0 0 10px 5px !important;
     margin: 0 !important;
 }
-.note-editor .note-editing-area {
-    position: relative;
-    margin-top: 5px;
+.note-editor.note-frame .note-editing-area .note-editable {
+   padding-top: 20px !important;
 }
+.note-toolbar-wrapper{
+	height:100%;
+}
+
 </style>			  
 <div class="">
             <div class="page-title">
@@ -58,7 +61,7 @@
 							<div class="form-group">
 								<label class="col-md-2 control-label" for="example-text-input">Answer</label>
 								<div class="col-md-10">
-									<textarea name="answer" placeholder="Enter Answer" class="summernote"></textarea>
+									<textarea name="answer" class="summernote" placeholder="Enter Answer" ></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -87,7 +90,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-					<form method="post" id="tblform" action="<?= base_url();?>admin/Condition/DeleteRecord">
+					<form method="post" id="tblform" action="<?= base_url();?>admin/Faqs/DeleteRecord">
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -112,7 +115,7 @@
                           <td>
 						   <div class="form-group">
                             <label>
-                              <input type="checkbox" class="js-switch"  <?= ($rec['status']==1) ? 'checked' : '' ?> onclick="togglestatus(<?= $rec['id'] ?>,'Condition')" />
+                              <input type="checkbox" class="js-switch"  <?= ($rec['status']==1) ? 'checked' : '' ?> onclick="togglestatus(<?= $rec['id'] ?>,'Faqs')" />
                             </label>
                           </div></td>
                           <td>
@@ -186,15 +189,22 @@
     <script type="text/javascript">        
 
 	$(document).ready(function(){
-		$("#Addform").validate({
-			rules: {
-			  title: "required"
-			}
-		});
 		$('.summernote').summernote({
 			placeholder: 'Enter Answer here...',
 			tabsize: 2,
 			height: 100
+		});
+		$("#Addform").validate({
+			rules: {
+			  question: "required",
+			  answer: "required"
+			}
+		});
+		$("#Editform").validate({
+			rules: {
+			  question: "required",
+			  answer: "required"
+			}
 		});
 	});
 	$(".btn-editc").click(function(){
@@ -209,6 +219,8 @@
 				$('#tag').val(result.tag),
 				$('#question').val(result.question),
 				$('#answer').summernote("code", result.answer);
+				$(".note-editor .note-editing-area").css("position", "initial");
+				$(".note-toolbar-wrapper").css("height", "100%");
 			},
 			error: function (xhr, textStatus, errorThrown){
 				alert(xhr.responseText);

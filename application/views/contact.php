@@ -2,8 +2,8 @@
 
 <div class="latest-sell-title">
    <!-- Latest blog title start here -->
-   <h2>Sell your device</h2>
-   <p>Get the highest price for your device</p>
+   <h2>Shipping Information</h2>
+   <p>Provide the address for your free shipping label and payment</p>
    <div class="back-btn">
       <!-- Back btn start here -->
       <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
@@ -21,21 +21,21 @@
 <!-- // being content Area -->
 <section id="main-content" class="checkout">
   <div class="container">
-	<div class="row">
+	<!--<div class="row">
 	  <h3>Shipping Information</h3>
 	  <h5>Provide the address for your free shipping label and payment.</h5>
-	</div>
+	</div>-->
 	<div class="row">
 		<div class="col-md-12 content">
 			<form id="pay_form" action="<?=base_url();?>order/payment" method="POST">
 			  <div class="col-sm-6">
 			    <div class="form-group">
-					<input type="text" class="form-control" name="first_name" placeholder="First Name" value="<?= (isset($cdet['first_name']) ? $cdet['first_name'] : ""); ?>" required>
+					<input type="text" class="form-control" name="first_name" placeholder="First Name" value="<?= (isset($cdet['first_name']) ? $cdet['first_name'] : ""); ?>" >
 			    </div>
 			  </div>
 			  <div class="col-sm-6">
 			    <div class="form-group">
-					<input type="text" class="form-control" name="last_name" placeholder="Last Name" value="<?= (isset($cdet['last_name']) ? $cdet['last_name'] : ""); ?>" required>
+					<input type="text" class="form-control" name="last_name" placeholder="Last Name" value="<?= (isset($cdet['last_name']) ? $cdet['last_name'] : ""); ?>" >
 			    </div>
 			  </div>
 			  <div class="col-sm-12">
@@ -44,18 +44,19 @@
 						$trade_type=(isset($cdet['trade_type']) ? $cdet['trade_type'] : "");
 						$time=(isset($cdet['time']) ? $cdet['time'] : "");
 					?>
-					<select class="form-control" name="trade_type" id="trade_type" required>
+					<select class="form-control" name="trade_type" id="trade_type" >
 						<option <?= ($trade_type == "" ? "selected" : ""); ?> value="">Select how to ship us your item</option>
-						<option <?= ($trade_type == "local_dropoff" ? "selected" : ""); ?> value="local_dropoff">Local Drop Off - (<?= Address; ?>).</option>
-						<option  <?= ($trade_type == "prepaid_label" ? "selected" : ""); ?> value="prepaid_label">Prepaid Label - Print Label Now and Use Your Own Box For Faster Payout.</option>
-						<option  <?= ($trade_type == "shipping_kit" ? "selected" : ""); ?> value="shipping_kit">Shipping Kit with Prepaid Label.</option>
+						<option <?= ($trade_type == "local_dropoff" ? "selected" : ""); ?> value="local_dropoff">Local Drop Off - (<?= Address; ?>)</option>
+						<option  <?= ($trade_type == "prepaid_label" ? "selected" : ""); ?> value="prepaid_label">Prepaid Label - Print Label Now and Use Your Own Box For Faster Payout</option>
+						<option  <?= ($trade_type == "shipping_kit" ? "selected" : ""); ?> value="shipping_kit">Shipping Kit with Prepaid Label - We Send You a Box, Slowest Turn Around Process</option>
 					</select>
 			    </div>
 			  </div>
-			  <div class="col-sm-12" id="local_tradein" <?= ($trade_type != "local_dropoff" ? 'style="display:none"' : ""); ?>>
+			  <div class="col-sm-12" id="local_tradein" style="padding: 0px;<?= ($trade_type != "local_dropoff" ? 'display:none' : ''); ?>;" >
 			    <div class="col-sm-6">
 				  <div class="form-group">
 					<input type="text" class="form-control" id="datepicker" name="date" placeholder="Select Date" value="<?= (isset($cdet['date']) ? $cdet['date'] : ""); ?>">
+					<span id="date_error" class="error"></span>
 				  </div>
 				</div>
 				<div class="col-sm-6">
@@ -72,54 +73,59 @@
 						<option <?= ($time == "04:00 PM" ? "selected" : ""); ?> value="04:00 PM">04:00 PM</option>
 						<option <?= ($time == "05:00 PM" ? "selected" : ""); ?> value="05:00 PM">05:00 PM</option>
 					</select>
+					<span id="time_error" class="error"></span>
 				  </div>
 				</div>
 			  </div>
-			
-			  <div class="col-sm-12">
-			    <div class="form-group" id="locationField">
-					<input id="autocomplete" placeholder="Enter Your Address" onFocus="geolocate()" type="text" name="address" value="<?= (isset($cdet['address']) ? $cdet['address'] : ""); ?>" class="form-control" required ></input>
-				</div>
-			  </div>
-			  <div id="address">
-			  <div class="col-sm-4">
-				<div class="form-group">
-					<input type="text" class="field form-control" id="street_number" name="unit" placeholder="Unit, Suite or Apt Number" value="<?= (isset($cdet['unit']) ? $cdet['unit'] : ""); ?>" readonly>
-				</div>
-			  </div>
-			  <div class="col-sm-8">
-				<div class="form-group">
-					<input type="text" class="field form-control" name="street" id="route" placeholder="Street Address" value="<?= (isset($cdet['street']) ? $cdet['street'] : ""); ?>" readonly>
-				</div>
-			  </div>
-			  <div class="col-sm-4">
-				<div class="form-group">
-					<input type="text" class="field form-control" id="locality" name="city" value="<?= (isset($cdet['city']) ? $cdet['city'] : ""); ?>" placeholder="City" readonly>
-				</div>
-			  </div>
-			  <div class="col-sm-4">
-				<div class="form-group">
-					<input type="text" class="field form-control" id="administrative_area_level_1" name="state" value="<?= (isset($cdet['state']) ? $cdet['state'] : ""); ?>"  placeholder="State" readonly>
-				</div>
-			  </div>
-			  <div class="col-sm-4">
-				<div class="form-group">
-					<input type="text" class="field form-control" id="postal_code" name="zip_code" value="<?= (isset($cdet['zip_code']) ? $cdet['zip_code'] : ""); ?>" placeholder="Zip Code" readonly>
-				</div>
-			  </div>
-			  <div class="col-sm-6">
-				<div class="form-group">
-					<input type="text" class="field form-control" id="country" name="country" placeholder="Country" value="<?= (isset($cdet['country']) ? $cdet['country'] : ""); ?>" readonly>
-				</div>
-			  </div>
-			  </div>
-			  <div class="col-sm-6">
-			    <div class="form-group">
-					<input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number 111-111-1111" value="<?= (isset($cdet['phone']) ? $cdet['phone'] : ""); ?>" pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" maxlength="12">
+			  <div class="col-sm-12" id="ship_tradein" style="padding: 0px;<?php if($trade_type == "local_dropoff"|| $trade_type == "") echo 'display:none'; ?>">
+			    <div class="col-sm-12">
+				  <div class="form-group" id="locationField">
+					<input id="autocomplete" placeholder="Enter Your Address" onFocus="geolocate()" type="text" name="address" value="<?= (isset($cdet['address']) ? $cdet['address'] : ""); ?>" class="form-control" ></input>
+				  </div>
+			    </div>
+			    <div id="address">
+				  <div class="col-sm-4">
+					<div class="form-group">
+					  <input type="text" class="field form-control" id="street_number" name="unit" placeholder="Unit, Suite or Apt Number" value="<?= (isset($cdet['unit']) ? $cdet['unit'] : ""); ?>" readonly>
+					</div>
+				  </div>
+				  <div class="col-sm-4">
+					<div class="form-group">
+						<input type="text" class="field form-control" name="street" id="route" placeholder="Street Address" value="<?= (isset($cdet['street']) ? $cdet['street'] : ""); ?>" readonly>
+					</div>
+				  </div>
+				  <div class="col-sm-4">
+					<div class="form-group">
+						<input type="text" class="field form-control" id="locality" name="city" value="<?= (isset($cdet['city']) ? $cdet['city'] : ""); ?>" placeholder="City" readonly>
+					</div>
+				  </div>
+				  <div class="col-sm-4">
+					<div class="form-group">
+						<input type="text" class="field form-control" id="administrative_area_level_1" name="state" value="<?= (isset($cdet['state']) ? $cdet['state'] : ""); ?>"  placeholder="State" readonly>
+					</div>
+				  </div>
+				  <div class="col-sm-4">
+					<div class="form-group">
+						<input type="text" class="field form-control" id="postal_code" name="zip_code" value="<?= (isset($cdet['zip_code']) ? $cdet['zip_code'] : ""); ?>" placeholder="Zip Code" readonly>
+					</div>
+				  </div>
+				  <div class="col-sm-4">
+					<div class="form-group">
+						<input type="text" class="field form-control" id="country" name="country" placeholder="Country" value="<?= (isset($cdet['country']) ? $cdet['country'] : ""); ?>" readonly>
+					</div>
+				  </div>
 			    </div>
 			  </div>
-			  <div class="form-group text-right">
-				<button type="submit" class="btn btn-primary" >Continue</button>
+			  <div class="col-sm-12">
+			  <div class="col-sm-6" style="padding-left: 0px;">
+				<div class="form-group">
+					<input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number 111-111-1111" value="<?= (isset($cdet['phone']) ? $cdet['phone'] : ""); ?>" pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" maxlength="12">
+				</div></div>
+			  </div>
+			  <div class="col-sm-12">
+			    <div class="form-group text-right">
+					<button type="submit" class="btn btn-primary" >Continue</button>
+				</div>
 			  </div>
 			</form>
 		</div>
@@ -147,11 +153,56 @@ $(document).ready(function() {
   
   $("#pay_form").validate({
 	rules: {
-	  unit: "required",
-	  street: "required",
-	  city: "required",
-	  state: "required",
+	  first_name: "required",
+	  last_name: "required",
+	  trade_type: "required",
+	  address: {
+		  required: function(element) {
+			return $("#trade_type").val() == 'prepaid_label' || $("#trade_type").val() == 'shipping_kit';
+		  }
+	  },
+	  unit: {
+		  required: function(element) {
+			return $("#trade_type").val() == 'prepaid_label' || $("#trade_type").val() == 'shipping_kit';
+		  }
+	  },
+	  street: {
+		  required: function(element) {
+			return $("#trade_type").val() == 'prepaid_label' || $("#trade_type").val() == 'shipping_kit';
+		  }
+	  },
+	  city: {
+		  required: function(element) {
+			return $("#trade_type").val() == 'prepaid_label' || $("#trade_type").val() == 'shipping_kit';
+		  }
+	  },
+	  state: {
+		  required: function(element) {
+			return $("#trade_type").val() == 'prepaid_label' || $("#trade_type").val() == 'shipping_kit';
+		  }
+	  },
+	  zip_code: {
+		  required: function(element) {
+			return $("#trade_type").val() == 'prepaid_label' || $("#trade_type").val() == 'shipping_kit';
+		  }
+	  },
+	  country: {
+		  required: function(element) {
+			return $("#trade_type").val() == 'prepaid_label' || $("#trade_type").val() == 'shipping_kit';
+		  }
+	  },
+	  date: {
+		  required: function(element) {
+			return $("#trade_type").val() == 'local_dropoff';
+		  }
+	  },
+	  time: {
+		  required: function(element) {
+			return $("#trade_type").val() == 'local_dropoff';
+		  }
+	  },
 	  phone: "required",
+	
 	}
   });
 });
@@ -167,14 +218,53 @@ $("#pay_form").submit(function(e) {
 	if ($('#pay_form').valid() != 1) {
 		e.preventDefault();
 	}
+	// if($("#trade_type").val()=='local_dropoff'){
+		// if($("#datepicker").val()==''){
+			// $("#date_error").html('This field is required.');
+			// e.preventDefault();
+		// }
+		// else{
+			// $("#date_error").text('')
+		// }
+		// if($("#time").val()==''){
+			// $("#time_error").text('This field is required.');
+			// e.preventDefault();
+		// }
+		// else{
+			// $("#time_error").text('')
+		// }
+	// }
+	
 });
 
 $('#trade_type').change(function() {
-    if (this.value == 'local_dropoff') {
-        $("#local_tradein").slideDown();
-    }
-    else if (this.value == 'prepaid_label') {
+    if (this.value == '') {
+		$("#ship_tradein").slideUp();
         $("#local_tradein").slideUp();
+		$("#autocomplete").val("");
+        $("#street_number").val("");
+        $("#route").val("");
+        $("#locality").val("");
+        $("#administrative_area_level_1").val("");
+        $("#postal_code").val("");
+        $("#country").val("");
+		$("#datepicker").val("");
+        $("#time").val("");
+	}
+    if (this.value == 'local_dropoff') {
+        $("#ship_tradein").slideUp();
+        $("#local_tradein").slideDown();
+		$("#autocomplete").val("");
+        $("#street_number").val("");
+        $("#route").val("");
+        $("#locality").val("");
+        $("#administrative_area_level_1").val("");
+        $("#postal_code").val("");
+        $("#country").val("");
+    }
+    else if (this.value == 'prepaid_label' || this.value == 'shipping_kit') {
+        $("#local_tradein").slideUp();
+        $("#ship_tradein").slideDown();
         $("#datepicker").val("");
         $("#time").val("");
     }
@@ -211,7 +301,7 @@ function fillInAddress() {
 
   for (var component in componentForm){
     document.getElementById(component).value = '';
-	if(component != "country"){
+	if(component != "country" && component != "locality" && component != "administrative_area_level_1"){
 		document.getElementById(component).readOnly = false;
 	}
   }

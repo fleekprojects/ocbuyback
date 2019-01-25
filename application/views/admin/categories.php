@@ -131,12 +131,12 @@
                   <form class="form-horizontal" method="post" id="Editform" action="<?= base_url();?>admin/Categories/EditRecord">
                      <div class="form-group">
                         <label class="control-label" for="example-text-input">Category Name</label>
-                        <input type="text" name="title" id="title" value="" placeholder="Enter Category Name" class="form-control" required>
+                        <input type="text" name="title" id="title" value="" placeholder="Enter Category Name" class="form-control" >
                         <input type="hidden" name="id" id="id" required>
                      </div>
                      <div class="form-group">
                         <label class="control-label" for="example-text-input">Image</label>
-                        <input type="file" name="image" id="image" class="form-control" >
+                        <input type="file" name="image" id="image" class="form-control">
                      </div>
                </div>
                <div class="modal-footer">
@@ -153,9 +153,31 @@
 <script type="text/javascript">        
    $(document).ready(function(){
    	$("#Addform").validate({
-   		rules: {
-   		  title: "required"
-   		}
+		rules: {
+   		  title: "required",
+		  image: {
+			extension: "png|jpeg|jpg",
+			required: true
+		  }
+   		},
+		messages: {
+		  image: {
+			extension: "Only PNG, JPG and JPEG files are allowed."
+		  }
+		}
+   	});
+   	$("#Editform").validate({
+		rules: {
+   		  title: "required",
+		  image: {
+			extension: "png|jpeg|jpg"
+		  }
+   		},
+		messages: {
+		  image: {
+			extension: "Only PNG, JPG and JPEG files are allowed."
+		  }
+		}
    	});
    });
    

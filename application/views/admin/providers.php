@@ -131,12 +131,12 @@
 						  <form class="form-horizontal" method="post" id="Editform" action="<?= base_url();?>admin/Providers/EditRecord">
 							<div class="form-group">
 								<label class="control-label" for="example-text-input">Provider Name</label>
-								<input type="text" name="title" id="title" value="" placeholder="Enter Provider Name" class="form-control" required>
+								<input type="text" name="title" id="title" value="" placeholder="Enter Provider Name" class="form-control">
 								<input type="hidden" name="id" id="id" required>
 							</div>
 							<div class="form-group">
 								<label class="control-label" for="example-text-input">Provider Logo</label>
-								<input type="file" name="logo" id="logo" class="form-control" >
+								<input type="file" name="logo" id="logo" class="form-control">
 							</div>
                         </div>
                         <div class="modal-footer">
@@ -155,7 +155,29 @@
 	$(document).ready(function(){
 		$("#Addform").validate({
 			rules: {
-			  title: "required"
+			  title: "required",
+			  logo: {
+				extension: "png|jpeg|jpg",
+				required: true
+			  }
+			},
+			messages: {
+			  logo: {
+				extension: "Only PNG, JPG and JPEG files are allowed."
+			  }
+			}
+		});
+		$("#Editform").validate({
+			rules: {
+			  title: "required",
+			  logo: {
+				extension: "png|jpeg|jpg"
+			  }
+			},
+			messages: {
+			  logo: {
+				extension: "Only PNG, JPG and JPEG files are allowed."
+			  }
 			}
 		});
 	});

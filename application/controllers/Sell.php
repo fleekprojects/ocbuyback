@@ -25,6 +25,7 @@
 				$viewdata['models']=$this->m_form->get_models($data[0]['id']);
 				$viewdata['slug']=$slug;
 				$viewdata['cat_title']=$data[0]['title'];
+				$viewdata['cat_slug']=$data[0]['slug'];
 				$this->LoadView('models',$viewdata);
 			}
 		}
@@ -39,7 +40,9 @@
 				$viewdata['providers']=$this->m_form->get_providers($data[0]['id']);
 				$viewdata['slug']=$slug;
 				$viewdata['cat_title']=$cdata[0]['title'];
+				$viewdata['cat_slug']=$cdata[0]['slug'];
 				$viewdata['mod_title']=$data[0]['title'];
+				$viewdata['mod_slug']=$data[0]['slug'];
 				$this->LoadView('providers',$viewdata);
 			}
 		}
@@ -55,8 +58,11 @@
 				$viewdata['storage']=$this->m_form->get_storage($mdata[0]['id'],$data[0]['id']);
 				$viewdata['slug']=$slug;
 				$viewdata['cat_title']=$cdata[0]['title'];
+				$viewdata['cat_slug']=$cdata[0]['slug'];
 				$viewdata['mod_title']=$mdata[0]['title'];
+				$viewdata['mod_slug']=$mdata[0]['slug'];
 				$viewdata['pro_title']=$data[0]['title'];
+				$viewdata['pro_slug']=$data[0]['slug'];
 				$this->LoadView('storage',$viewdata);
 			}
 		}

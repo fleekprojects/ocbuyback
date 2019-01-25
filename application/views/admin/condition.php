@@ -4,9 +4,11 @@
     padding: 0 0 10px 5px !important;
     margin: 0 !important;
 }
-.note-editor .note-editing-area {
-    position: relative;
-    margin-top: 5px;
+.note-editor.note-frame .note-editing-area .note-editable {
+   padding-top: 20px !important;
+}
+.note-toolbar-wrapper{
+	height:100%;
 }
 </style>			  
 <div class="">
@@ -141,7 +143,7 @@
 						  <form class="form-horizontal" method="post" id="Editform" action="<?= base_url();?>admin/Condition/EditRecord">
 							<div class="form-group">
 								<label class="control-label" for="example-text-input">Condition Type</label>
-								<input type="text" name="title" id="title" value="" placeholder="Enter Condition Type" class="form-control" required>
+								<input type="text" name="title" id="title" value="" placeholder="Enter Condition Type" class="form-control" >
 								
 								<input type="hidden" name="id" id="id" required>
 							</div>
@@ -171,6 +173,11 @@
 			  title: "required"
 			}
 		});
+		$("#Editform").validate({
+			rules: {
+			  title: "required"
+			}
+		});
 		$('.summernote').summernote({
 			placeholder: 'Enter Condition Details here...',
 			tabsize: 2,
@@ -188,6 +195,7 @@
 				$('#id').val(result.id),
 				$('#title').val(result.title),
 				$("#summernote").summernote("code", result.description);
+				$(".note-toolbar-wrapper").css("height", "100%");
 			},
 			error: function (xhr, textStatus, errorThrown){
 				alert(xhr.responseText);

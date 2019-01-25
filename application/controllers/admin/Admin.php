@@ -39,7 +39,7 @@
 				}
 			}
 			$this->session->sess_destroy();
-			redirect('/admin');
+			redirect(base_url().'admin');
 		}
 		
 		public function login_auth(){

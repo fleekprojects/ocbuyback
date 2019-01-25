@@ -2,6 +2,9 @@
 		$('.jselect2').select2({
 		  placeholder: 'Select an option'
 		});
+		$('#order-datatable-buttons').DataTable( {
+			"order": [[ 1, "desc" ]]
+		});
 	});
 	
 	$( "#settingsform" ).on( "submit", function(event){
@@ -119,6 +122,11 @@
 				}
 				else if(result==2){	
 					$("#msge").html('<div class="alert alert-warning alert-dismissable"><i class="fa fa-warning"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b> Record Already Exists!</b></div>');
+					$("#msg").show();
+					setTimeout(function(){$("#msge").hide(); }, 2000);
+				}
+				else if(result==3){	
+					$("#msge").html('<div class="alert alert-success alert-dismissable"><i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b> Record Updated! Error Uploading Image</b></div>');
 					$("#msg").show();
 					setTimeout(function(){$("#msge").hide(); }, 2000);
 				}

@@ -19,16 +19,19 @@
 			$exec=$this->Dmodel->insertdata('contact',$data);
 			
 			$maildata= array(
-				'from'=>'contact@ocbuyback.com',
-				'to'=>'qmerchant@yopmail.com',
-				// 'to'=>Site_Title.','.Site_Email,
+				'from_name'=>'OCBuyBack',
+				'from_email'=>'contact@ocbuyback.com',
+				'to_name'=>Site_Title,
+				// 'to_email'=>Site_Email,
+				'to_email'=>'qmerchant@yopmail.com',
 				'subject'=>'New Query received',
-				'message'=>'You have received a new query from your website contact form. \nFollowing are the details:\n
-				Full Name:'.$data['full_name'].'\n
-				Email Address:'.$data['email'].'\n
-				Subject:'.$data['subject'].'\n
-				Message:'.$data['message'],
+				'message'=>'You have received a new query from your website contact form. <br/>Following are the details:<br/><br/>
+				Full Name:'.$data['full_name'].'<br/>
+				Email Address:'.$data['email'].'<br/>
+				Subject:'.$data['subject'].'<br/>
+				Message:'.$data['message']
 			);
+			
 			// print_r($maildata);
 			$this->Dmodel->send_mail($maildata);
 			echo $exec;

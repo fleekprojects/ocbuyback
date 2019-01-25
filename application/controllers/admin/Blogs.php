@@ -55,7 +55,7 @@
 						unlink(APPPATH.'../assets/uploads/blogs/'.$ldata['image']);
 					}
 					if ( ! $this->upload->do_upload('image')){
-						$error = array('error' => $this->upload->display_errors());
+						$exec = 3;
 					}
 					else{
 						$exec=$this->Dmodel->update_data($this->table,$last_id,$ldata,'id');
@@ -90,7 +90,7 @@
 						unlink(APPPATH.'../assets/uploads/blogs/'.$ldata['image']);
 					}
 					if ( ! $this->upload->do_upload('image')){
-						$exec = array('error' => $this->upload->display_errors());
+						$exec = 3;
 					}
 					else{
 						$exec=$this->Dmodel->update_data($this->table,$data['id'],$ldata,'id');
@@ -112,8 +112,7 @@
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 			<b>Record Deleted.</b>
 			</div>'); 
-			echo '<script>window.location = "'.$this->agent->referrer().'"</script>';
-			//redirect($this->agent->referrer()) ;
+			redirect(base_url().'admin/posts') ;
 		}
 		
 		public function toggleStatus(){

@@ -49,7 +49,7 @@
 		}
 		
 		public function payment(){
-			if(isset($_POST['address']) && !empty($_POST['address'])){
+			if(isset($_POST['trade_type']) && !empty($_POST['trade_type'])){
 				$_SESSION['contact_details'] = $_POST;
 			}
 			
@@ -71,10 +71,10 @@
 				redirect (base_url());
 			}
 			else if(!isset($_SESSION['contact_details']) || empty($_SESSION['contact_details'])){
-				redirect ('order/contact');
+				redirect (base_url().'order/contact');
 			}
 			else if(!isset($_SESSION['pay_details']) || empty($_SESSION['pay_details'])){
-				redirect ('order/payment');
+				redirect (base_url().'order/payment');
 			}
 			else{
 				$viewdata['pdet']= $_SESSION['pay_details'];
@@ -89,10 +89,10 @@
 				redirect (base_url());
 			}
 			else if(!isset($_SESSION['pay_details']) || empty($_SESSION['pay_details'])){
-				redirect ('order/payment');
+				redirect (base_url().'order/payment');
 			}
 			else if(!isset($_SESSION['contact_details']) || empty($_SESSION['contact_details'])){
-				redirect ('order/contact');
+				redirect (base_url().'order/contact');
 			}
 			else{
 				$address= (isset($_SESSION['contact_details']['unit']) ? $_SESSION['contact_details']['unit'].', ' : "").(isset($_SESSION['contact_details']['street']) ? $_SESSION['contact_details']['street'].', ' : "").(isset($_SESSION['contact_details']['state']) ? $_SESSION['contact_details']['state'].', ' : "");
@@ -125,6 +125,7 @@
 				  $_SESSION['order_id']=$this->db->insert_id();
 				  $udata['order_code']='oc-'.rand(1000,9999).$_SESSION['order_id'];
 				  $exec=$this->Dmodel->update_data('orders',$_SESSION['order_id'],$udata,'id');
+				  $_SESSION['tqty']=0;
 				  foreach ($this->cart->contents() as $item){
 					$data=array(
 						'order_id'=>$_SESSION['order_id'],
@@ -137,6 +138,7 @@
 						'subtotal'=>$item['subtotal']
 					);
 					$this->Dmodel->insertdata('order_details',$data);
+					$_SESSION['tqty']=$_SESSION['tqty']+$item['qty'];
 				  }
 				}
 				$this->cart->destroy();

@@ -18,7 +18,10 @@
          <div class="row text-center">
             <div class="col-md-12 text-center shipping-label">
 			 <?php
-				if(isset($shipment_label) && !empty($shipment_label)){ ?>
+				if($address_error=1){
+					echo '<span style="color: #333;font-size: 16px">There was an error generating your prepaid label. Please bring your item to our location for inspection and payment:</span><br/><span style="font-size: 44px">'.Address.'</span><br><span style="color: #333;font-size: 16px">We have emailed your order details to you as well!</span><br><br/><span style="color: #333;font-size: 16px">For problem regarding shipping process, please contact our support, email us at '.Site_Email.'</span>';
+				}
+				else if(isset($shipment_label) && !empty($shipment_label)){ ?>
                <span style="font-size: 44px">Don't forget your free shipping label!</span><br><br>
                <span style="font-size: 18px">Click the button below to print your label</span><br><br>
                <span>

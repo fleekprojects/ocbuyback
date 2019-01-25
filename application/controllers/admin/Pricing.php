@@ -49,12 +49,14 @@
 			}
 			echo $exec;
 		}
+		
 		public function EditRecord(){
 			$this->Dmodel->checkLogin();
 			$data=$_POST;
 			unset($_POST['id'],$_POST['price']);
 			$cdata=$_POST;
-			$chknum=$this->db->get_where($this->table, $checkdata)->num_rows();
+			$this->db->where('id !=', $data['id']);
+			$chknum=$this->db->get_where($this->table, $cdata)->num_rows();
 			if($chknum==0){
 				$data['updated_at']=DateTime_Now;
 				$exec=$this->Dmodel->update_data($this->table,$data['id'],$data,'id');

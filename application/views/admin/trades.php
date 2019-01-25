@@ -17,7 +17,7 @@
                 ?>
             </div>
             <form method="post" id="ordertbl" action="<?= base_url();?>admin/Categories/DeleteRecord">
-               <table id="datatable-buttons" class="table table-striped table-bordered">
+               <table id="order-datatable-buttons" class="table table-striped table-bordered">
                   <thead>
                      <tr>
                         <th align="center"><input type="checkbox" name="chkAll" class="checkUncheckAll" ></th>
@@ -40,9 +40,11 @@
                         <td align="center">
                            <input class="chkIds" type="checkbox" name="ids[]" id="chk-<?= $rec['id'] ?>" value="<?= $rec['id'] ?>"  />
                         </td>
-                        <td><a style="color: #72b6f1; font-weight: 700;" href="javascript:;" onclick="get_details(<?= $rec['id']; ?>)"><?= $rec['order_code']; ?></a><br/>
+                        <td>
+						<span style="font-size:0"><?= $rec['created_at']; ?></span>
+						<a style="color: #72b6f1; font-weight: 700;" href="javascript:;" onclick="get_details(<?= $rec['id']; ?>)"><?= $rec['order_code']; ?></a><br/>
                            <?php
-                              if($rec['status'] == "" && $rec['trade_details']=='Prepaid Label'){
+                              if($rec['status'] == "" && $rec['trade_details']=='Shipping Kit with Prepaid Label'){
                               	echo '<span class="label label-primary"><i class="fa fa-info"></i>&nbsp; Shipping Kit Sent</span>';
                               }
                               else if($rec['status'] == "" ){
@@ -83,7 +85,7 @@
                               <option <?= ($rec['status'] == "returned" ? 'selected' : ''); ?> value="returned">Returned</option>
                               <option <?= ($rec['status'] == "cancelled" ? 'selected' : ''); ?> value="cancelled">Cancelled</option>
                               <?php
-                                 if($rec['trade_details']=='Prepaid Label'){
+                                 if($rec['trade_details']=='Shipping Kit with Prepaid Label'){
                                  	echo '<option '.($rec['status'] == "shipping_kit_sent" ? 'selected' : '').' value="shipping_kit_sent">Shipping Kit Sent</option>';
                                  } ?>
                            </select>

@@ -47,7 +47,7 @@
 			<b>Record Deleted.</b>
 			</div>'); 
 			echo '<script>window.location = "'.$this->agent->referrer().'"</script>';
-			//redirect($this->agent->referrer()) ;
+			// redirect($this->agent->referrer()) ;
 		}
 		
 		public function toggleStatus(){

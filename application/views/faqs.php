@@ -1,4 +1,18 @@
 <div class="clear"></div>
+<script>
+    $(document).ready(function(){
+		    $(function () {
+                $('.panel-collapse').on('show.bs.collapse', function (e) {
+                    $(e.target).closest('.panel').siblings().find('.panel-collapse').collapse('hide');
+                });
+            })
+		})
+		
+    
+</script>
+
+
+
 <div class="latest-faq-title">
    <!-- Latest blog title start here -->
    <h2>OCBuyBack Help Center</h2>

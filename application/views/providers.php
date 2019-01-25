@@ -2,7 +2,7 @@
 
 <div class="latest-sell-title">
    <!-- Latest blog title start here -->
-   <h2>Sell your device</h2>
+   <h2>Sell your <?= $cat_title; ?></h2>
    <p>Get the highest price for your device</p>
    <div class="back-btn">
       <!-- Back btn start here -->
@@ -21,13 +21,13 @@
             <div class="row">
               <div class="page-header">
                 <ul class="list-inline brand-tabs">
-                  <li><?= $cat_title; ?></li>
-                  <li class="completed"><a href="javascript:void(0);">
+                  <li>SELL <?= $cat_title; ?></li>
+                  <li class="completed"><a href="<?= base_url().'sell/'.$cat_slug.'\#banner'; ?>">
                     <span class="number">01 </span><span class="text"><?= (isset($mod_title) ? $mod_title : 'Model'); ?></span>
                   </a></li>
                   <li class="active"><a href=""><span class="number">02 </span><span class="text">Provider</span></a></li>
-                  <li><a href=""><span class="number">03 </span><span class="text">Storage</span></a></li>
-                  <li><a href=""><span class="number">04 </span><span class="text">Condition</span></a></li>
+                  <li><a href="javascript:;"><span class="number">03 </span><span class="text">Storage</span></a></li>
+                  <li><a href="javascript:;"><span class="number">04 </span><span class="text">Condition</span></a></li>
                 </ul>
               </div>
             </div>
@@ -42,20 +42,20 @@
               <h3>Choose Your Provider</h3>
             </div>
             <div class="row">
-              <ul class="list-inline model-list provider-list">
+              <ul class="list-inline model-list provider-list ul-providers">
 				 <?php
 					foreach($providers AS $pro){
 						if(!empty($pro['logo'])){
-							echo '<li class="col-md-6 col-sm-3s col-xs-12">
-							  <a href="'.$slug.'/'.$pro['slug'].'" class="btn btn-primary btn-lg btn-block">
+							echo '<li class="col-md-3 col-sm-6 col-xs-12 li-providers _li_providers">
+							  <a href="'.$pro['slug'].'\#banner" class="btn btn-primary btn-lg btn-block">
 							  <img src="'.base_url().'assets/uploads/providers/'.$pro['logo'].'" class="img-responsive normal" alt="'.$pro['slug'].'">
 							  <img src="'.base_url().'assets/uploads/providers/'.$pro['logo'].'" class="img-responsive normal-hover" alt="'.$pro['slug'].'">
 							  </a>
 							</li>';
 						}
 						else{
-							echo '<li class="col-md-3 col-sm-4 col-xs-12">
-							  <a href="'.$slug.'/'.$pro['slug'].'" class="btn btn-primary btn-lg btn-block">'.strtoupper($pro['title']).'</a>
+							echo '<li class="col-md-3 col-sm-6 col-xs-12">
+							  <a href="'.$pro['slug'].'\#banner" class="btn btn-primary btn-lg btn-block">'.strtoupper($pro['title']).'</a>
 							</li>';
 						}
 					}

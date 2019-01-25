@@ -7,11 +7,14 @@ class Model_form extends CI_Model {
     }
 		
 	function ret_id($tbl,$slug){
-		$this->db->select('id, title');
+		$this->db->select('id, title, slug');
 		$res=$this->db->get_where($tbl, array('slug' => $slug))->result_array();
 		return $res;
 	}
-	function get_home_blogs(){		$this->db->limit(6);		$query = $this->db->get_where('blogs', array('status'=>1, 'post_type'=>'blog'));		return $query->result_array();
+	function get_home_blogs(){
+		$this->db->limit(6);
+		$query = $this->db->get_where('blogs', array('status'=>1, 'post_type'=>'blog'));
+		return $query->result_array();
 	}
 	
 	function get_models($cat_id){	
@@ -67,6 +70,15 @@ class Model_form extends CI_Model {
 		$this->db->where('id', $oid);
 		$this->db->update('orders');
 		return true;
+	}
+		
+	function search_order($keywords){
+		$this->db->select('order_code,label_url,tracking_url,created_at,status');
+		$this->db->where('order_code', $keywords);
+		$this->db->or_where('email', $keywords); 
+		$this->db->order_by('id', 'DESC'); 
+		$orders= $this->db->get('orders')->result_array();
+		return $orders;
 	}
 		
 	

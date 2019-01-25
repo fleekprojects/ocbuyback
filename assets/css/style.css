@@ -286,20 +286,24 @@ a:hover, .btn-link:hover{
     text-align: center;
     margin: 0px auto;
 }
-
 .pro-cate img {
-
-    width: 117px;
-    height: 116px;
+	width: auto;
+	height: 140px;
     margin-bottom: 40px;
 }
 
 
+
 .list-inline.model-list img {
+
     text-align: center;
     margin: 0 auto;
+        margin-bottom: 0px;
     display: table;
     margin-bottom: 40px;
+    width: 66%;
+    height: 180px;
+
 }
 
 a.navbar-brand {
@@ -621,9 +625,7 @@ ul.dropdown-cart li .item:after{
 }
 #banner .jumbotron {
 
-    background: url('../images/sell-bg.jpg');
-        background-repeat: repeat;
-        background-size: auto auto;
+    background: #fff;
     padding: 140px 0px 350px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -642,6 +644,25 @@ ul.dropdown-cart li .item:after{
     font-weight: bold;
 
 }
+.backto{
+        position: fixed;
+    bottom: 9px;
+    background-color: transparent;
+    border: 2px solid #4398d1;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    padding-top: 6px;
+    font-size: 25px;
+    right: 15px;
+    color: #4398d1;
+    text-align: center;
+    z-index: 1234;
+    
+}
+.backto:hover , .backto:focus {
+    color: #4398d1;
+}
 #banner .jumbotron h1 span {
 
     display: block;
@@ -652,6 +673,11 @@ ul.dropdown-cart li .item:after{
     color: #2f2f2f;
     margin-top: 9px;
 
+}
+.jumbotron p {
+   
+    font-size: 18px !important;
+    
 }
 #banner .jumbotron .btn-lg {
     padding: 31px 55px;
@@ -665,10 +691,24 @@ ul.dropdown-cart li .item:after{
     font-weight: bold;
     font-family: 'Conv_Montserrat-Regular';
     padding: 21px 0px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     width: 166px;
     border: none;
+    margin-right: 30px !important;
 
+}
+
+#searched-orders h2{
+	color: #68ac22;
+}
+#searched-orders p{
+    font-size: 15px !important;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+#searched-orders .btn{
+   margin-right: 10px;
+   border-color: #68ac22;
 }
 .fa.fa-edit {
 
@@ -806,19 +846,18 @@ div#page-header .page-header {
   display: none;
 }
 .brand-tabs.list-inline > li:first-child {
-
     width: 100%;
-    max-width: 200px;
+    max-width: 18%;
     font-family: 'Conv_Montserrat-Bold';
     font-size: 25px;
     color: #0b0b0b;
     border-bottom: none;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 
 }
 .brand-tabs.list-inline > li{
   width:100%;
- max-width: 200px;
+ max-width: 20%;
  position: relative;
      padding-bottom: 20px;
     border-bottom: 1px solid #d3d3d3;
@@ -946,6 +985,7 @@ textarea:focus, input:focus {
     color: #2EB835;
     
 
+
 }
 .content .content-title {
     font-size: 19px;
@@ -964,8 +1004,10 @@ margin-bottom: 20px;
     border: 1px solid #68ac23;
     color: #68ac23;
     transition: all ease .5s;
-    width: 250px;
-
+	width: 226px;
+	margin: 0 auto !important;
+	display: table;
+	font-size: 16px;
 }
 .btn-primary{
   background: none;
@@ -2228,8 +2270,81 @@ a.btn-link,a.btn-link:hover {
 	width:10%;
 }
 
+._centered_loader{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: #000;
+	filter: none;
+	z-index: 99999999;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.blob-1,.blob-2{
+	width:70px;
+	height:70px;
+	position:absolute;
+	background:#fff;
+	border-radius:50%;
+	top:50%;left:50%;
+	transform:translate(-50%,-50%);
+}
+.blob-1{
+	left:20%;
+	animation:osc-l 2.5s ease infinite;
+}
+.blob-2{
+	left:80%;
+	animation:osc-r 2.5s ease infinite;
+	background:#68ac23;
+}
+@keyframes osc-l{
+	0%{left:20%;}
+	50%{left:50%;}
+	100%{left:20%;}
+}
+@keyframes osc-r{
+	0%{left:80%;}
+	50%{left:50%;}
+	100%{left:80%;}
+}
+/*Loader End*/
 
+ 
+.cat_sell_ .col-md-3 {
+    margin-bottom: 40px;
+}
+._phone_model .col-md-3.col-sm-6.col-xs-12 {
+    margin-bottom: 30px;
+}
+._li_providers
+{
+    margin-bottom: 20px !important;	
+}
+.li-storage,
+.li-condition {
+    margin-bottom: 20px !important;
+}
+._li_providers img {
+    height: auto !important;
+}
+li._li_providers .btn-lg {
 
+    display: table;
+    padding: 14px !important;
+}
+@media screen and (max-width:766px)
+{
+	.brand-tabs.list-inline > li {
+    display: none;
+	max-width: 100% !important;
+	}
+	.brand-tabs.list-inline > li.active {
+    display: block !important;
+	}
+}
 @media screen and (max-width: 640px) {
 	.responsive-card-table {
       /* Get table cells to act like rows */;
@@ -2359,7 +2474,6 @@ th {
     padding: 21px 25px;
 }
 #banner .jumbotron .btn-primary {
-    background: #909090;
     font-size: 20px;
 }
 .brand-tabs{
@@ -2387,6 +2501,13 @@ margin: 0px auto
 #desc .list-unstyled li {
     margin-bottom: 25px;
     font-size: 16px;
+}
+.brand-tabs.list-inline > li:first-child {
+    max-width: 100%;
+}
+.brand-tabs.list-inline > li {
+    width: 100%;
+    max-width: 49%;
 }
 
 }
@@ -2442,7 +2563,6 @@ ul.dropdown-cart {
     width: 100%;
 }
 #banner .jumbotron .btn-primary {
-    background: #909090;
     font-size: 18px;
 }
 .brand-tabs.list-inline > li::before{
@@ -2450,8 +2570,13 @@ ul.dropdown-cart {
 }
 .totalPrice {
       font-size: 24px;
-
 }
+
+.brand-tabs.list-inline > li {
+    width: 100%;
+    max-width: 95%;
+}
+
 }
 /* Width:640px; */    
 @media (max-width: 40em) {
@@ -2553,8 +2678,32 @@ ul.dropdown-cart {
         page-break-after: avoid;
     }
 }
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px){
+    
+    #banner .jumbotron .btn-primary {
+   
+    margin-top: 20px !important;
+}
+a.btn.btn-default {
+    margin-top: 12px;
+}
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px){
+    .content {
+  
+    padding-bottom: 89px;
+}
+}
 
 
 
 
-
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    .owl-theme .owl-nav {
+    margin-top: 46px;
+}
+#banner .jumbotron .btn-primary {
+    
+    font-size: 15px;
+}
+  }

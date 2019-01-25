@@ -65,7 +65,7 @@
                         <!-- Payment option col 1 start here -->
                         <img src="<?= base_url(); ?>assets/front/images/how-img2.png" alt="" />    
                         <div class="payment-text">
-                           <p>Local Drop off </p>
+                           <p>Local Drop Off </p>
                         </div>
                      </div>
                      <!-- Payment option col 1 end here -->        

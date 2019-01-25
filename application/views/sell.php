@@ -14,18 +14,16 @@
 </div>
 
 
-<div id="banner">
+<div id="banner" class="cat_sell_">
           <div class="jumbotron">
             <div class="container">
               <div class="row text-center">
-                <h1>Get the highest price for
-                <span>For your Device - Guaranteed</span></h1>
-               
+                <h1>Select Your Device</h1>
                 <p>
 				  <?php
 					foreach($categories AS $cat){
-						echo '<div class="col-md-3"><a class="pro-cate" href="sell/'.$cat['slug'].'"><img src="'.base_url().'assets/uploads/categories/'.($cat['image'] != "" ? $cat['image'] : "dummy.png").'"/></a>
-						<a href="sell/'.$cat['slug'].'" class="btn btn-primary btn-lg">Sell '.$cat['title'].'</a></div>';
+						echo '<div class="col-md-3 li-cats"><a class="pro-cate" href="'.$cat['slug'].'\#banner"><img src="'.base_url().'assets/uploads/categories/'.($cat['image'] != "" ? $cat['image'] : "dummy.png").'"/></a>
+						<a href="'.$cat['slug'].'\#banner" class="btn btn-primary btn-lg">Sell '.$cat['title'].'</a></div>'; 
 					}
 				  ?>
                 </p>

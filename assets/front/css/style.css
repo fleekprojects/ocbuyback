@@ -82,6 +82,9 @@ body{
 .top-phone-left {
 	padding-top: 20px;
 }
+.top-phone-left a {
+    color: #b1b1b1;
+}
 .top-phone-left p {
 	color: #b1b1b1;
 	font-size: 13px;
@@ -221,6 +224,7 @@ body{
 	height: 65px;
 	text-indent: -999em;
 	float: left;
+	display: none !important;
 }
 .owl-next {
 	background-image: url(../images/right-arrow.jpg) !important;
@@ -229,6 +233,7 @@ body{
 	width: 100px;
 	height: 65px;
 	text-indent: -999em;
+	display: none !important;
 }
 .process-steps {
 	display: table;
@@ -379,9 +384,16 @@ body{
 	background: #fff;
 	border-top: none;
 }
+.main-slider {
+    height: 576px;
+}
+.blog-content a {
+    width: 87%;
+    display: table;
+}
 .blog-thumb img {
-	width: 100%;
-	height: auto;
+    width: 100%;
+    height: 265px;
 }
 .blog-content strong {
 	color: #2f2f2f;
@@ -653,8 +665,9 @@ body{
 }
 .latest-sell-title h2 {
 	color: #fff;
-	font-size: 30px;
-	text-transform: uppercase;
+	font-size: 34px;
+	/* font-size: 30px; */
+	/* text-transform: uppercase; */
 	font-weight: bold;
 	letter-spacing: 1px;
 }
@@ -1153,7 +1166,10 @@ Licensed under MIT
     margin-top: 40px;
     margin-bottom: 44px;
 }
-
+    .owl-theme .owl-nav {
+    margin-top: 46px;
+}
+  
 
 .nav li a {
     font-size: 13px;
@@ -1299,12 +1315,17 @@ iframe {
     display: table;
     text-align: center;
     margin: 0 auto;
+    font-size: 14px;
 }
 
 .blog-content p {
     display: table;
     margin: 0 auto;
     text-align: center;
+}
+.step-content p {
+    font-size: 15px;
+  
 }
 
 
@@ -1328,7 +1349,7 @@ iframe {
 }
 
 .foo-menu-1 a {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .foo-menu-1 strong {
@@ -1379,9 +1400,7 @@ iframe {
     margin-left: 0;
 }
 #banner .jumbotron .btn-primary {
-    background: #909090;
-    width: 100%;
-    margin-bottom: 20px;
+   
 }
 
 
@@ -1390,9 +1409,7 @@ iframe {
 }
 
 #banner .jumbotron .btn-primary {
-    margin-bottom: 20px;
-    color: #fff;
-    border: none;
+    
 }
 .customer-addr {
     margin-bottom: 100px;
@@ -1416,7 +1433,13 @@ iframe {
 }
 
 
-
+@media screen and  (max-width: 1024px) and (min-width:768px) {
+.offer-text p {
+  
+    font-size: 21px;
+   
+}
+}
 
 
 
@@ -1427,7 +1450,7 @@ iframe {
     display: table;
     width: 90%;
     margin: 0 auto;
-        margin-bottom: 0px;
+    margin-bottom: 40px;
     padding-top: 29px;
     padding-bottom: 30px;
     padding-left: 0;
@@ -1682,6 +1705,9 @@ iframe {
     background: #e5e5e5;
 
 }
+.footer_1 {
+    width: 100%;
+}
 
 #banner .jumbotron h1 {
     font-size: 18px;
@@ -1716,5 +1742,9 @@ iframe {
 
 }
 
+
+    
+    
+}
 
 

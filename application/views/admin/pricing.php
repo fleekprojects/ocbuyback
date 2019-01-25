@@ -122,7 +122,7 @@
 				  <form class="form-horizontal" method="post" id="Addform" action="<?= base_url();?>admin/Models/AddRecord">
 					<div class="form-group">
 						<label class="control-label" for="example-text-input">Model Name</label>
-						<input type="hidden" name="category_id" value="<?= $category[0]['id']; ?>">
+						<input type="hidden" name="category_id" value="<?= $category[0]['id']; ?>" required>
 						<input type="text" name="title" id="title" value="" placeholder="Enter Model Name" class="form-control">
 					</div>
 					<div class="form-group">
@@ -147,18 +147,17 @@
 	 addPricingRow();
 	 $("#Addform").validate({
 		rules: {
-			title: "required"
+   		  title: "required",
+		  image: {
+			extension: "png|jpeg|jpg"
+		  }
+   		},
+		messages: {
+		  image: {
+			extension: "Only PNG, JPG and JPEG files are allowed."
+		  }
 		}
 	 });
-	 // $("#Addform2").validate({
-		// rules: {
-			// model_id[]: "required",
-			// provider_id[]: "required",
-			// storage_id[]: "required",
-			// condition_id[]: "required",
-			// price[]: "required",
-		// }
-	 // });
    });
    function addPricingRow(){
       $.ajax({

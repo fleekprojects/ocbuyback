@@ -2,7 +2,7 @@
 
 <div class="latest-sell-title">
    <!-- Latest blog title start here -->
-   <h2>Sell your device</h2>
+   <h2>Sell your <?= $cdata['title']; ?></h2>
    <p>Get the highest price for your device</p>
    <div class="back-btn">
       <!-- Back btn start here -->
@@ -21,15 +21,15 @@
             <div class="row">
               <div class="page-header">
                 <ul class="list-inline brand-tabs">
-                  <li><?= $cdata['title']; ?></li>
-                  <li class="completed"><a href="javascript:void(0);">
+                  <li>SELL <?= $cdata['title']; ?></li>
+                  <li class="completed"><a href="<?= base_url().'sell/'.$cdata['slug'].'\#banner'; ?>">
                     <span class="number">01 </span><span class="text"><?= (isset($mdata['title']) ? $mdata['title'] : 'Model'); ?></span>
                   </a></li>
-                  <li class="completed"><a href="javascript:void(0);">
+                  <li class="completed"><a href="<?= base_url().'sell/'.$cdata['slug'].'/'.$mdata['slug'].'\#banner'; ?>">
                     <span class="number">02 </span><span class="text"><?= (isset($pdata['title']) ? $pdata['title'] : 'Provider'); ?></span>
                   </a></li>
-                  <li class="completed"><a href="javascript:void(0);">
-                    <span class="number">02 </span><span class="text"><?= (isset($data['title']) ? $data['title'] : 'Storage'); ?></span>
+                  <li class="completed"><a href="<?= base_url().'sell/'.$cdata['slug'].'/'.$mdata['slug'].'/'.$pdata['slug'].'\#banner'; ?>">
+                    <span class="number">03 </span><span class="text"><?= (isset($data['title']) ? $data['title'] : 'Storage'); ?></span>
                   </a></li>
                   <li class="active"><a href=""><span class="number">04 </span><span class="text">Condition</span></a></li>
                 </ul>
@@ -46,10 +46,10 @@
               <h3>Choose Your Condition</h3>
             </div>
             <div class="row">
-              <ul class="list-inline model-list">
+              <ul class="list-inline model-list ul-condition">
 				 <?php
 					foreach($condition AS $con){
-						echo '<li class="col-md-6 col-sm-4 col-xs-12">
+						echo '<li class="col-md-4 col-sm-4 col-xs-12 col-md-offset-2 li-condition">
 						  <a href="javascript:;" onclick="get_cond_des('.$con['id'].')" class="btn btn-primary btn-lg btn-block">'.$con['title'].'</a>
 						</li>';
 					}
@@ -157,4 +157,3 @@
 			});
 		}
 	</script>
-        

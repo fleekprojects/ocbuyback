@@ -72,22 +72,26 @@
 			if($status != "" && $status != "received" && $status != "cancelled"){
 				
 			  if($status == "paid"){
-				$edata['heading']="We received your device, and payment is on the way.";
+				$edata['heading']="Your payment is on its way. Your device was received and passed all inspections.";
 				$edata['heading2']="Status Update For Trade In <b>".strtoupper($order->order_code)."</b>";
-				$edata['firstp']="<p>We rely on word of mouth to help grow our business. Please give us a review on Facebook or Google through the links below and tell any of your friends or family about us. We appreciate your business!<br/><br/><a href='https://www.facebook.com/ocbuyback/'>https://www.facebook.com/ocbuyback/</a><br/><a href='https://search.google.com/local/writereview?placeid=ChIJsciG4RLV3IARSjtD81ptNsM'>https://search.google.com/local/writereview?placeid=ChIJsciG4RLV3IARSjtD81ptNsM<a/><br/><br/>
+				$edata['firstp']="<p>How was your experience with us?  Please take the time to leave a review on any of the 3 links below about your experience. Your time is greatly appreciated and we rely heavily on customer reviews.<br/><br/>
+				Trustpilot: <a href='https://www.trustpilot.com/review/www.ocbuyback.com'>https://www.trustpilot.com/review/www.ocbuyback.com</a><br/>
+				Facebook: <a href='https://www.facebook.com/ocbuyback/'>https://www.facebook.com/ocbuyback/</a><br/>
+				Google: <a href='https://g.co/kgs/ghhmyN'>https://g.co/kgs/ghhmyN</a><br/>
+				<br/>
 				<b>Thanks Again,<br/>- OCBuyBack.</b>";
 			  }
 			  
 			  if($status == "returned"){
-				$edata['heading']="Trade In <b>".strtoupper($order->order_code)."</b>";
+				$edata['heading']="We returned your device(s) for your order <b>".strtoupper($order->order_code)."</b>";
 				$edata['heading2']="Status Update For Trade In <b>".strtoupper($order->order_code)."</b>";
-				$edata['firstp']="<p>Hey <b>".$order->first_name.' '.$order->last_name."</b>,<br/> Your OCBuyBack trade in (".$order->order_code.") has been returned.<br><br><b>- OCBuyBack.</b>";
+				$edata['firstp']="<p>Hey <b>".$order->first_name.' '.$order->last_name."</b>,<br/><br/> Your OCBuyBack trade in (".$order->order_code.") has been returned. Any questions regarding this order please reply to this email. <br><br><b>- OCBuyBack.</b>";
 			  }
 			  
 			  if($status == "recycled"){
-				$edata['heading']="We recycled your device(s) for your trade in (".strtoupper($order->order_code).")";
+				$edata['heading']="We recycled your device(s) for your order (".strtoupper($order->order_code).")";
 				$edata['heading2']="Status Update For Trade In <b>".strtoupper($order->order_code)."</b>";
-				$edata['firstp']="<p>Hey <b>".$order->first_name.' '.$order->last_name."</b>,<br/> Your OCBuyBack trade in (".$order->order_code.") has been recycled.<br><br><b>- OCBuyBack.</b>";
+				$edata['firstp']="<p>Hey <b>".$order->first_name.' '.$order->last_name."</b>,<br/><br/> Your OCBuyBack trade in (".$order->order_code.") has been recycled. Any questions regarding this order please reply to this email.<br><br><b>- OCBuyBack.</b>";
 			  }
 				
 				$ebody = $this->load->view('admin/status_email',$edata,TRUE);
@@ -191,7 +195,7 @@
 				'from_email'=>Site_Email,
 				'to_name'=>$order->first_name.' '.$order->last_name,
 				'to_email'=>$order->email,
-				'subject'=>"Problem in your OCBuyBack trade in",
+				'subject'=>"Problem with your OCBuyBack trade in",
 				'message'=>$ebody);
 			$this->Dmodel->send_mail($maildata);
 			redirect($this->agent->referrer());

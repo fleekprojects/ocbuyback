@@ -2,8 +2,8 @@
 
 <div class="latest-sell-title">
    <!-- Latest blog title start here -->
-   <h2>Sell your device</h2>
-   <p>Get the highest price for your device</p>
+   <h2>How would you like to be paid?</h2>
+   <p>We will issue payment via Paypal, E-Check or Mailed Check within 1 business day of receving your device</p>
    <div class="back-btn">
       <!-- Back btn start here -->
       <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
@@ -18,10 +18,10 @@
 <!-- // being content Area -->
 <section id="main-content" class="checkout">
   <div class="container">
-	<div class="row">
+	<!--<div class="row">
 	  <h3>How would you like to be paid?</h3>
 	  <h5>We will issue payment via Paypal, E-Check or Mailed Check within 1 business day of receving your device.</h5>
-	</div>
+	</div>-->
 	<div class="row">
 	  <div class="col-md-12">
 	      <div class="content">

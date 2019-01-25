@@ -91,7 +91,7 @@
 			 </h4>
 			 <p>
 				<?= $cdet['first_name'].' '.$cdet['last_name']; ?><br/>
-				<?= $pdet['email'];?> <?= ($trade_type != "local_dropoff" ? '<i style="font-size: 12px;">(Your prepaid shipping label will be emailed to this email immediately after checkout.)</i>' : ''); ?><br/>
+				<?= $pdet['email'];?> <?= ($trade_type == "prepaid_label" ? '<i style="font-size: 12px;">(Your prepaid shipping label will be emailed to this email immediately after checkout.)</i>' : ''); ?><br/>
 				<?= $cdet['phone']; ?><br/>
 			 </p>
          </div>
@@ -102,25 +102,27 @@
 			 <h4><b>Shipping Information</b>  
 				<a href="<?= base_url(); ?>order/contact"><i class="fa fa-edit"></i></a>
 			 </h4>
-			 <p>
-				<?= (isset($cdet['unit']) ? $cdet['unit'].', ' : ""); ?>
-				<?= (isset($cdet['street']) ? $cdet['street'].', ' : ""); ?>
-				<?= (isset($cdet['zip_code']) ? $cdet['zip_code'].', ' : ""); ?>
-				<?= (isset($cdet['city']) ? $cdet['city'].', ' : ""); ?>
-				<?= (isset($cdet['state']) ? $cdet['state'].', ' : ""); ?>
-				<?= (isset($cdet['country']) ? $cdet['country'].'. ' : ""); ?><br/>
-			  </p>
 			<?php
 			  if($trade_type == "local_dropoff"){
 				echo '<p>Trade Type: Local Drop Off.<br/>
 				Date: '.(isset($cdet['date']) ? date('jS M Y', strtotime($cdet['date'])) : "").'<br/>
 				Time: '.(isset($cdet['time']) ? $cdet['time'] : "").'</p>'; 
 			  }
-			  else if($trade_type == "prepaid_label"){
-				echo '<p>Prepaid Label.</p>'; 
-			  }
-			  else if($trade_type == "shipping_kit"){
-				echo '<p>Shipping Kit with Prepaid Label.</p>'; 
+			  else{
+				echo '<p>
+				'.(isset($cdet['unit']) ? $cdet['unit'].', ' : "").'
+				'.(isset($cdet['street']) ? $cdet['street'].', ' : "").'
+				'.(isset($cdet['zip_code']) ? $cdet['zip_code'].', ' : "").'
+				'.(isset($cdet['city']) ? $cdet['city'].', ' : "").'
+				'.(isset($cdet['state']) ? $cdet['state'].', ' : "").'
+				'.(isset($cdet['country']) ? $cdet['country'].'. ' : "").'<br/>
+				</p>';
+				if($trade_type == "prepaid_label"){
+					echo '<p>Prepaid Label.</p>'; 
+				}
+				else if($trade_type == "shipping_kit"){
+					echo '<p>Shipping Kit with Prepaid Label.</p>'; 
+				}
 			  }
 			?>
          </div>

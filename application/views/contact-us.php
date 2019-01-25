@@ -54,8 +54,13 @@
                      Sunday - Closed
                   </p>
                </div>
+               <!--<div class="contact-map"><div class="gmap_canvas"><iframe width="329" height="197" id="gmap_canvas" src="https://maps.google.com/maps?q=126%20Viking%20Ave%2C%20Brea%2C%20CA%2092821&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>-->
                <div class="contact-map">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.07666908987!2d-117.88830468473473!3d33.91342628064404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcd501494ebc95%3A0x7e19c9cb7ccb999c!2sBrea+Mall%2C+Brea%2C+CA+92821!5e0!3m2!1sen!2s!4v1538395899689" width="329" height="197" frameborder="0" style="border:0" allowfullscreen></iframe>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.8010174916585!2d-117.91137930060967!3d33.92052047133037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcd512e186c8b1%3A0xc3366d5af3433b4a!2sOCBuyBack!5e0!3m2!1sen!2sus!4v1541637053149" width="329" height="197
+                  
+
+" frameborder="0" style="border:0" allowfullscreen></iframe>
+
                </div>
             </div>
             <div class="col-md-8">

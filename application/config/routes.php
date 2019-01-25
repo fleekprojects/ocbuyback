@@ -51,6 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['default_controller'] = 'Home';
+$route['track-your-order'] = 'Track';
+$route['track-your-order/search'] = 'Track/search';
 $route['how-it-works'] = 'Works';
 $route['faqs'] = 'Faqs';
 $route['blogs'] = 'Blogs';

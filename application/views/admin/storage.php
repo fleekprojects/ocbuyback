@@ -121,7 +121,7 @@
 						  <form class="form-horizontal" method="post" id="Editform" action="<?= base_url();?>admin/Storage/EditRecord">
 							<div class="form-group">
 								<label class="control-label" for="example-text-input">Storage Name</label>
-								<input type="text" name="title" id="title" value="" placeholder="Enter Storage Name" class="form-control" required>
+								<input type="text" name="title" id="title" value="" placeholder="Enter Storage Name" class="form-control" >
 								<input type="hidden" name="id" id="id" required>
 							</div>
                         </div>
@@ -140,6 +140,11 @@
 
 	$(document).ready(function(){
 		$("#Addform").validate({
+			rules: {
+			  title: "required"
+			}
+		});
+		$("#Editform").validate({
 			rules: {
 			  title: "required"
 			}

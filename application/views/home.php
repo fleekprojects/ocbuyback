@@ -5,7 +5,7 @@
       <div class="row">
 
 <section id="demos">
-       <div class="owl-carousel owl-theme"> <!-- Own carosuel start here -->
+       <div class=""> <!-- Own carosuel start here -->
 
          
          <div class="item">
@@ -17,7 +17,7 @@
                   <h1>Sell Your Device</h1>
                   <h2>Get Paid!</h2>
                   <h3>Sell Cell Phone, Tablets & More</h3>
-                  <a href="<?= base_url(); ?>sell">Get Your Offer</a>
+                  <a href="<?= base_url(); ?>sell/#banner">Get Your Offer</a>
                </div>
                <!-- slider text end here -->
             </div>
@@ -30,61 +30,6 @@
             </div>
          </div>
          </div>
-         
-         
-         
-                  <div class="item">
-         <div class="slider-one">
-            <!-- Slider one start here -->
-            <div class="col-md-6">
-               <div class="slider-text">
-                  <!-- slider text start here -->
-                  <h1>Sell Your Device</h1>
-                  <h2>Get Paid!</h2>
-                  <h3>Sell Cell Phone, Tablets & More</h3>
-                  <a href="#">Get Your Offer</a>
-               </div>
-               <!-- slider text end here -->
-            </div>
-            <div class="col-md-6">
-               <div class="slider-thumb">
-                  <!-- Slider thumb start here -->
-                  <img src="<?= base_url(); ?>assets/front/images/img1.png" alt="" />
-               </div>
-               <!-- Slider thumb end here -->
-            </div>
-         </div>
-         </div>
-         
-         
-         
-         
-         
-         
-         
-                  <div class="item">
-         <div class="slider-one">
-            <!-- Slider one start here -->
-            <div class="col-md-6">
-               <div class="slider-text">
-                  <!-- slider text start here -->
-                  <h1>Sell Your Device</h1>
-                  <h2>Get Paid!</h2>
-                  <h3>Sell Cell Phone, Tablets & More</h3>
-                  <a href="#">Get Your Offer</a>
-               </div>
-               <!-- slider text end here -->
-            </div>
-            <div class="col-md-6">
-               <div class="slider-thumb">
-                  <!-- Slider thumb start here -->
-                  <img src="<?= base_url(); ?>assets/front/images/img1.png" alt="" />
-               </div>
-               <!-- Slider thumb end here -->
-            </div>
-         </div>
-         </div>
-         
          
          </div> <!-- Owl carosuel end here -->
          </div> <!-- Section id end here -->
@@ -127,7 +72,7 @@
                      <img src="<?= base_url(); ?>assets/front/images/step02.png" alt="" />
                   </div>
                   <div class="step-text">
-                     <p>Ship or Drop off locally</p>
+                     <p>Ship or Drop Off locally</p>
                   </div>
                </div>
             </div>
@@ -153,7 +98,7 @@
    <div class="testimonials-title">
       <!-- testimonials title start here -->
       <h2>WHAT PEOPLE SAY</h2>
-      <p>Lorem ipsum dolor sit amet </p>
+     
    </div>
    <!-- testimonials title end here -->
    <div class="testi-cols-inner">
@@ -211,12 +156,39 @@
 </div>
 <!-- testimoials row end here -->
 <div class="clear"></div>
+<!--<div class="blog-row">
+   <div class="blog-title">
+      <h6>WHAT PEOPLE SAY</h6>
+      <p>Reviews</p>
+   </div>
+   <div class="blog-inner-posts">
+      <div class="container">
+         <div class="row">
+			<div id="google-reviews"></div>
+			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDDUCHzlUnF7YwDC_OfKHAuHNkJ_BzIjoA&signed_in=true&libraries=places"></script>
+			<link rel="stylesheet" href="https://cdn.rawgit.com/stevenmonson/googleReviews/master/google-places.css">
+			<script src="https://cdn.rawgit.com/stevenmonson/googleReviews/6e8f0d79/google-places.js"></script>
+			<script>
+			jQuery(document).ready(function( $ ) {
+			   $("#google-reviews").googlePlaces({
+					placeId: 'ChIJAUrTO2nV3IARaPyXf7kszgw' 
+				  , render: ['reviews']
+				  , min_rating: 4
+				  , max_rows:4
+			   });
+			});
+			</script>
+		</div>
+      </div>
+   </div>
+</div>
+<div class="clear"></div>-->
 <div class="blog-row">
    <!-- blog row start here -->
    <div class="blog-title">
       <!-- Blog title start here -->
       <h6>Check Out Our Blog</h6>
-      <p>Hear the latest on OC BuyBack</p>
+      <p>Hear the latest on <?= Site_Title; ?></p>
    </div>
    <!-- Blog title end here -->
    <div class="blog-inner-posts">
@@ -228,11 +200,14 @@
             <div class="col-md-4">
                <div class="blog-col-1">
                   <div class="blog-thumb">
-                     <img src="<?= base_url().'assets/uploads/blogs/'.$hblog['image']; ?>" alt="" />
+					<?php
+						$blog_image=($hblog['image'] != "" ? $hblog['image'] : 'dummy.png');
+					?>
+                     <img src="<?= base_url().'assets/uploads/blogs/'.$blog_image; ?>" alt="<?= $hblog['title']; ?>" />
                   </div>
 				  <div class="blog-content">
                      <strong><a href="<?= base_url().$hblog['slug']; ?>" target="_blank"><?= $hblog['title']; ?></a></strong>
-                     <p>By OC Supply on <?= date('jS M Y',strtotime($hblog['created_at'])); ?></p>
+                     <p>By <?= Site_Title; ?> on <?= date('jS M Y',strtotime($hblog['created_at'])); ?></p>
                   </div>
                </div>
             </div>
@@ -255,29 +230,25 @@
          </div>
          <div class="col-md-6">
             <div class="offer-btn">
-               <a href="<?= base_url(); ?>sell">Get Offer</a>
+               <a href="<?= base_url(); ?>sell/#banner">Get Offer</a>
             </div>
          </div>
       </div>
    </div>
 </div>
 <!-- Offer row end here -->
-
-
-
-
-
 <script>
-            jQuery(document).ready(function($) {
-              $('.owl-carousel').owlCarousel({
-                items: 1,
-                lazyLoad: true,
-                lazyLoadEager: 1,
-                loop: true,
-                margin: 10,
-                autoHeight: true
-              });
-            });
+
+jQuery(document).ready(function($) {
+  $('.owl-carousel').owlCarousel({
+	items: 1,
+	lazyLoad: true,
+	lazyLoadEager: 1,
+	loop: true,
+	margin: 10,
+	autoHeight: true
+  });
+});
 </script>
 
 

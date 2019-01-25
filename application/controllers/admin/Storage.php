@@ -49,8 +49,7 @@
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 			<b>Record Deleted.</b>
 			</div>'); 
-			echo '<script>window.location = "'.$this->agent->referrer().'"</script>';
-			//redirect($this->agent->referrer()) ;
+			redirect(base_url().'admin/storage') ;
 		}
 		
 		public function toggleStatus(){
