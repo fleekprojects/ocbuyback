@@ -121,9 +121,10 @@ class Model_admin extends CI_Model {
 		$array = array('o.status' => 'received','od.action' => '1');
 		$res2=array();
 		$this->db->join('order_details od', 'o.id=od.order_id');
+		$this->db->select("o.*"); 
 		$this->db->group_by("o.id"); 
 		$res= $this->db->get_where('orders o', $array)->result_array();
-		
+		// print_r($this->db->last_query()); die;
 		foreach($res as $row){
 			$array = array('action !=' => '1', 'order_id'=>$row['id']);
 			$num_res= $this->db->get_where('order_details', $array)->num_rows();

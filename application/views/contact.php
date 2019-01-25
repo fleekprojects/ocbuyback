@@ -2,8 +2,8 @@
 
 <div class="latest-sell-title">
    <!-- Latest blog title start here -->
-   <h2>Shipping Information</h2>
-   <p>Provide the address for your free shipping label and payment</p>
+   <h2>Trade In Method</h2>
+   <p>Select how you want to trade in your device</p>
    <div class="back-btn">
       <!-- Back btn start here -->
       <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
@@ -16,7 +16,7 @@
 
 
 <div id="banner">
-          <div class="jumbotron">
+<div class="jumbotron">
 
 <!-- // being content Area -->
 <section id="main-content" class="checkout">
@@ -214,27 +214,31 @@ $(function() {
 	});
 });
 
-$("#pay_form").submit(function(e) { 
+$("#pay_form").one('submit', function(e){
 	if ($('#pay_form').valid() != 1) {
 		e.preventDefault();
 	}
-	// if($("#trade_type").val()=='local_dropoff'){
-		// if($("#datepicker").val()==''){
-			// $("#date_error").html('This field is required.');
-			// e.preventDefault();
-		// }
-		// else{
-			// $("#date_error").text('')
-		// }
-		// if($("#time").val()==''){
-			// $("#time_error").text('This field is required.');
-			// e.preventDefault();
-		// }
-		// else{
-			// $("#time_error").text('')
-		// }
-	// }
-	
+	else if($("#trade_type").val() != 'local_dropoff' ){
+		e.preventDefault();
+		var addr= $(this).serialize();
+		$.ajax({
+			url:"<?= base_url();?>shipping/verify-address",
+			type:'POST',
+			dataType:'JSON',
+			data:addr,
+			success:function(res){
+				if(res.success == false){
+					alert("Invalid Address");
+				}
+				else{
+					$('#pay_form').submit();
+				}
+			},
+			error: function (xhr, textStatus, errorThrown){
+				console.log(xhr.responseText);
+			}
+		});
+	}
 });
 
 $('#trade_type').change(function() {

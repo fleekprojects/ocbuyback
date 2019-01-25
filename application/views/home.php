@@ -105,50 +105,26 @@
       <!-- Testi cols inner start here -->
       <div class="container">
          <div class="row">
-            <div class="col-md-4">
-               <div class="testi-col-1">
-                  <div class="testi-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img2.png" alt="" />
-                  </div>
-                  <div class="testi-content">
-                     <!-- Testi content start here -->
-                     <h5>Charles Leclerc</h5>
-                     <p>Apple iPhone 8 Plus</p>
-                     <p>I was honestly surprised by the quality. The phone I bought was listed as “good condition” but I would have considered it to be “mint condition”.
-                        The seller made it easy, and I am very happy with the functionality of the phone. Thank you!
-                     </p>
-                  </div>
-                  <!-- Testi content end here -->
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="testi-col-1">
-                  <div class="testi-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img3.png" alt="" />
-                  </div>
-                  <div class="testi-content">
-                     <!-- Testi content start here -->
-                     <h5>Caylin george</h5>
-                     <p>Apple iPhone 7 Plus</p>
-                     <p>First time purchasing on this website, I was skeptical at first but I trust it with 100% this buyer was amazing ! Definitely will be buying more phones in the future.</p>
-                  </div>
-                  <!-- Testi content end here -->
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="testi-col-1">
-                  <div class="testi-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img4.png" alt="" />
-                  </div>
-                  <div class="testi-content">
-                     <!-- Testi content start here -->
-                     <h5>steve marc</h5>
-                     <p>Samsung Galaxy S9</p>
-                     <p>I was honestly surprised by the quality. The phone I bought was listed as “good condition” but I would have considered it to be “mint condition”.The seller made it easy, and I am very happy with the functionality of the phone. Thank you!</p>
-                  </div>
-                  <!-- Testi content end here -->
-               </div>
-            </div>
+            
+               
+                  <div id="google-reviews" class="col-md-12"></div>
+
+<link rel="stylesheet" href="https://cdn.rawgit.com/stevenmonson/googleReviews/master/google-places.css">
+<script src="https://cdn.jsdelivr.net/gh/stevenmonson/googleReviews@6e8f0d794393ec657dab69eb1421f3a60add23ef/google-places.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC-p6Hvk_NPu7XXgS8j5qxn9ENivQq1Lv4&signed_in=true&libraries=places"></script>
+`<script>
+jQuery(document).ready(function( $ ) {
+   $("#google-reviews").googlePlaces({
+        placeId: 'ChIJsciG4RLV3IARSjtD81ptNsM' //Find placeID @: https://developers.google.com/places/place-id
+      , render: ['reviews']
+      , min_rating: 4
+      , max_rows:4
+   });
+});
+</script>
+               
+            
+          
          </div>
       </div>
    </div>
@@ -156,33 +132,6 @@
 </div>
 <!-- testimoials row end here -->
 <div class="clear"></div>
-<!--<div class="blog-row">
-   <div class="blog-title">
-      <h6>WHAT PEOPLE SAY</h6>
-      <p>Reviews</p>
-   </div>
-   <div class="blog-inner-posts">
-      <div class="container">
-         <div class="row">
-			<div id="google-reviews"></div>
-			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDDUCHzlUnF7YwDC_OfKHAuHNkJ_BzIjoA&signed_in=true&libraries=places"></script>
-			<link rel="stylesheet" href="https://cdn.rawgit.com/stevenmonson/googleReviews/master/google-places.css">
-			<script src="https://cdn.rawgit.com/stevenmonson/googleReviews/6e8f0d79/google-places.js"></script>
-			<script>
-			jQuery(document).ready(function( $ ) {
-			   $("#google-reviews").googlePlaces({
-					placeId: 'ChIJAUrTO2nV3IARaPyXf7kszgw' 
-				  , render: ['reviews']
-				  , min_rating: 4
-				  , max_rows:4
-			   });
-			});
-			</script>
-		</div>
-      </div>
-   </div>
-</div>
-<div class="clear"></div>-->
 <div class="blog-row">
    <!-- blog row start here -->
    <div class="blog-title">
@@ -237,6 +186,7 @@
    </div>
 </div>
 <!-- Offer row end here -->
+<!--
 <script>
 
 jQuery(document).ready(function($) {
@@ -249,7 +199,7 @@ jQuery(document).ready(function($) {
 	autoHeight: true
   });
 });
-</script>
+</script> -->
 
 
 

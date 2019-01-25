@@ -21,7 +21,7 @@
             <div class="row">
               <div class="page-header">
                 <ul class="list-inline brand-tabs">
-                  <li>SELL <?= $cat_title; ?></li>
+                  <li>Sell <?= $cat_title; ?></li>
                   <li class="completed"><a href="<?= base_url().'sell/'.$cat_slug.'\#banner'; ?>">
                     <span class="number">01 </span><span class="text"><?= (isset($mod_title) ? $mod_title : 'Model'); ?></span>
                   </a></li>

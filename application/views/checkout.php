@@ -143,6 +143,9 @@
 					echo 'Payment Method: Check<br/>';
 					echo 'Check Type: '.($pdet['check_type'] == "e_check" ? 'E-Check - Receive check via E-Mail, You print out.' : 'Mailed Check - Receive your check in the mail 3-5 business days after your order is processed.');
 				}
+				else if($pdet['pay_type']==3){
+					echo 'Payment Method: Cash<br/>';
+				}
 				?>
 			 </p>
          </div>

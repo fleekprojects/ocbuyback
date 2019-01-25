@@ -88,7 +88,8 @@
 
 	});
 		
-	$(".btn-edit").click(function(){
+	// $(".btn-edit").click(function(){
+	$(document).on("click",".btn-edit",function() {
 		$("#id").val($(this).data("id"));
 		$("#title").val($(this).data("title"));
 	});

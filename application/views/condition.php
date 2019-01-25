@@ -21,7 +21,7 @@
             <div class="row">
               <div class="page-header">
                 <ul class="list-inline brand-tabs">
-                  <li>SELL <?= $cdata['title']; ?></li>
+                  <li>Sell <?= $cdata['title']; ?></li>
                   <li class="completed"><a href="<?= base_url().'sell/'.$cdata['slug'].'\#banner'; ?>">
                     <span class="number">01 </span><span class="text"><?= (isset($mdata['title']) ? $mdata['title'] : 'Model'); ?></span>
                   </a></li>
@@ -113,6 +113,7 @@
 					get_pricing(coid);
 					$('#con-des').html(result.description);
 					$('#desc').slideDown();
+					$("html, body").animate({ scrollTop: $('#desc').offset().top }, 1000);
 				},
 				error: function (xhr, textStatus, errorThrown){
 					alert(xhr.responseText);

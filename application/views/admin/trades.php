@@ -72,7 +72,9 @@
                         <td><?= $rec['email']; ?></td>
                         <td><?= $rec['phone']; ?></td>
                         <td><?= $rec['trade_details']; ?></td>
-                        <td><?= ($rec['pay_type'] == 1 ? 'Paypal' : 'Check'); ?></td>
+                        <td><?php if($rec['pay_type'] == 1)  echo 'Paypal';
+							else if($rec['pay_type'] == 2)  echo 'Check';
+							else if($rec['pay_type'] == 3)  echo 'Cash'; ?></td>
                         <td>$<?= $rec['amount']; ?></td>
                         <td>
                            <select class="form-control" id="o_st<?= $rec['id'] ?>" onchange='change_order_status(<?= $rec['id']; ?>)' >

@@ -24,9 +24,9 @@
 				if(isset($_FILES['logo']) && $_FILES['logo']['tmp_name']){
 					$config['upload_path']          = APPPATH.'../assets/uploads/providers';
 					$config['allowed_types']        = 'gif|jpg|png';
-					$config['max_size']             = 10000;
+					$config['max_size']             = 2048;
 					$config['max_width']            = 1024;
-					$config['max_height']           = 768;
+					$config['max_height']           = 1024;
 					$filename=$_FILES['logo']['name'];
 					$ext = pathinfo($filename, PATHINFO_EXTENSION);
 					$lname=strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['title']));
@@ -60,9 +60,9 @@
 				if(isset($_FILES['logo']) && $_FILES['logo']['tmp_name']){
 					$config['upload_path']          = APPPATH.'/../assets/uploads/providers';
 					$config['allowed_types']        = 'gif|jpg|png';
-					$config['max_size']             = 10000;
+					$config['max_size']             = 2048;
 					$config['max_width']            = 1024;
-					$config['max_height']           = 768;
+					$config['max_height']           = 1024;
 					$filename=$_FILES['logo']['name'];
 					$ext = pathinfo($filename, PATHINFO_EXTENSION);
 					$lname=strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['title']));

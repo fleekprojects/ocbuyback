@@ -118,6 +118,7 @@
                <div class="nav toggle">
                 <a data-toggle="modal" data-target="#conModal"  ><i class="fa fa-gears"></i></a>
               </div>
+               
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
@@ -130,7 +131,10 @@
                     <li><a href="<?= base_url('admin/logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
-              </ul>
+				<li>
+				<a onclick="sync_xml()" class="btn btn-default" style="padding: 3px 10px;margin-top: 7px;"><i class="fa fa-refresh"></i> Sync Product Feed</a>
+				</li>
+			  </ul>
             </nav>
           </div>
         </div>
@@ -294,5 +298,23 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <script src="<?= base_url(); ?>assets/build/js/custom.min.js"></script>
     <script src="<?= base_url(); ?>assets/js/scripts.js"></script>
+	<script>
+		function sync_xml(){
+			$.ajax({
+			url:"<?= base_url();?>gen_feed.php",
+			success:function(res){
+			  if(res==1){
+				swal("Success!", "Your product feed has been synchronized.", "success");
+			  }
+			  else{
+				swal("Error", "There was an error synchronizing the product feed ", "error");
+			  }
+			},
+			error: function (xhr, textStatus, errorThrown){
+				console.log(xhr.responseText);
+			}
+		});
+		}
+	</script>
   </body>
 </html>

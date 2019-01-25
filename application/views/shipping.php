@@ -18,7 +18,7 @@
          <div class="row text-center">
             <div class="col-md-12 text-center shipping-label">
 			 <?php
-				if($address_error=1){
+				if($address_error=0){
 					echo '<span style="color: #333;font-size: 16px">There was an error generating your prepaid label. Please bring your item to our location for inspection and payment:</span><br/><span style="font-size: 44px">'.Address.'</span><br><span style="color: #333;font-size: 16px">We have emailed your order details to you as well!</span><br><br/><span style="color: #333;font-size: 16px">For problem regarding shipping process, please contact our support, email us at '.Site_Email.'</span>';
 				}
 				else if(isset($shipment_label) && !empty($shipment_label)){ ?>
@@ -50,6 +50,7 @@
       </div>
    </div>
 </div>
+<iframe src="https://sellcell.reliatrk.com/p.ashx?a=19&e=37&t=<?= $transaction_id; ?>&p=<?= $basket_total; ?>" height="1" width="1" frameborder="0"></iframe>
 <!-- // end content Area -->
 <script>
 	function printDiv(divName){

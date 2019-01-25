@@ -32,6 +32,8 @@
 				
 				<input type="radio" id="cheque_check" class="checked" <?= ($pay_type == 2 ? 'checked' : ''); ?> name="pay_type" value="2">
 				
+				<input type="radio" id="cash_check" class="checked" <?= ($pay_type == 3 ? 'checked' : ''); ?> name="pay_type" value="3">
+				
 				<label for="paypal_check" class="checkout-page-title rad-primary <?= ($pay_type == 1 ? 'sel' : ''); ?>" id="lab-pay">
 				  <div class="col-sm-1 col-xs-2 img">
 					<img src="<?php echo base_url(); ?>assets/images/paypal_icon.png" alt="PayPal">
@@ -51,6 +53,16 @@
 					<p>Receive your check in the mail 3-5 business days after your order is processed</p>
 				  </div>
 				</label>
+				
+				<label for="cash_check" class="checkout-page-title rad-primary <?= ($pay_type == 3 ? 'sel' : ''); ?>" id="lab-cash">
+				  <div class="col-sm-1 col-xs-2 img">
+					<img src="<?php echo base_url(); ?>assets/images/check_img.png" alt="PayPal">
+				  </div>
+				  <div class="col-sm-11 col-xs-10">
+					<div class="content-title">Cash </div>
+					<p>Local Drop Off Only</p>
+				  </div>
+				</label>
 			
 			
 				</div>
@@ -59,8 +71,9 @@
 			  <div class="form-group" id="check_box" <?= ($pay_type == 2 ? '' : 'style="display:none;"'); ?>>
 				<select class="form-control" name="check_type" id="check_type" required>
 					<option <?= ($check_type == "" ? "selected" : ""); ?> value="">Select Check Type</option>
-					<option <?= ($check_type == "e_check" ? "selected" : ""); ?> value="e_check">E-Check - Receive check via E-Mail, You print out.</option>
-					<option  <?= ($check_type == "mailed_check" ? "selected" : ""); ?> value="mailed_check">Mailed Check - Receive your check in the mail 3-5 business days after your order is processed.</option>
+					<option <?= ($check_type == "e_check" ? "selected" : ""); ?> value="e_check">Emailed Echeck- You print out.</option>
+					<option  <?= ($check_type == "mailed_check" ? "selected" : ""); ?> value="mailed_check">Mailed Check.
+					<!--Mailed Check - Receive your check in the mail 3-5 business days after your order is processed.--></option>
 				</select>
 			  </div>
 			  <div class="form-group">
@@ -108,19 +121,32 @@ $('input[type=radio][name=pay_type]').change(function() {
         $("#check_type").val("");
         $("#paypal_box").slideDown();
 		$("#lab-chk").removeClass('sel');
+		$("#lab-cash").removeClass('sel');
 		$("#lab-pay").addClass('sel');
     }
     else if (this.value == 2) {
-		$("#paychk").prop('checked',false);;
+		$("#paychk").prop('checked',false);
 		$("#paypal_email").val("");
 		$("#confirm_paypal_email").val("");
         $("#paypal_box").slideUp();
         $(".paypal-email-box").slideUp();
         $("#check_box").slideDown();
+		$("#lab-pay").removeClass('sel');
+		$("#lab-cash").removeClass('sel');
+		$("#lab-chk").addClass('sel');
+		
+    }
+    else if (this.value == 3) {
+		$("#check_box").slideUp();
+        $("#check_type").val("");
+        $("#paypal_box").slideUp();
+		$("#paychk").prop('checked',false);
 		$("#paypal_email").val("");
 		$("#confirm_paypal_email").val("");
+        $(".paypal-email-box").slideUp();
+		$("#lab-chk").removeClass('sel');
 		$("#lab-pay").removeClass('sel');
-		$("#lab-chk").addClass('sel');
+		$("#lab-cash").addClass('sel');
 		
     }
 });

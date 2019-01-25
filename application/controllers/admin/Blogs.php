@@ -42,9 +42,9 @@
 				if(isset($_FILES['image']) && $_FILES['image']['tmp_name']){
 					$config['upload_path']          = APPPATH.'../assets/uploads/blogs';
 					$config['allowed_types']        = 'gif|jpg|png';
-					$config['max_size']             = 10000;
-					$config['max_width']            = 10240;
-					$config['max_height']           = 7680;
+					$config['max_size']             = 5120;
+					$config['max_width']            = 1024;
+					$config['max_height']           = 1024;
 					$filename=$_FILES['image']['name'];
 					$ext = pathinfo($filename, PATHINFO_EXTENSION);
 					$lname=strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['title']));
@@ -77,9 +77,9 @@
 				if(isset($_FILES['image']) && $_FILES['image']['tmp_name']){
 					$config['upload_path']          = APPPATH.'/../assets/uploads/blogs';
 					$config['allowed_types']        = 'gif|jpg|png';
-					$config['max_size']             = 10000;
+					$config['max_size']             = 5120;
 					$config['max_width']            = 1024;
-					$config['max_height']           = 768;
+					$config['max_height']           = 1024;
 					$filename=$_FILES['image']['name'];
 					$ext = pathinfo($filename, PATHINFO_EXTENSION);
 					$lname=strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['title']));

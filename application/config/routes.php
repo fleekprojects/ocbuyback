@@ -90,6 +90,7 @@ $route['sell/(:any)/(:any)'] = 'Sell/providers/$1/$2';
 $route['sell/(:any)'] = 'Sell/models/$1';
 $route['sell'] = 'Sell/index';
 $route['shipping'] = 'Shipping/index';
+$route['shipping/verify-address'] = 'Shipping/address_verify';
 $route['get/conditon_details'] = 'Sell/get_crecord';
 $route['get/pricing'] = 'Sell/get_pricing';
 $route['cart/add'] = 'Order/add_to_cart';

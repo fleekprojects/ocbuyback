@@ -21,7 +21,7 @@
             <div class="row">
               <div class="page-header">
                 <ul class="list-inline brand-tabs">
-                  <li>SELL <?= $cat_title; ?></li>
+                  <li>Sell <?= $cat_title; ?></li>
                   <li class="active"><a href="javascript:void(0);">
                     <span class="number">01 </span><span class="text">Model</span>
                   </a></li>
