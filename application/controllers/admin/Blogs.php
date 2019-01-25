@@ -1,16 +1,11 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class Blogs extends My_Controller {
-	
-		public function __construct(){
-			parent::__construct();
-			
-			$this->load->library('user_agent');
-			$this->table='blogs';
-			$this->pagetitle='Blogs';
-			$this->viewname='admin/blogs';
-		}
+	class Blogs extends MY_Controller {
+		
+		var $table='blogs';
+		var $pagetitle='Posts';
+		var $viewname='admin/blogs';
 		
 		public function index(){
 			$this->Dmodel->checkLogin();
@@ -39,6 +34,9 @@
 			if($this->Dmodel->IFExist($this->table,'title',$data['title'])){
 				$data['created_at']=DateTime_Now;
 				$data['slug']=$this->slugify($data['title']);
+				if($data['post_type']=='blog'){
+					$data['slug']='blog/'.$data['slug'];
+				}
 				$exec=$this->Dmodel->insertdata($this->table,$data);
 				$last_id=$this->db->insert_id();
 				if(isset($_FILES['image']) && $_FILES['image']['tmp_name']){
@@ -50,7 +48,7 @@
 					$filename=$_FILES['image']['name'];
 					$ext = pathinfo($filename, PATHINFO_EXTENSION);
 					$lname=strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['title']));
-					$ldata['image']=$last_id.'-'.$lname.'.'.$ext;
+					$ldata['image']=$last_id.'-blog.'.$ext;
 					$_FILES['image']['name']=$ldata['image'];
 					$this->load->library('upload', $config);
 					if(file_exists(APPPATH.'../assets/uploads/blogs/'.$ldata['image'])){
@@ -85,7 +83,7 @@
 					$filename=$_FILES['image']['name'];
 					$ext = pathinfo($filename, PATHINFO_EXTENSION);
 					$lname=strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['title']));
-					$ldata['image']=$data['id'].'-'.$lname.'.'.$ext;
+					$ldata['image']=$data['id'].'-blog.'.$ext;
 					$_FILES['image']['name']=$ldata['image'];
 					$this->load->library('upload', $config);
 					if(file_exists(APPPATH.'../assets/uploads/blogs/'.$ldata['image'])){
@@ -131,4 +129,3 @@
 			echo json_encode($rec); 
 		}
 	}
-?>	

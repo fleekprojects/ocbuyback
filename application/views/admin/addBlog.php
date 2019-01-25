@@ -27,8 +27,15 @@
                <div class="col-md-10 col-md-offset-1">
                   <form class="form-horizontal" method="post" id="Addform" action="<?= base_url();?>admin/Blogs/AddRecord">
                      <div class="col-md-12">
-                        <label class="control-label" for="example-text-input">Blog Title</label>
-                        <input type="text" name="title" value="" placeholder="Enter Blog Title" class="form-control">
+                        <label class="control-label" for="example-text-input">Post Type</label>
+                        <select name="post_type" class="form-control">
+							<option value="blog">Blog</option>
+							<option value="page">Page</option>
+						</select>
+                     </div>
+                     <div class="col-md-12">
+                        <label class="control-label" for="example-text-input">Post Title</label>
+                        <input type="text" name="title" value="" placeholder="Enter Post Title" class="form-control">
                      </div>
                      <div class="col-md-12">
                         <label class="control-label" for="example-text-input">Featured Image</label>
@@ -39,7 +46,7 @@
                         <textarea name="description" placeholder="Enter Short Description" class="form-control" rows="3"></textarea>
                      </div>
                      <div class="col-md-12">
-                        <label class="control-label" for="example-text-input">Blog Content</label>
+                        <label class="control-label" for="example-text-input">Post Content</label>
                         <textarea name="content" class="summernote"></textarea>
                      </div>
                      <div class="col-md-12">
@@ -57,8 +64,6 @@
    	$("#Addform").validate({
    		rules: {
    		  title: "required",
-   		  image: "required",
-   		  description: "required",
    		  content: "required"
    		}
    	});
@@ -66,23 +71,6 @@
    		placeholder: 'Enter Blog Content here...',
    		tabsize: 2,
    		height: 300
-   	});
-   });
-   $(".btn-editc").click(function(){
-   	var id=$(this).data("id");
-   	$.ajax({
-   		url:"<?= base_url();?>admin/condition/get_record",
-   		type:'POST',
-   		dataType:'JSON',
-   		data:{'id':id},
-   		success:function(result){
-   			$('#id').val(result.id),
-   			$('#title').val(result.title),
-   			$("#summernote").summernote("code", result.description);
-   		},
-   		error: function (xhr, textStatus, errorThrown){
-   			alert(xhr.responseText);
-   		}
    	});
    });
 </script>

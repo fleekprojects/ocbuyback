@@ -15,16 +15,17 @@
 			<?php  if(count($records) > 0 ) { ?>
 				<button type="button" class="btn btn-danger margin pull-right" onClick="doDelete()" style="margin-right:auto" >Delete</button>
 			<?php } ?>
-				<a href="<?= base_url();?>admin/Blogs/AddNew" class="btn btn-default margin pull-right" style="margin-right:5px"><i class="fa fa-plus"></i> Add New Blog</a>
+				<a href="<?= base_url();?>admin/posts/AddNew" class="btn btn-default margin pull-right" style="margin-right:5px"><i class="fa fa-plus"></i> Add New Post</a>
 			<div class="clearfix"></div>
 		  </div>
 		  <div class="x_content">
-			<form method="post" id="tblform" action="<?= base_url();?>admin/Blogs/DeleteRecord">
+			<form method="post" id="tblform" action="<?= base_url();?>admin/posts/DeleteRecord">
 			<table id="datatable-buttons" class="table table-striped table-bordered">
 			  <thead>
 				<tr>
 				  <th align="center"><input type="checkbox" name="chkAll" class="checkUncheckAll" ></th>
 				  <th>Image</th>
+				  <th>Type</th>
 				  <th>Title</th>
 				  <th>Slug</th>
 				  <th>Status</th>
@@ -41,6 +42,7 @@
 				<td align="center">
 				<input class="chkIds" type="checkbox" name="ids[]" id="chk-<?= $rec['id'] ?>" value="<?= $rec['id'] ?>"  /></td>
 				  <td><img src="<?=base_url();?>assets/uploads/blogs/<?= ($rec['image'] != "" ? $rec['image'] : "dummy.png"); ?>"  style="max-height:50px;" /></td>
+				  <td><?= $rec['post_type']; ?></td>
 				  <td><?= $rec['title']; ?></td>
 				  <td><?= $rec['slug']; ?></td>
 				  <td>
@@ -58,7 +60,7 @@
 					<?= ($rec['updated_at'] == "" ? "" : date('jS M Y', strtotime($rec['updated_at']))); ?>
 				  </td>
 				  <td>
-					<a class="btn btn-warning btn-editc btn-sm" href="blogs/edit/<?= $rec['id']; ?>">
+					<a class="btn btn-warning btn-editc btn-sm" href="posts/edit/<?= $rec['id']; ?>">
 					<i class="fa fa-edit"></i></a>
 					<a class="btn btn-danger btn-sm" onclick="doDelete(<?= $rec['id']; ?>)"><i class="fa fa-trash"></i></a>
 				  </td>

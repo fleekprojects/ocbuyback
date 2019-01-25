@@ -4,7 +4,7 @@
    <div class="container">
       <div class="row">
 
-<section id="demos"
+<section id="demos">
        <div class="owl-carousel owl-theme"> <!-- Own carosuel start here -->
 
          
@@ -17,7 +17,7 @@
                   <h1>Sell Your Device</h1>
                   <h2>Get Paid!</h2>
                   <h3>Sell Cell Phone, Tablets & More</h3>
-                  <a href="#">Get Your Offer</a>
+                  <a href="<?= base_url(); ?>sell">Get Your Offer</a>
                </div>
                <!-- slider text end here -->
             </div>
@@ -223,76 +223,20 @@
       <!-- Blog inner posts start here -->
       <div class="container">
          <div class="row">
+		 <?php
+			foreach($home_blogs as $hblog){ ?>
             <div class="col-md-4">
                <div class="blog-col-1">
                   <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img5.png" alt="" />
+                     <img src="<?= base_url().'assets/uploads/blogs/'.$hblog['image']; ?>" alt="" />
                   </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote</strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img6.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote</strong>
-                     <p>By OC Supply on September 18, 2018</p>
+				  <div class="blog-content">
+                     <strong><a href="<?= base_url().$hblog['slug']; ?>" target="_blank"><?= $hblog['title']; ?></a></strong>
+                     <p>By OC Supply on <?= date('jS M Y',strtotime($hblog['created_at'])); ?></p>
                   </div>
                </div>
             </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img7.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img8.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img9.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img10.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
+			<?php } ?>
          </div>
          <!-- Blog inner posts end here -->
       </div>
@@ -311,7 +255,7 @@
          </div>
          <div class="col-md-6">
             <div class="offer-btn">
-               <a href="#">Get Offer</a>
+               <a href="<?= base_url(); ?>sell">Get Offer</a>
             </div>
          </div>
       </div>

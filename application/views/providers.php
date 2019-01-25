@@ -6,7 +6,7 @@
    <p>Get the highest price for your device</p>
    <div class="back-btn">
       <!-- Back btn start here -->
-      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
    </div>
    <!-- Back btn end here -->
 </div>

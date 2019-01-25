@@ -11,12 +11,17 @@ class Model_form extends CI_Model {
 		$res=$this->db->get_where($tbl, array('slug' => $slug))->result_array();
 		return $res;
 	}
+	function get_home_blogs(){		$this->db->limit(6);		$query = $this->db->get_where('blogs', array('status'=>1, 'post_type'=>'blog'));		return $query->result_array();
+	}
 	
 	function get_models($cat_id){	
 		$this->db->distinct();
-		$this->db->select('m.title, m.slug');
+		$this->db->select('m.title, m.slug, m.image');
 		$this->db->join('models m', 'p.model_id=m.id');
-		$query = $this->db->get_where('pricing p', array('p.category_id'=>$cat_id, 'p.status'=>1, 'm.status'=>1));
+		$this->db->join('providers pr', 'p.provider_id=pr.id');
+		$this->db->join('storage s', 'p.storage_id=s.id');
+		$this->db->join('conditions c', 'p.condition_id=c.id');
+		$query = $this->db->get_where('pricing p', array('p.category_id'=>$cat_id, 'p.status'=>1, 'pr.status'=>1, 's.status'=>1, 'c.status'=>1, 'm.status'=>1));
 		return $query->result_array();
 	}
 		
@@ -39,7 +44,7 @@ class Model_form extends CI_Model {
 	function get_condition($mod_id,$pro_id,$sto_id){	
 		$this->db->distinct();
 		$this->db->select('c.title, c.slug, c.id');
-		$this->db->join('conditions c', 'p.storage_id=c.id');
+		$this->db->join('conditions c', 'p.condition_id=c.id');
 		$query = $this->db->get_where('pricing p', array('p.model_id'=>$mod_id, 'p.provider_id'=>$pro_id, 'p.storage_id'=>$sto_id, 'p.status'=>1, 'c.status'=>1));
 		return $query->result_array();
 	}

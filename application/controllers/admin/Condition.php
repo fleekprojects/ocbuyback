@@ -1,16 +1,11 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class Condition extends My_Controller {
+	class Condition extends MY_Controller {
 	
-		public function __construct(){
-			parent::__construct();
-			
-			$this->load->library('user_agent');
-			$this->table='conditions';
-			$this->pagetitle='Condition';
-			$this->viewname='admin/condition';
-		}
+		var $table='conditions';
+		var $pagetitle='Condition';
+		var $viewname='admin/condition';
 		
 		public function index(){
 			$this->Dmodel->checkLogin();
@@ -70,4 +65,3 @@
 			echo json_encode($rec); 
 		}
 	}
-?>	

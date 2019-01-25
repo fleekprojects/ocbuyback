@@ -3,13 +3,13 @@
 
 	class Pricing extends My_Controller {
 	
-		public function __construct(){
+		var $table='pricing';
+		var $pagetitle='Pricing';
+		var $viewname='admin/pricing';
+
+		function __construct() {
 			parent::__construct();
-			
-			$this->load->library('user_agent');
-			$this->table='pricing';
-			$this->pagetitle='Pricing';
-			$this->viewname='admin/pricing';
+			$this->load->model('Model_pricing','p_model');
 		}
 		
 		public function index(){
@@ -26,14 +26,7 @@
 			else{
 				$viewdata['title']=$this->pagetitle;
 				$viewdata['category']=$this->Dmodel->get_tbl_whr('categories',$cat_id);
-				
-				$this->db->select('p.id, c.title AS condition_title, m.title AS model_title, pr.title AS provider_title, s.title AS storage_title, p.price, p.status, p.created_at,p.updated_at');
-				$this->db->from('pricing p');
-				$this->db->join('conditions c', 'p.condition_id=c.id');
-				$this->db->join('models m', 'p.model_id=m.id');
-				$this->db->join('providers pr', 'p.provider_id=pr.id');
-				$this->db->join('storage s', 'p.storage_id=s.id');
-				$viewdata['records'] = $this->db->get()->result_array();
+				$viewdata['records'] = $this->p_model->get_pricing($cat_id);
 				$this->LoadAdminView($this->viewname,$viewdata);
 			}
 		}
@@ -61,21 +54,12 @@
 			$data=$_POST;
 			unset($_POST['id'],$_POST['price']);
 			$cdata=$_POST;
-			$this->db->where($cdata);
-			$this->db->where('id !=', $data['id']);
-			$this->db->from($this->table);
-			$chknum=$this->db->get()->num_rows();
+			$chknum=$this->db->get_where($this->table, $checkdata)->num_rows();
 			if($chknum==0){
 				$data['updated_at']=DateTime_Now;
 				$exec=$this->Dmodel->update_data($this->table,$data['id'],$data,'id');
-				$this->db->select('c.title AS condition, m.title AS model, pr.title AS provider, s.title AS storage, p.price');
-				$this->db->from('pricing p');
-				$this->db->where('p.id',$data['id']);
-				$this->db->join('conditions c', 'p.condition_id=c.id');
-				$this->db->join('models m', 'p.model_id=m.id');
-				$this->db->join('providers pr', 'p.provider_id=pr.id');
-				$this->db->join('storage s', 'p.storage_id=s.id');
-				$edata=array('success'=>$exec,'data'=>$this->db->get()->result_array());
+				$pdata=$this->p_model->edit_data($data['id']);
+				$edata=array('success'=>$exec,'data'=>$pdata);
 				echo json_encode($edata);
 			}
 			else{
@@ -127,4 +111,3 @@
 			$this->load->view('admin/pricing_row', $data);
 		}
 	}
-?>	

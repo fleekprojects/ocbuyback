@@ -24,9 +24,44 @@
 	font-weight: normal;
 	font-style: normal;
 }
+.MsoNormal a {
+    color: #68ac23;
+}
+.jumbotron.checkout-page {
+    background: no-repeat !important;
+}
+.MsoNormal a:hover {
+    color: #68ac23;
+}
 
+.dropdown-menu.dropdown-cart {
 
+    padding-top: 0 !important;
+    border-radius: 0 !important;
 
+}
+
+.mini_cart_devices_title {
+
+    width: 100%;
+    margin: 0 auto !important;
+
+}
+
+.mini_cart {
+
+    width: 100%;
+    overflow: hidden;
+    margin-right: 0 !important;
+    padding: 20px 20px 0px 20px;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.jumbotron.condition-page {
+    background: no-repeat !important;
+    padding-bottom: 100px !important;
+}
 
 @font-face {
           font-family: "HelveticaBold";
@@ -252,6 +287,21 @@ a:hover, .btn-link:hover{
     margin: 0px auto;
 }
 
+.pro-cate img {
+
+    width: 117px;
+    height: 116px;
+    margin-bottom: 40px;
+}
+
+
+.list-inline.model-list img {
+    text-align: center;
+    margin: 0 auto;
+    display: table;
+    margin-bottom: 40px;
+}
+
 a.navbar-brand {
     padding: 32px 0px;
     display: block;
@@ -392,18 +442,48 @@ ul.dropdown-cart li .item:after{
   margin: 0px;
 }
 .mini_cart {
+
     width: 100%;
     float: left;
     overflow: hidden;
     border-bottom: 1px solid #d6d6d6;
+    position: relative;
+
 }
 .mini_price_cart {
+
     color: #2EB835;
-    float: right;
+    float: left;
     font-size: 34px;
     font-weight: bold;
-    margin: 32px 0;
-    width: 30%;
+    margin: 14px 0 10px;
+    width: 100%;
+
+}
+.mini_price_cart a {
+
+    float: right;
+
+}
+.mini_price_cart .fa {
+
+    margin-top: -13px !important;
+    background: no-repeat !important;
+    color: #000 !important;
+    position: absolute;
+    top: 19px;
+    right: 0;
+
+}
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+
+    background-color: #68ac23 !important;
+}
+
+.mini_cart_bottom {
+
+    width: 100%;
+
 }
 .remove_cart {
     -moz-user-select: none;
@@ -430,32 +510,58 @@ ul.dropdown-cart li .item:after{
   margin-top: -10px;
   vertical-align: middle;
 }
-.mini_cart_desc{width: 65%;margin:0px auto;}
+.mini_cart_desc {
+
+    width: auto;
+    margin: 0px auto;
+    display: table;
+    float: right;
+    width: 86%;
+
+}
+
 .mini_cart ul{
-  margin:20px 0 0;
+  margin:0px 0 0;
 }
 .mini_cart ul li {
+
     list-style: none;
     display: block;
     color: #7b7b7b;
-    font-family: "myriad-pro",sans-serif !important;
+    font-family: 'Conv_Montserrat-Regular';
     font-size: 14px;
     margin-top: -5px;
+    margin-bottom: 11px;
+
 }
-.cart_img{
-  width: 20%; 
-  float: left; 
-  margin: 10px 10px 10px;
-display: block
+.mini_cart_desc input {
+
+    display: table;
+    clear: both;
+    width: 70px;
+    border: 1px solid #ccc;
+    padding: 0 0px 0 10px;
+    height: 32px;
+
+}
+
+.cart_img {
+
+    width: auto;
+    float: left;
+    display: block;
+
 }
 .cart_img img {
-    width: 100%;
     max-width: 100%;
 }  
 .model_name {
+
     font-size: 18px !important;
     font-weight: bold;
     color: #222 !important;
+    margin-bottom: 10px;
+
 }
 .mini_cart_add_cart {
     -moz-user-select: none;
@@ -553,18 +659,94 @@ display: block
 }
 #banner .jumbotron .btn-primary {
 
-    background: #e5e5e5;
-    letter-spacing: 1px;
-    font-size: 20px;
-    color: #bcb9b9;
+    background: #68ac23;
+    font-size: 12px;
+    color: #fff;
     font-weight: bold;
     font-family: 'Conv_Montserrat-Regular';
-    padding: 15px 0px;
-    text-transform:uppercase;
-    width: 270px;
+    padding: 21px 0px;
+    text-transform: capitalize;
+    width: 166px;
     border: none;
 
 }
+.fa.fa-edit {
+
+    color: #68ac23;
+    font-size: 23px;
+    position: absolute;
+    top: 10px;
+    right: 82px;
+
+}
+
+.con-order {
+
+    background: #68ac23;
+    color: #fff;
+    padding: 10px 34px;
+    display: table;
+    margin: 0 auto;
+        margin-top: 0px;
+    margin-top: 40px;
+    border-radius: 5px;
+
+}
+
+.con-order:hover {
+    color:#fff;
+    background:#000;
+}
+.jumbotron.checkout-page {
+    padding-bottom: 80px !important;
+}
+
+.row.info-checkout h4 b {
+
+    font-size: 20px !important;
+    text-transform: uppercase;
+    color: #2f2f2f;
+    margin-bottom: 30px;
+    display: table;
+
+}
+.info-checkout p {
+
+    font-size: 14px !important;
+    color: #2f2f2f;
+    font-weight: 500;
+    line-height: 26px;
+    text-transform: capitalize !important;
+
+}
+
+.row.info-checkout {
+
+    margin-top: 61px;
+    border-top: 1px solid #a1a1a1;
+    padding-top: 52px;
+    padding-bottom: 31px;
+    border-bottom: 1px solid #a1a1a1;
+
+}
+.item-text {
+
+    margin-bottom: 62px;
+
+}
+.order-total h2 {
+
+    color: #2f2f2f;
+    font-size: 35px;
+    text-transform: uppercase;
+    margin-top: 0;
+    float: right;
+    	font-family: 'Conv_Montserrat-ExtraBold';
+    font-weight: 900;
+
+}
+
+
 #banner .jumbotron .btn-primary:hover, 
 #banner .jumbotron .btn-primary:active, 
 #banner .jumbotron .btn-primary:hover:active, 
@@ -667,22 +849,27 @@ color: #d3d3d3;
 .brand-tabs.list-inline > li.active{
   border-bottom: 1px solid #909090;
 }
+#banner .jumbotron .btn-primary:hover, #banner .jumbotron .btn-primary:active, #banner .jumbotron .btn-primary:hover:active, #banner .jumbotron .btn-primary:focus, #banner .jumbotron .btn-primary.active {
+
+    background: #000;
+
+}
 .brand-tabs.list-inline > li.active a span.number,
 .brand-tabs.list-inline > li.active a span.text{
-color: #909090;
+color: #68ac23;
 }
 .brand-tabs.list-inline > li.active:before{
-  background-color: #909090;
+  background-color: #68ac23;
 }
 .brand-tabs.list-inline > li.completed a span.number,
 .brand-tabs.list-inline > li.completed a span.text{
-color: #2EB835;
+color: #68ac23;
 }
 .brand-tabs.list-inline > li.completed:before{
-  background-color: #2EB835;
+  background-color: #68ac23;
 }
 .brand-tabs.list-inline > li.completed{
-  border-bottom: 1px solid #2EB835;
+  border-bottom: 1px solid #68ac23;
 }
 .brand-tabs.list-inline > li.completed a:after{
   content: "";
@@ -713,10 +900,20 @@ text-align: left;
  margin-bottom:12px; 
  font-size: 48px;
 }
+
+input, select, textarea{
+    color: #ffffff;
+}
+
+textarea:focus, input:focus {
+    color: #ffffff;
+}
+
 #main-content h5 {
     font-size: 18px;
     letter-spacing: 0px;
     margin-bottom: 52px;
+    text-align: center;
 }
 .content{
     border: 1px solid #c0c0c0;
@@ -759,13 +956,16 @@ text-align: left;
 border-radius: 0px;
 margin-bottom: 20px;
 }
-#main-content .model-list .btn-primary{
-  background: none;
-  font-family: 'Conv_Montserrat-Bold';
-  font-size:20px;
-  border:1px solid #68ac23;
-  color: #68ac23;
-  transition: all ease .5s; 
+#main-content .model-list .btn-primary {
+
+    background: none;
+    font-family: 'Conv_Montserrat-Bold';
+    font-size: 20px;
+    border: 1px solid #68ac23;
+    color: #68ac23;
+    transition: all ease .5s;
+    width: 250px;
+
 }
 .btn-primary{
   background: none;
@@ -877,7 +1077,7 @@ a {
 	cursor: pointer;
 }
 .sel,.rad-primary:hover{
-	background-color: #2EB835;
+	background-color: #68ac23;
 	color:#ffffff;
 }
 .rad-primary p{
@@ -915,6 +1115,138 @@ a {
     text-transform: uppercase;
 
 }
+
+
+.checkout-one th {
+
+    border: none !important;
+    font-size: 20px;
+    font-family: 'Conv_Montserrat-Regular';
+    text-transform: uppercase;
+    color: #bcb9b9;
+
+}
+.jumbotron.blog-detail p {
+
+    font-size: 14px !important;
+    color: #2f2f2f;
+    line-height: 28px !important;
+    font-weight: normal;
+    font-family: 'Conv_Montserrat-Regular' !important;
+
+}
+.jumbotron.blog-detail img {
+
+    text-align: center;
+    margin: 0 auto;
+    display: table;
+    padding-top: 50px;
+    width: 100% !important;
+    height: auto;
+
+}
+.jumbotron.blog-detail {
+
+    padding-bottom: 70px !important;
+    padding-top: 80px !important;
+
+}
+.jumbotron.blog-detail h3 {
+
+    font-size: 30px;
+    color: #2f2f2f;
+    text-align: left;
+
+}
+#pay_form img {
+    width: auto;
+    padding: 12px 10px;
+}
+.jumbotron p {
+    text-transform: capitalize;
+}
+.checkout-one td {
+
+    border-bottom: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    font-size: 18px;
+    padding-bottom: 20px !important;
+        font-family: 'Conv_Montserrat-Regular';
+    padding-top: 28px !important;
+}
+
+.fa.fa-times {
+
+    background: #68ac23;
+    width: 42px;
+    text-align: center;
+    height: 41px;
+    padding-top: 10px !important;
+    color: #fff;
+    display: table;
+    margin: 0 auto;
+        margin-top: 0px;
+    border-radius: 4px;
+    margin-top: -8px;
+
+}
+.checkout-one th {
+    text-align: left;
+    border-bottom: 1px solid #a1a1a1 !important;
+}
+.fa.fa-times::before {
+
+    margin-top: 11px !important;
+    display: table;
+    margin: 0 auto;
+    border: 1px solid;
+
+}
+.checkout-one tr {
+
+    border-bottom: 1px solid #a1a1a1;
+
+}
+.checkout-one td .form-control {
+
+    margin-top: -9px;
+
+}
+
+.item-text p {
+
+    font-size: 14px !important;
+    font-weight: 300 !important;
+    text-transform: capitalize;
+    color: #2f2f2f;
+    letter-spacing: 0.5px;
+    padding-top: 22px;
+
+}
+
+.checkout-one .form-control {
+    width: 85px;
+    height: 43px;
+    border: 1px solid #a1a1a1;
+    border-radius: 0;
+    text-align: center;
+}
+
+.table-bordered {
+    border: none !important;
+}
+.table-bordered {
+    border: 1px solid #ddd;
+        border-right-color: rgb(221, 221, 221);
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-left-color: rgb(221, 221, 221);
+        border-left-style: solid;
+        border-left-width: 1px;
+    border-left: none;
+    border-right: none;
+}
 #con-des {
 
     display: table;
@@ -948,7 +1280,8 @@ a {
     color: #0b0b0b;
 }
 .totalPrice span{
-color: #909090;
+    /*color: #909090;*/
+    color: #68ac22;
 }
 .quantit-label {
     font-size: 20px;
@@ -1955,6 +2288,66 @@ a.btn-link,a.btn-link:hover {
 
 /* Width:1024px; */
 @media(max-width: 64em){
+    
+    .order-total h2 {
+   font-size: 22px;
+    text-align: center;
+    float:none;
+
+}
+#quantity-group {
+   margin-left: -12px !important;
+
+}
+
+.quantit-label {
+   margin-left: 0;
+
+}
+.totalPrice {
+    padding-bottom: 28px;
+
+}
+.quantit-label {
+
+    margin-left: 0;
+    padding-top: 13px;
+    font-size: 15px;
+
+}
+
+td li {
+
+    margin-left: 16px !important;
+
+}
+.add-to-cart {
+
+    float: none;
+    display: table;
+    margin: 0 auto;
+    font-size: 15px;
+        margin-top: 0px;
+    margin-top: 14px;
+    text-align: center;
+
+}
+
+td {
+    font-size: 14px;
+}
+
+th {
+   font-size: 14px;
+
+}
+
+.fa.fa-edit {
+    top: 11px;
+    right: 20px;
+}
+    
+    
   #banner .jumbotron {
     padding: 120px 0px;
 }
@@ -2019,7 +2412,7 @@ margin: 0px auto
 }
 @media(min-width: 767px){
   #main-content.checkout .container {
-    width: 740px ;
+/*    width: 740px ; */
   
 }
 }

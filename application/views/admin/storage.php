@@ -33,7 +33,7 @@
 									<input type="text" name="title" value="" placeholder="Enter Storage Name" class="form-control">
 								</div>
 								<div class="col-md-4">
-									<input type="submit" id="addSubmit" value="Submit" class="btn btn-success" >
+									<input type="submit" id="addSubmit" value="Submit" class="btn btn-default" >
 								</div>
 							</div>
 							</form>
@@ -126,8 +126,8 @@
 							</div>
                         </div>
                         <div class="modal-footer">
-									<input type="submit" value="Submit" class="btn btn-success" >
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<input type="submit" value="Submit" class="btn btn-warning" >
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 						  </form>
                         </div>
                       </div>

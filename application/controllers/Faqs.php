@@ -10,6 +10,9 @@
 		}
 		
 		public function index(){
+			$viewdata['quotes']=$this->Dmodel->get_tbl_whr_arr('faqs',array('tag'=>'quotes-orders','status'=>1));
+			$viewdata['iphones']=$this->Dmodel->get_tbl_whr_arr('faqs',array('tag'=>'iphones-ipads','status'=>1));
+			$viewdata['shipping']=$this->Dmodel->get_tbl_whr_arr('faqs',array('tag'=>'shipping','status'=>1));
 			$this->LoadView('faqs',$viewdata);
 		}
 		

@@ -5,7 +5,7 @@
    <p>A directory of wonderful things</p>
    <div class="back-btn">
       <!-- Back btn start here -->
-      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
    </div>
    <!-- Back btn end here -->
 </div>
@@ -27,150 +27,20 @@
       <!-- Blog inner posts start here -->
       <div class="container">
          <div class="row">
+		 <?php
+		  foreach($blogs as $blog){ ?>
             <div class="col-md-4">
                <div class="blog-col-1">
                   <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img5.png" alt="" />
+                     <img src="<?= base_url(); ?>assets/uploads/blogs/<?= $blog['image']; ?>" alt="" />
                   </div>
                   <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote</strong>
-                     <p>By OC Supply on September 18, 2018</p>
+                     <strong><a href="<?= base_url().$blog['slug']; ?>" target="_blank"><?= $blog['title']; ?></a></strong>
+                     <p>By OC Supply on <?= date('jS M Y',strtotime($blog['created_at'])); ?></p>
                   </div>
                </div>
             </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img6.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote</strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img7.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img8.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img9.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/img10.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            
-            
-                        <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/blog-1.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote</strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/blog-2.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote</strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/blog-3.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/blog-4.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/blog-5.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="blog-col-1">
-                  <div class="blog-thumb">
-                     <img src="<?= base_url(); ?>assets/front/images/blog-6.png" alt="" />
-                  </div>
-                  <div class="blog-content">
-                     <strong>Everything Apple Announced During iPhone 2018 Keynote
-                     </strong>
-                     <p>By OC Supply on September 18, 2018</p>
-                  </div>
-               </div>
-            </div>
-            
-            
+		  <?php } ?>
             
          </div>
          <!-- Blog inner posts end here -->
@@ -179,7 +49,7 @@
    </div>
    
         <div class="blog-cate-title">
-               <p><a href="#">Load More</a></p>  
+             <!--  <p><a href="#">Load More</a></p>  -->
             </div>
    
    

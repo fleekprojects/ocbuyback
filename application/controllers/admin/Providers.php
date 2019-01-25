@@ -1,16 +1,11 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class Providers extends My_Controller {
+	class Providers extends MY_Controller {
 	
-		public function __construct(){
-			parent::__construct();
-			
-			$this->load->library('user_agent');
-			$this->table='providers';
-			$this->pagetitle='Providers';
-			$this->viewname='admin/providers';
-		}
+		var $table='providers';
+		var $pagetitle='Providers';
+		var $viewname='admin/providers';
 		
 		public function index(){
 			$this->Dmodel->checkLogin();

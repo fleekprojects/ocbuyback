@@ -1,16 +1,11 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class Storage extends My_Controller {
+	class Storage extends MY_Controller {
 	
-		public function __construct(){
-			parent::__construct();
-			
-			$this->load->library('user_agent');
-			$this->table='storage';
-			$this->pagetitle='Storage';
-			$this->viewname='admin/storage';
-		}
+		var $table='storage';
+		var $pagetitle='Storage';
+		var $viewname='admin/storage';
 		
 		public function index(){
 			$this->Dmodel->checkLogin();
@@ -64,4 +59,3 @@
 			echo $data; 
 		}
 	}
-?>	

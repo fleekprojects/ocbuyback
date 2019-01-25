@@ -5,7 +5,7 @@
    <p>How to sell your phone</p>
    <div class="back-btn">
       <!-- Back btn start here -->
-      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
    </div>
    <!-- Back btn end here -->
 </div>
@@ -23,14 +23,14 @@
             </div>
             <div class="step-content">
                <h4>Get a Quote</h4>
-               <p>Tell us a little bit about your phone and we’ll make an offer right away!<br>
+               <p>Select your device information and it's condition. You will instantly get an offer.<br>
                   We have a highest price guarantee & there are no obligations.
                </p>
             </div>
          </div>
          <!-- Step text block end here -->
          <div class="step-thumb">
-            <img src="<?= base_url(); ?>assets/front/images/how-img1.png" alt="" />
+            <img src="<?= base_url(); ?>assets/front/images/GIF.gif" alt="" />
          </div>
       </div>
    </div>
@@ -47,8 +47,10 @@
             </div>
             <div class="step-content">
                <h4>local drop off and shipping</h4>
-               <p>Shipping is 100% free. We’ll send you a prepaid shipping label via email.<br>
-                  Simply print the label and place it on a box or padded envelope.
+               <p>Select a prepaid shipping label via email.<br>
+			   Simply print the label and place it on a box or padded envelope.<br>
+			   Don't have a box or printer? No worries, simply select the option for Shipping Kit.<br>
+			   If you are local to our area you may select the option for local drop off.
                </p>
             </div>
          </div>
@@ -105,8 +107,8 @@
             </div>
             <div class="step-content">
                <h4>Get Paid!</h4>
-               <p>Choose between receiving a check or a PayPal payment. <br>
-                  We’ll send a speedy payment upon receiving your phone.
+               <p>Choose between receiving an E-Check, Mailed Check or Paypal payment.<br>
+			   We'll issue payment within 1 business day upon receiving your device.
                </p>
             </div>
          </div>
@@ -153,5 +155,5 @@
 </div>
 <!-- Step row end here -->
 <div class="get-offer-btn">
-   <a href="#">GET YOUR OFFER</a>        
+   <a href="<?= base_url(); ?>sell">GET YOUR OFFER</a>        
 </div>

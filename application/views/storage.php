@@ -6,7 +6,7 @@
    <p>Get the highest price for your device</p>
    <div class="back-btn">
       <!-- Back btn start here -->
-      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
    </div>
    <!-- Back btn end here -->
 </div>
@@ -43,7 +43,7 @@
         <section id="main-content">
           <div class="container">
             <div class="row">
-              <h3>Choose Your Model</h3>
+              <h3>Choose Your Storage</h3>
             </div>
             <div class="row">
               <ul class="list-inline model-list">

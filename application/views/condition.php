@@ -6,7 +6,7 @@
    <p>Get the highest price for your device</p>
    <div class="back-btn">
       <!-- Back btn start here -->
-      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
    </div>
    <!-- Back btn end here -->
 </div>
@@ -14,7 +14,7 @@
 </div>
 
 <div id="banner">
-<div class="jumbotron">
+<div class="jumbotron condition-page">
 	<!-- // being page Header -->
         <div id="page-header">
           <div class="container">
@@ -59,7 +59,6 @@
             <div class="row" >
               <div class="col-md-offset-1 col-md-11">
                 <div id="desc" style="display:none;">
-                  <h4>If All of the following are true:</h4>
 				  <div id="con-des"></div>
                 </div>
               </div>
@@ -104,28 +103,28 @@
         </div>
 		
 	<script>
-		function get_cond_des(id){
+		function get_cond_des(coid){
 			$.ajax({
 				url:"<?= base_url();?>get/conditon_details",
 				type:'POST',
 				dataType:'JSON',
-				data:{'id':id},
+				data:{'id':coid},
 				success:function(result){
+					get_pricing(coid);
 					$('#con-des').html(result.description);
 					$('#desc').slideDown();
-					get_pricing();
 				},
 				error: function (xhr, textStatus, errorThrown){
 					alert(xhr.responseText);
 				}
 			});
 		}
-		function get_pricing(){
+		function get_pricing(coid){
 			$.ajax({
 				url:"<?= base_url();?>get/pricing",
 				type:'POST',
 				dataType:'JSON',
-				data:{'mod_id':<?= $mdata['id']; ?>,'pro_id':<?= $pdata['id']; ?>,'sto_id':<?= $data['id']; ?>,'con_id':<?= $con['id']; ?>},
+				data:{'mod_id':<?= $mdata['id']; ?>,'pro_id':<?= $pdata['id']; ?>,'sto_id':<?= $data['id']; ?>,'con_id':coid},
 				success:function(res){
 					$("#s_price").text(res.pricing);
 					$("#pid").val(res.pid);

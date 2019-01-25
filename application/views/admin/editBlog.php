@@ -27,10 +27,17 @@
                <div class="col-md-10 col-md-offset-1">
                   <form class="form-horizontal" method="post" id="Editform" action="<?= base_url();?>admin/Blogs/EditRecord">
                      <div class="col-md-12">
+                        <label class="control-label" for="example-text-input">Post Type</label>
+                        <select name="post_type" class="form-control">
+							<option value="blog" <?= ($rec['post_type']=='blog'?'selected':''); ?>>Blog</option>
+							<option value="page" <?= ($rec['post_type']=='page'?'selected':''); ?>>Page</option>
+						</select>
+                     </div>
+                     <div class="col-md-12">
 					  <div class="form-group">
-                        <label class="control-label" for="example-text-input">Blog Title</label>
+                        <label class="control-label" for="example-text-input">Post Title</label>
                         <input type="hidden" name="id" value="<?= $rec['id']; ?>">
-                        <input type="text" name="title" value="<?= $rec['title']; ?>" placeholder="Enter Blog Title" class="form-control">
+                        <input type="text" name="title" value="<?= $rec['title']; ?>" placeholder="Enter Post Title" class="form-control">
 					  </div>
                      </div>
                      <div class="col-md-12">
@@ -56,7 +63,7 @@
                      </div>
                      <div class="col-md-12">
 					  <div class="form-group">
-                        <label class="control-label" for="example-text-input">Blog Content</label>
+                        <label class="control-label" for="example-text-input">Post Content</label>
                         <textarea name="content" class="summernote"><?= $rec['content']; ?></textarea>
 					  </div>
                      </div>
@@ -76,8 +83,6 @@
    		rules: {
    		  title: "required",
    		  slug: "required",
-   		  image: "required",
-   		  description: "required",
    		  content: "required"
    		}
    	});
@@ -85,23 +90,6 @@
    		placeholder: 'Enter Blog Content here...',
    		tabsize: 2,
    		height: 300
-   	});
-   });
-   $(".btn-editc").click(function(){
-   	var id=$(this).data("id");
-   	$.ajax({
-   		url:"<?= base_url();?>admin/condition/get_record",
-   		type:'POST',
-   		dataType:'JSON',
-   		data:{'id':id},
-   		success:function(result){
-   			$('#id').val(result.id),
-   			$('#title').val(result.title),
-   			$("#summernote").summernote("code", result.description);
-   		},
-   		error: function (xhr, textStatus, errorThrown){
-   			alert(xhr.responseText);
-   		}
    	});
    });
 </script>

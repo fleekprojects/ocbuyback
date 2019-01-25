@@ -26,8 +26,8 @@
                            <form class="form-horizontal" method="post" action="<?= base_url();?>admin/Pricing/AddRecord" id="Addform2" >
                               <div id="single-row"></div>
                               <div class="col-md-12">
-                                 <button type="button" onclick="addPricingRow()" class="btn btn-info" style="margin-left: 10px;"><i class="fa fa-plus"></i> Add More</button>
-                                 <button type="button" onclick="copyPricingRow()" class="btn btn-info" style="margin-left: 10px;"><i class="fa fa-copy"></i> Copy</button>
+                                 <button type="button" onclick="addPricingRow()" class="btn btn-default" style="margin-left: 10px;"><i class="fa fa-plus"></i> Add More</button>
+                                 <button type="button" onclick="copyPricingRow()" class="btn btn-default" style="margin-left: 10px;"><i class="fa fa-copy"></i> Copy</button>
                                  <button type="submit" id="addSubmit2" class="btn btn-warning pull-right margin"><i class="fa fa-check"></i> Save</button>
                               </div>
                            </form>

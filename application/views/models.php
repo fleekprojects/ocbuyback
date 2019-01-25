@@ -6,7 +6,7 @@
    <p>Get the highest price for your device</p>
    <div class="back-btn">
       <!-- Back btn start here -->
-      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
    </div>
    <!-- Back btn end here -->
 </div>
@@ -46,6 +46,7 @@
 				 <?php
 					foreach($models AS $mod){
 						echo '<li class="col-md-6 col-sm-4 col-xs-12">
+						  <a href="'.$slug.'/'.$mod['slug'].'"><img src="'.base_url().'assets/uploads/models/'.($mod['image'] != "" ? $mod['image'] : "dummy.png").'"/></a>
 						  <a href="'.$slug.'/'.$mod['slug'].'" class="btn btn-primary btn-lg btn-block">'.$mod['title'].'</a>
 						</li>';
 					}

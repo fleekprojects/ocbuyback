@@ -71,7 +71,16 @@ class Model_admin extends CI_Model {
 			// return false;
 		// }
 	// }
-		
+	
+	function get_order_to_details($odetailid){
+		$this->db->select('order_details.*, orders.order_code', 'orders.id as orderid')
+		->from('order_details')
+		->join('orders', 'order_details.order_id = orders.id')
+		->where('order_details.id',$odetailid);
+		$query=$this->db->get();
+		return $query->row_array();
+	}
+	
 	function get_recent(){
 		$this->db->order_by('id', 'DESC');
 		$query = $this->db->get('orders',10);
@@ -84,6 +93,46 @@ class Model_admin extends CI_Model {
 	  $counters['recycled']=$this->db->get_where('orders', array('status' => 'recycled'))->num_rows();
 	  $counters['returned']=$this->db->get_where('orders', array('status' => 'returned'))->num_rows();
 	  return $counters;
+	}	
+	
+	function get_requote_price($odetails, $req_condition){
+		$this->db->select('p.price');
+		$this->db->join('conditions c', 'p.condition_id=c.id');
+		$this->db->join('models m', 'p.model_id=m.id');
+		$this->db->join('providers pr', 'p.provider_id=pr.id');
+		$this->db->join('storage s', 'p.storage_id=s.id');
+		$res= $this->db->get_where('pricing p', array('pr.title' => $odetails->provider, 'm.title' => $odetails->device, 'c.id' => $req_condition,'s.title' => $odetails->storage))->row();
+		$res2= $this->db->get_where('conditions', array('id' => $req_condition))->row();
+		return array('price' =>$res->price,'condition'=>$res2->title);
+	}
+	
+	function get_current_trades(){
+		$array = array('','received');
+		$this->db->select('o.*');
+		$this->db->join('order_details od', 'o.id=od.order_id');
+		$this->db->where_in('o.status',$array);
+		$this->db->group_by("o.id");
+		$res= $this->db->get_where('orders o',array('od.action !=' => '1'))->result_array();
+		
+		return $res;
+	}
+	
+	function get_passed_trades(){
+		$array = array('o.status' => 'received','od.action' => '1');
+		$res2=array();
+		$this->db->join('order_details od', 'o.id=od.order_id');
+		$this->db->group_by("o.id"); 
+		$res= $this->db->get_where('orders o', $array)->result_array();
+		
+		foreach($res as $row){
+			$array = array('action !=' => '1', 'order_id'=>$row['id']);
+			$num_res= $this->db->get_where('order_details', $array)->num_rows();
+			if($num_res == 0){
+				array_push($res2,$row);
+			}
+		}
+		// print_r($res2); die;
+		return $res2;
 	}
 }
 ?>

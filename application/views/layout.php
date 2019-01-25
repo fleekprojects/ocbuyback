@@ -6,6 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title>OC BuyBack</title>
+		
+		
+<link rel="shortcut icon" type="image/png" href="<?= base_url(); ?>assets/images/fav.png"/>
+		
 		<!-- Old CSS -->
 		<link rel="stylesheet" href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
 		<!-- Bootstrap -->
@@ -36,15 +40,15 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="top-phone-left">
-								<p><span>Phone:</span><?= Phone; ?></p>
+								<p><span>Phone:</span> <?= Phone; ?></p>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="top-icons-right">
 								<ul>
-									<li><i class="fa fa-twitter" aria-hidden="true"></i></li>
-									<li><i class="fa fa-facebook-official" aria-hidden="true"></i></li>
-									<li><i class="fa fa-instagram" aria-hidden="true"></i></li>
+									<a href="https://twitter.com/@buy_oc" target="_blank"><li><i class="fa fa-twitter" aria-hidden="true"></i></li></a>
+									<a href="https://www.facebook.com/ocbuyback" target="_blank"><li><i class="fa fa-facebook-official" aria-hidden="true"></i></li></a>
+									<a href="https://www.instagram.com/ocbuyback/" target="_blank"><li><i class="fa fa-instagram" aria-hidden="true"></i></li></a>
 								</ul>
 							</div>
 						</div>
@@ -71,8 +75,9 @@
 								</div>
 							</div>
 							<div class="col-md-8">
-							    
-							    
+							    <?php
+									$cart_count=$this->cart->total_items();
+								  ?>
 							    <div id="navbar" class="navbar-collapse collapse navbar-right" aria-expanded="false" style="height: 1px;">
 								<div class="nav">
 									<!-- Nav start here -->
@@ -90,23 +95,28 @@
 				<?php
 				   foreach ($this->cart->contents() as $item){
 				 ?>
+				 
 				  <li class="mini_cart">
-					<div class="mini_price_cart">$<?= $item['price']; ?>
-					  <a href="javascript:;" onclick='updateitem("<?= $item['rowid']; ?>",0);'><i class="fa fa-times"></i></a>
-                    </div>
                     <div class="cart_img" >
-                      <img class="cart_img" id="cart_img0" src="https://buybackboss.com/wp-content/uploads/2015/06/model_icon.png">
+                      <img src="<?=base_url();?>assets/uploads/models/<?= ($rec['image'] != "" ? $rec['image'] : "dummy.png"); ?>"  style="max-height:30px;" />
                     </div>
                     <div class="mini_cart_desc">
-                      <ul style="margin:20px 0 0;">
-                        <li class="model_name"> <?= $item['name']; ?></li>
+                        <div class="model_name"> <?= $item['name']; ?></div>
+                      <ul>
                         <li><?= $item['provider']; ?></li>
                         <li><?= $item['storage']; ?></li>
                         <li><?= $item['condition']; ?></li>
                       </ul>
 					  <input type="number" data-row="<?= $item['rowid']; ?>" value="<?= $item['qty']; ?>"> 
                     </div>
+                   	<div class="mini_price_cart">$<?= $item['price']; ?>
+					  <a href="javascript:;" onclick='updateitem("<?= $item['rowid']; ?>",0);'><i class="fa fa-times"></i></a>
+                    </div>
+                    
+                    
                   </li>
+                  
+                  
 				   <?php } ?>
                     <li class="mini_cart_bottom">
                       <a class="text-center mini_cart_add_cart"  href="<?= base_url(); ?>">Add Another Device</a>
@@ -158,7 +168,7 @@
 											<a href="mailto:<?= Site_Email; ?>"><i class="fa fa-envelope" aria-hidden="true"></i><?= Site_Email; ?></a>
 										</div>
 										<div class="support-menu">
-											<a href="<?= base_url(); ?>faqs">Support & FAQ</a>
+											<a href="<?= base_url(); ?>faqs"><i class="fa fa-question-circle" aria-hidden="true"></i>Support & FAQ</a>
 										</div>
 									</div>
 								</div>
@@ -166,9 +176,9 @@
 									<div class="foo-menu-1">
 										<strong>MENU</strong>
 										<ul>
-											<li><a href="<?= base_url(); ?>about-us">About us</a></li>
+										<!--	<li><a href="<?= base_url(); ?>about-us">About us</a></li> -->
 											<li><a href="<?= base_url(); ?>how-it-works">How it works</a></li>
-											<li><a href="<?= base_url(); ?>track-your-order">Track you order</a></li>
+										<!--	<li><a href="<?= base_url(); ?>track-your-order">Track you order</a></li> -->
 											<li><a href="<?= base_url(); ?>blogs">Blogs</a></li>
 											<li><a href="<?= base_url(); ?>contact-us">Contact us</a></li>
 										</ul>
@@ -178,9 +188,9 @@
 									<div class="foo-menu-1">
 										<strong>Hours of Operation</strong>
 										<ul>
-											<li><a href="#">Monday to Friday - 9AM to 5PM (PT)</a></li>
-											<li><a href="#">Saturday - Closed</a></li>
-											<li><a href="#">Sunday - Closed</a></li>
+											<li><a>Monday to Friday - 9AM to 5PM (PT)</a></li>
+											<li><a>Saturday - Closed</a></li>
+											<li><a>Sunday - Closed</a></li>
 										</ul>
 									</div>
 								</div>
@@ -188,6 +198,7 @@
 									<div class="foo-menu-1">
 										<div class="foo-map">
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.07666908987!2d-117.88830468473473!3d33.91342628064404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcd501494ebc95%3A0x7e19c9cb7ccb999c!2sBrea+Mall%2C+Brea%2C+CA+92821!5e0!3m2!1sen!2s!4v1538395899689" width="270" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
+							<strong><?= Address; ?></strong>
          								</div>
 									</div>
 								</div>
@@ -198,40 +209,40 @@
 								<div class="col-md-3">
 									<div class="foo-menu-1">
 										<ul>
-											<li><a href="#">Sell your iPhone</a></li>
-											<li><a href="#">Apple Trade In</a></li>
-											<li><a href="#">Sell iPhone 6S</a></li>
-											<li><a href="#">Sell iPhone 7</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell your iPhone</a></li>
+											<li><a href="<?= base_url(); ?>sell">Apple Trade In</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell iPhone 6S</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell iPhone 7</a></li>
 										</ul>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="foo-menu-1">
 										<ul>
-											<li><a href="#">Sell my Cell Phone</a></li>
-											<li><a href="#">Sell Samsung Galaxy S</a></li>
-											<li><a href="#">Sell Samsung Galaxy S6</a></li>
-											<li><a href="#">Sell Samsung Galaxy S7</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell my Cell Phone</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell Samsung Galaxy S</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell Samsung Galaxy S6</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell Samsung Galaxy S7</a></li>
 										</ul>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="foo-menu-1">
 										<ul>
-											<li><a href="#">Sell my Android Phone</a></li>
-											<li><a href="#">Sell Google Pixel</a></li>
-											<li><a href="#">Sell Tablet</a></li>
-											<li><a href="#">Sell iPads</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell my Android Phone</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell Google Pixel</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell Tablet</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell iPads</a></li>
 										</ul>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="foo-menu-1">
 										<ul>
-											<li><a href="#">Sell iPhone</a></li>
-											<li><a href="#">Sell Phone</a></li>
-											<li><a href="#">Sell my Phone</a></li>
-											<li><a href="#">Sell my iPhone</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell iPhone</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell Phone</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell my Phone</a></li>
+											<li><a href="<?= base_url(); ?>sell">Sell my iPhone</a></li>
 										</ul>
 									</div>
 								</div>
@@ -252,16 +263,15 @@
 									<div class="btm-footer-inner">
 										<div class="foo-nav">
 											<ul>
-												<li><a href="<?= base_url(); ?>terms">term of Service</a></li>
+												<li><a href="<?= base_url(); ?>terms-and-conditions">term of Service</a></li>
 												<li><a href="<?= base_url(); ?>privacy-policy">privacy policy</a></li>
 											</ul>
 										</div>
 										<div class="foo-social-icons">
 											<ul>
-												<li><i class="fa fa-facebook-official" aria-hidden="true"></i></li>
-												<li><i class="fa fa-instagram" aria-hidden="true"></i></li>
-												<li><i class="fa fa-twitter" aria-hidden="true"></i></li>
-												<li><i class="fa fa-envelope" aria-hidden="true"></i></li>
+										<a href="https://twitter.com/@buy_oc" target="_blank"><li><i class="fa fa-twitter" aria-hidden="true"></i></li></a>
+									<a href="https://www.facebook.com/ocbuyback" target="_blank"><li><i class="fa fa-facebook-official" aria-hidden="true"></i></li></a>
+									<a href="https://www.instagram.com/ocbuyback/" target="_blank"><li><i class="fa fa-instagram" aria-hidden="true"></i></li></a>
 											</ul>
 										</div>
 									</div>
@@ -279,6 +289,7 @@
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
 		<script src="<?= base_url(); ?>assets/front/js/bootstrap.min.js"></script>
+		<script src="<?= base_url(); ?>assets/js/jquery.validate.js"></script>
 		<script src="<?= base_url(); ?>assets/front/js/plugins.js"></script>
 		<script src="<?= base_url(); ?>assets/front/js/main.js"></script>
 		<script>

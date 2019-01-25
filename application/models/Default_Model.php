@@ -20,9 +20,6 @@
 			define('Date_Now',date('Y-m-d'));
 			define('Time_Now',date('H:i:s'));
 			define('DateTime_Now',date('Y-m-d H:i:s'));
-			
-			// $side_cat= $this->db->get('categories')->result_array();
-			// print_r($side_cat); die;
 		}
 		
 		function checkLogin(){
@@ -43,6 +40,12 @@
 		
 		function get_tbl_whr_arr($tbl,$arr){	
 			$query = $this->db->get_where($tbl, $arr);
+			return $query->result_array();
+		}
+		
+		function get_tbl_whr_in($tbl,$key,$arr){	
+			$this->db->where_in($key, $arr);
+			$query = $this->db->get($tbl);
 			return $query->result_array();
 		}
 		
@@ -106,34 +109,36 @@
 		}
 		
 		function send_mail($maildata){
-			$this->load->library('email');
-			$config['protocol'] = 'smtp';
-			$config['smtp_host'] = SMTP_Host;
-			$config['smtp_user'] = SMTP_Email;
-			$config['smtp_pass'] = SMTP_Pass;
-			$config['smtp_port'] = SMTP_Port;
-			$config['validation'] = FALSE;
-			$config['mailtype'] = 'text';
-			
-			$this->email->initialize($config);
-
-			$this->email->from($maildata['from']);
-			$this->email->to($maildata['to']);
+			$config = array(
+				'protocol' => 'mail',
+				'smtp_host' => SMTP_Host,
+				'smtp_port' => SMTP_Port,
+				'smtp_user' => SMTP_Email,
+				'smtp_pass' => SMTP_Pass,
+				'wordwrap' => TRUE
+			);
+			$this->load->library('email', $config);
+			$this->email->from($maildata['from_email'],$maildata['from_name']);
+			$this->email->to($maildata['to_email'],$maildata['to_name']);
 			$this->email->subject($maildata['subject']);
 			$this->email->message($maildata['message']);
+			$this->email->set_header('MIME-Version', '1.0; charset=utf-8');
+			$this->email->set_header('Content-type', 'text/html');
 			
 			if($this->email->send()) {
 				return 1;
 			} else {
-				return $this->email->print_debugger();
+				echo $this->email->print_debugger();
+				die;
 			}
-			exit();
 		}
 		
 		
 		function IFExist($table,$Column,$value) {
 			$query = $this->db->get_where($table, array($Column => $value))->num_rows();
+
 			return $query == 0 ? true : false;
+			
 		}
 		
 		function IFExistEdit($table,$Column,$value,$id) {

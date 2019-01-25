@@ -8,6 +8,7 @@
 			$this->load->model('Model_form','m_form');
 			$this->load->library('user_agent');
 			$this->load->library('cart'); 
+			$this->load->library('encryption');
 		}
 		
 		public function add_to_cart(){
@@ -27,6 +28,7 @@
 				echo 1;
 			}
 		}
+		
 		public function update_cart_item(){
 			$data = array(
 				'rowid' => $_POST["rowid"],
@@ -37,23 +39,26 @@
 			}
 		}
 		
-		public function payment(){
-			if(isset($_POST['address']) && !empty($_POST['address'])){
-				$_SESSION['contact_details'] = $_POST;
-			}
-			$viewdata['pay_type']=(isset($_SESSION['pay_details']['pay_type']) ?  $_SESSION['pay_details']['pay_type'] : 2);
-			$viewdata['email']=(isset($_SESSION['pay_details']['email']) ?  $_SESSION['pay_details']['email'] : "");
-			$viewdata['paypal_email']=(isset($_SESSION['pay_details']['paypal_email']) ?  $_SESSION['pay_details']['paypal_email'] : "");
-			$viewdata['paypalemail']=(isset($_SESSION['pay_details']['paypalemail']) ?  $_SESSION['pay_details']['paypalemail'] : "");
-			$this->LoadView('payment',$viewdata);
-		}
-		
 		public function contact(){
 			if($this->cart->contents() == NULL){
 				redirect (base_url());
 			}
 			$viewdata['cdet']=(isset($_SESSION['contact_details']) ? $_SESSION['contact_details'] : "");
 			$this->LoadView('contact',$viewdata);
+		}
+		
+		public function payment(){
+			if(isset($_POST['address']) && !empty($_POST['address'])){
+				$_SESSION['contact_details'] = $_POST;
+			}
+			
+			$viewdata['pay_type']=(isset($_SESSION['pay_details']['pay_type']) ?  $_SESSION['pay_details']['pay_type'] : 1);
+			$viewdata['check_type']=(isset($_SESSION['pay_details']['check_type']) ?  $_SESSION['pay_details']['check_type'] : "");
+			$viewdata['email']=(isset($_SESSION['pay_details']['email']) ?  $_SESSION['pay_details']['email'] : "");
+			$viewdata['paypal_email']=(isset($_SESSION['pay_details']['paypal_email']) ?  $_SESSION['pay_details']['paypal_email'] : "");
+			$viewdata['paypalemail']=(isset($_SESSION['pay_details']['paypalemail']) ?  $_SESSION['pay_details']['paypalemail'] : "");
+			
+			$this->LoadView('payment',$viewdata);
 		}
 		
 		public function checkout(){
@@ -64,11 +69,11 @@
 			if($this->cart->contents() == NULL){
 				redirect (base_url());
 			}
-			else if(!isset($_SESSION['pay_details']) || empty($_SESSION['pay_details'])){
-				redirect ('order/payment');
-			}
 			else if(!isset($_SESSION['contact_details']) || empty($_SESSION['contact_details'])){
 				redirect ('order/contact');
+			}
+			else if(!isset($_SESSION['pay_details']) || empty($_SESSION['pay_details'])){
+				redirect ('order/payment');
 			}
 			else{
 				$viewdata['pdet']= $_SESSION['pay_details'];
@@ -97,10 +102,14 @@
 				if($trade_type == "prepaid_label"){
 					$trade_details= 'Prepaid Label'; 
 				}
+				else if($trade_type == "shipping_kit"){
+					$trade_details= 'Shipping Kit with Prepaid Label'; 
+				}
 				
 				$data=array(
 					'email'=>$_SESSION['pay_details']['email'],
 					'paypal_email'=>$_SESSION['pay_details']['paypal_email'],
+					'pay_type'=>$_SESSION['pay_details']['pay_type'],
 					'first_name	'=>$_SESSION['contact_details']['first_name'],
 					'last_name'=>$_SESSION['contact_details']['last_name'],
 					'trade_details'=>$trade_details,
@@ -113,6 +122,8 @@
 				);
 				if($this->Dmodel->insertdata('orders',$data)){
 				  $_SESSION['order_id']=$this->db->insert_id();
+				  $udata['order_code']='oc-'.rand(1000,9999).$_SESSION['order_id'];
+				  $exec=$this->Dmodel->update_data('orders',$_SESSION['order_id'],$udata,'id');
 				  foreach ($this->cart->contents() as $item){
 					$data=array(
 						'order_id'=>$_SESSION['order_id'],
@@ -127,10 +138,38 @@
 				  }
 				}
 				$this->cart->destroy();
-				
 				  
 				redirect(base_url().'shipping');
 			}
+		}
+
+
+
+
+		public function Requotes($guid,$slug,$id)
+		{
+			
+		
+		if($slug=='accepted'):
+			$oexist=$this->Dmodel->IFExist('order_requote','guid',$guid);
+			if($oexist=='false'):
+				$randdata=array('status'=>1);
+				$ranexec=$this->Dmodel->update_data('order_requote',$guid,$randdata,'guid');
+				$requotedetails = $this->Dmodel->get_tbl_whr_arr('order_requote',array('order_detail_id'=>$id));
+			
+		
+				// $orderdetails = $this->Dmodel->update_data('order_requote',$guid,array('offer'=>$order),'guid');;
+				// $this->LoadView('requotesucces',$viewdata);
+			else:
+				
+			endif;	
+		else:
+
+		endif;
+		
+
+
+
 		}
 	}
 

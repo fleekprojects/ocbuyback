@@ -1,15 +1,11 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class Categories extends My_Controller {
+	class Categories extends MY_Controller {
 	
-		public function __construct(){
-			parent::__construct();
-			$this->load->library('user_agent');
-			$this->table='categories';
-			$this->pagetitle='Categories';
-			$this->viewname='admin/categories';
-		}
+		var $table='categories';
+		var $pagetitle='Categories';
+		var $viewname='admin/categories';
 		
 		public function index(){
 			$this->Dmodel->checkLogin();
@@ -25,6 +21,30 @@
 				$data['created_at']=DateTime_Now;
 				$data['slug']=$this->slugify($data['title']);
 				$exec=$this->Dmodel->insertdata($this->table,$data);
+				$last_id=$this->db->insert_id();
+				if(isset($_FILES['image']) && $_FILES['image']['tmp_name']){
+					$config['upload_path']          = APPPATH.'../assets/uploads/categories';
+					$config['allowed_types']        = 'gif|jpg|png';
+					$config['max_size']             = 10000;
+					$config['max_width']            = 1024;
+					$config['max_height']           = 768;
+					$filename=$_FILES['image']['name'];
+					$ext = pathinfo($filename, PATHINFO_EXTENSION);
+					$lname=strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['title']));
+					$ldata['image']=$last_id.'-'.$lname.'.'.$ext;
+					$_FILES['image']['name']=$ldata['image'];
+					$this->load->library('upload', $config);
+					if(file_exists(APPPATH.'../assets/uploads/categories/'.$ldata['image'])){
+						unlink(APPPATH.'../assets/uploads/categories/'.$ldata['image']);
+					}
+					if ( ! $this->upload->do_upload('image')){
+						$error = array('error' => $this->upload->display_errors());
+					}
+					else{
+						$exec=$this->Dmodel->update_data($this->table,$last_id,$ldata,'id');
+						$data = array('upload_data' => $this->upload->data());
+					}
+				}		
 				echo $exec;
 			}
 			else{
@@ -38,6 +58,29 @@
 				$data['updated_at']=DateTime_Now;
 				$data['slug']=$this->slugify($data['title']);
 				$exec=$this->Dmodel->update_data($this->table,$data['id'],$data,'id');
+				if(isset($_FILES['image']) && $_FILES['image']['tmp_name']){
+					$config['upload_path']          = APPPATH.'/../assets/uploads/categories';
+					$config['allowed_types']        = 'gif|jpg|png';
+					$config['max_size']             = 10000;
+					$config['max_width']            = 1024;
+					$config['max_height']           = 768;
+					$filename=$_FILES['image']['name'];
+					$ext = pathinfo($filename, PATHINFO_EXTENSION);
+					$lname=strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $data['title']));
+					$ldata['image']=$data['id'].'-'.$lname.'.'.$ext;
+					$_FILES['image']['name']=$ldata['image'];
+					$this->load->library('upload', $config);
+					if(file_exists(APPPATH.'../assets/uploads/categories/'.$ldata['image'])){
+						unlink(APPPATH.'../assets/uploads/categories/'.$ldata['image']);
+					}
+					if ( ! $this->upload->do_upload('image')){
+						$exec = array('error' => $this->upload->display_errors());
+					}
+					else{
+						$exec=$this->Dmodel->update_data($this->table,$data['id'],$ldata,'id');
+						$data = array('upload_data' => $this->upload->data());
+					}
+				}
 				echo $exec;
 			}
 			else{
@@ -63,4 +106,3 @@
 			echo $data; 
 		}
 	}
-?>	

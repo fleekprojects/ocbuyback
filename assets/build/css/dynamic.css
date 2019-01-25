@@ -74,3 +74,6 @@ body {
 .dt-buttons .btn-default, .note-btn-group .btn-default{
     border: 1px solid #87cb16 !important;
 }
+.nav li li.current-page a, .nav.child_menu li li a.active, .nav.child_menu li li a:hover {
+    color: #87cb16;
+}

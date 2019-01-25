@@ -5,7 +5,7 @@
    <p>Contact support services</p>
    <div class="back-btn">
       <!-- Back btn start here -->
-      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
    </div>
    <!-- Back btn end here -->
 </div>
@@ -22,8 +22,8 @@
                   <img src="<?= base_url(); ?>assets/front/images/con-col-1.png" alt="" />
                </div>
                <h3>Customer Support</h3>
-               <p>Text:  657-286-8274</p>
-               <p><a href="mailto:support@ocbuyback.com">Email: support@ocbuyback.com</a></p>
+               <p>Text: <?= Phone; ?></p>
+               <p><a href="mailto:<?= Site_Email; ?>">Email: <?= Site_Email; ?></a></p>
             </div>
          </div>
          <div class="col-md-6">
@@ -32,7 +32,7 @@
                   <img src="<?= base_url(); ?>assets/front/images/con-col-2.png" alt="" />
                </div>
                <h3>head office</h3>
-               <p>126 Viking Ave Brea, CA 92821</p>
+               <p><?= Address; ?></p>
             </div>
          </div>
       </div>
@@ -59,25 +59,23 @@
                </div>
             </div>
             <div class="col-md-8">
-               <form action="#" method="post">
+				<div id="msg"></div>
+				<form action="<?= base_url();?>Contact/AddRecord" method="post" id="ConForm">
                   <div class="form-group">
-                     <input id="form_name" type="text" name="name" class="form-control" placeholder="Full Name*" required="required" data-error="Firstname is required.">
-                     <div class="help-block with-errors"></div>
+                     <input type="text" name="full_name" class="form-control" placeholder="Full Name*">
                   </div>
                   <div class="form-group">
-                     <input id="form_email" type="email" name="email" class="form-control" placeholder="Email Address*" required="required" data-error="Valid email is required.">
-                     <div class="help-block with-errors"></div>
+                     <input type="email" name="email" class="form-control" placeholder="Email Address*">
                   </div>
                   <div class="form-group">
-                     <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Subject" required="required" data-error="Lastname is required.">
-                     <div class="help-block with-errors"></div>
+                     <input type="text" name="subject" class="form-control" placeholder="Subject">
                   </div>
                   <div class="form-group">
-                     <textarea id="form_message" name="message" class="form-control" placeholder="Message*" rows="4" required data-error="Please, leave us a message."></textarea>
-                     <div class="help-block with-errors"></div>
+                     <textarea name="message" class="form-control" placeholder="Message*" rows="4"></textarea>
                   </div>
                   <div class="submit-btn-contact">
-                     <input type="submit" class="btn btn-success btn-send" value="Send message">
+					 <img id="loader" src="<?= base_url(); ?>assets/images/loader.gif" style="height:50px; float:right; display:none"/>
+                     <input id="ConSub" type="submit" class="btn btn-success btn-send" value="Send message">
                   </div>
                </form>
             </div>
@@ -86,3 +84,48 @@
    </div>
 </div>
 <!-- Contact form end here -->
+<script src="<?= base_url(); ?>assets/js/jquery.validate.js"></script>
+<script type="text/javascript">
+	$("#ConForm").submit(function(e) { 
+		e.preventDefault();
+		if ($('#ConForm').valid()) {
+			$('#ConSub').hide();
+			$('#loader').show();
+			var action =$('#ConForm').attr('action');
+			var value =$('#ConForm').serialize();
+			$.ajax({
+				url:action,
+				type:'POST',
+				data:value,
+				success:function(result){
+					if(result==0){
+						$("#msg").html('<span style="color:red"><i class="fa fa-ban"></i><b> Error. Please Try Again Later!</b><br/></span>');
+						$("#msg").show();
+					}
+					else if(result==1){	
+						$("#msg").html('<span style="color:white"><i class="fa fa-check"></i><b> Your Message has been sent.</b><br/></span>');
+						$('#ConForm')[0].reset();
+						$("#msg").show();
+					}
+					$('#ConSub').show();
+					$('#loader').hide();
+				},
+				error: function (xhr, textStatus, errorThrown){
+					alert(xhr.responseText);
+				}
+			});
+		}
+
+	});
+   	$("#ConForm").validate({
+   		rules: {
+   		  full_name: "required",
+		  email: {
+			required: true,
+			email: true
+		  },
+   		  subject: "required",
+   		  message: "required"
+   		}
+   	});
+</script>

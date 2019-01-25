@@ -6,7 +6,7 @@
    <p>Get the highest price for your device</p>
    <div class="back-btn">
       <!-- Back btn start here -->
-      <p><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
+      <p><a href="<?= base_url(); ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home</a></p>
    </div>
    <!-- Back btn end here -->
 </div>
@@ -20,7 +20,7 @@
   <div class="container">
 	<div class="row">
 	  <h3>How would you like to be paid?</h3>
-	  <h5>We will issue payment via PayPal or a mailed check within one business day of receiving your device.</h5>
+	  <h5>We will issue payment via Paypal, E-Check or Mailed Check within 1 business day of receving your device.</h5>
 	</div>
 	<div class="row">
 	  <div class="col-md-12">
@@ -32,17 +32,7 @@
 				
 				<input type="radio" id="cheque_check" class="checked" <?= ($pay_type == 2 ? 'checked' : ''); ?> name="pay_type" value="2">
 				
-				<label for="cheque_check" class="checkout-page-title rad-primary sel" id="lab-chk">
-				  <div class="col-sm-1 col-xs-2 img">
-					<img src="<?php echo base_url(); ?>assets/images/check_img.png" alt="PayPal">
-				  </div>
-				  <div class="col-sm-11 col-xs-10">
-					<div class="content-title">Check </div>
-					<p>Receive your check in the mail 3-5 business days after your order is processed</p>
-				  </div>
-				</label>
-				
-				<label for="paypal_check" class="checkout-page-title rad-primary" id="lab-pay">
+				<label for="paypal_check" class="checkout-page-title rad-primary <?= ($pay_type == 1 ? 'sel' : ''); ?>" id="lab-pay">
 				  <div class="col-sm-1 col-xs-2 img">
 					<img src="<?php echo base_url(); ?>assets/images/paypal_icon.png" alt="PayPal">
 				  </div>
@@ -51,10 +41,28 @@
 					<p>Quickest payment option – funds are deposited directly into your PayPal account</p>
 				  </div>
 				</label>
+				
+				<label for="cheque_check" class="checkout-page-title rad-primary <?= ($pay_type == 2 ? 'sel' : ''); ?>" id="lab-chk">
+				  <div class="col-sm-1 col-xs-2 img">
+					<img src="<?php echo base_url(); ?>assets/images/check_img.png" alt="PayPal">
+				  </div>
+				  <div class="col-sm-11 col-xs-10">
+					<div class="content-title">Check </div>
+					<p>Receive your check in the mail 3-5 business days after your order is processed</p>
+				  </div>
+				</label>
 			
 			
 				</div>
 			 <div id="pay_details" <?= (isset($email) ? '' : 'style="display:none"'); ?>>
+			  
+			  <div class="form-group" id="check_box" <?= ($pay_type == 2 ? '' : 'style="display:none;"'); ?>>
+				<select class="form-control" name="check_type" id="check_type" required>
+					<option <?= ($check_type == "" ? "selected" : ""); ?> value="">Select Check Type</option>
+					<option <?= ($check_type == "e_check" ? "selected" : ""); ?> value="e_check">E-Check - Receive check via E-Mail, You print out.</option>
+					<option  <?= ($check_type == "mailed_check" ? "selected" : ""); ?> value="mailed_check">Mailed Check - Receive your check in the mail 3-5 business days after your order is processed.</option>
+				</select>
+			  </div>
 			  <div class="form-group">
 				<label for="email" class="checkout-page-title">Email Address</label>
 				<p>We will use this to send you order updates</p>
@@ -64,18 +72,16 @@
 				<input type="email" class="form-control" id="confirm_email" placeholder="Confirm Email" required value="<?= $email; ?>">
 			  </div>
 			  <div id="emsg"></div>
-			  <div class="checkbox" id="paypal_box" <?= ($paypalemail == 1 ? '' : 'style="display:none;"'); ?>>
+			  <div class="checkbox" id="paypal_box" <?= ($pay_type == 1 ? '' : 'style="display:none;"'); ?>>
 				<label>
 				  <input type="checkbox" name="paypalemail" id="paychk" class="paypal-checked" value="1" <?= ($paypalemail == 1 ? 'checked' : ''); ?> > My PayPal email is different than my contact email
 				</label>
 			  </div>
-			  
-			  <div class="paypal-email-box" <?= ($pay_type == 1 ? '' : 'style="display:none;"'); ?>>
+			  <div class="paypal-email-box" style="display:<?= ($paypalemail == 1 ? 'block' : 'none'); ?>;">
 				<div class="form-group">
 				  <input type="email" class="form-control" id="paypal_email" placeholder="Paypal Email Address" name="paypal_email" value="<?= $paypal_email; ?>">
 				</div>
 				<div class="form-group">
-				  
 				  <input type="email" class="form-control" id="confirm_paypal_email" placeholder="Confirm Paypal Email Address" value="<?= $paypal_email; ?>">
 				</div>
 				<div id="pemsg"></div>
@@ -98,18 +104,21 @@
 <script>
 $('input[type=radio][name=pay_type]').change(function() {
     if (this.value == 1) {
-        $("#pay_details").slideDown();
+        $("#check_box").slideUp();
+        $("#check_type").val("");
         $("#paypal_box").slideDown();
 		$("#lab-chk").removeClass('sel');
 		$("#lab-pay").addClass('sel');
     }
     else if (this.value == 2) {
+		$("#paychk").prop('checked',false);;
 		$("#paypal_email").val("");
 		$("#confirm_paypal_email").val("");
-		$("#paychk").removeAttr( "checked" );
         $("#paypal_box").slideUp();
         $(".paypal-email-box").slideUp();
-        $("#pay_details").slideDown();
+        $("#check_box").slideDown();
+		$("#paypal_email").val("");
+		$("#confirm_paypal_email").val("");
 		$("#lab-pay").removeClass('sel');
 		$("#lab-chk").addClass('sel');
 		
@@ -142,7 +151,7 @@ function validate_email(){
 	  var pcemail=$("#confirm_paypal_email").val();
 	  if(pemail == "" || pcemail == ""){		
 		error=1;
-		$("#emsg").html("<span style='color:red'>Paypal Email Addresse and Confirm Email Address both are required</span>");
+		$("#emsg").html("<span style='color:red'>Paypal Email Address and Confirm Email Address both are required</span>");
 	  }
 	  if(pemail != pcemail){
 		error=1;

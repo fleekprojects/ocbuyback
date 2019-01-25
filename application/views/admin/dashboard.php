@@ -75,15 +75,38 @@
                            <td>
 							<select class="form-control" id="o_st<?= $rec['id'] ?>" onchange='change_order_status(<?= $rec['id'].',"'.$name.'","'.$rec['email'].'"'; ?>)' >
 								<option <?= ($rec['status'] == "" ? 'selected' : ''); ?> value="">Pending</option>
-								<option <?= ($rec['status'] == "received" ? 'selected' : ''); ?> value="received">Received</option>
-								<option <?= ($rec['status'] == "paid" ? 'selected' : ''); ?> value="paid">Paid</option>
-								<option <?= ($rec['status'] == "recycled" ? 'selected' : ''); ?> value="recycled">Recycled</option>
-								<option <?= ($rec['status'] == "returned" ? 'selected' : ''); ?> value="returned">Returned</option>
+								<option <?= ($rec['status'] == "Received" ? 'selected' : ''); ?> value="Received">Received</option>
+								<option <?= ($rec['status'] == "Paid" ? 'selected' : ''); ?> value="Paid">Paid</option>
+								<option <?= ($rec['status'] == "Recycled" ? 'selected' : ''); ?> value="Recycled">Recycled</option>
+								<option <?= ($rec['status'] == "Returned" ? 'selected' : ''); ?> value="Returned">Returned</option>
 								<?php
 								if($rec['trade_details']=='Prepaid Label'){
-									echo '<option '.($rec['status'] == "shipping_kit_sent" ? 'selected' : '').' value="shipping_kit_sent">Shipping Kit Sent</option>';
+									echo '<option '.($rec['status'] == "Shipping Kit Sent" ? 'selected' : '').' value="Shipping Kit Sent">Shipping Kit Sent</option>';
 								} ?>
 							</select>
+							<?php
+								if($rec['status'] != ""){
+									?>
+							<select class="form-control" id="o_act<?= $rec['id'] ?>" onchange='change_order_status(<?= $rec['id'].',"'.$name.'","'.$rec['email'].'"'; ?>)' >
+								<option <?= ($rec['action'] == "" ? 'selected' : ''); ?> value="">[Not Selected]</option>
+								<option <?= ($rec['action'] == "Passed Inspection" ? 'selected' : ''); ?> value="Passed Inspection">Passed Inspection</option>
+								<option <?= ($rec['action'] == "Failed Inspection" ? 'selected' : ''); ?> value="Failed Inspection">Failed Inspection</option>
+								<option <?= ($rec['action'] == "Requote" ? 'selected' : ''); ?> value="Requote">Requote</option>
+								<option <?= ($rec['action'] == "Customer Action Needed" ? 'selected' : ''); ?> value="Customer Action Needed">Customer Action Needed</option>
+							</select>
+									
+									<?php
+								}
+							
+							?>
+							<div <?= ($rec['action']=="Customer Action Needed" ? '' : 'style="display:none;"'); ?> id="c_act<?= $rec['id'];?>">
+								<select id="act_det<?= $rec['id'];?>" class="form-control" style="width: 92%; margin-top: 5px;" onchange='change_order_status(<?= $rec['id'].',"'.$name.'","'.$rec['email'].'"'; ?>)'>
+									<option <?= ($rec['act_detail'] == "" ? 'selected' : ''); ?> value="">[Not Selected]</option>
+									<option <?= ($rec['act_detail'] == "ESN Issues" ? 'selected' : ''); ?> value="ESN Issues">ESN Issues</option>
+									<option <?= ($rec['act_detail'] == "Google Locked" ? 'selected' : ''); ?> value="Google Locked">Google Locked</option>
+									<option <?= ($rec['act_detail'] == "iCloud Locked" ? 'selected' : ''); ?> value="iCloud Locked">iCloud Locked</option>
+								</select>
+							</div>
                            </td>
                            <td>
                               <span style="font-size:0"><?= $rec['created_at']; ?></span>
@@ -144,19 +167,39 @@
    	});
    }
    function change_order_status(id,name,email){
-	var status=$("#o_st"+id).val();
-   	$.ajax({
-   		url:"<?= base_url(); ?>admin/trades/ch_status",
-   		type:'POST',
-   		data:{'id':id,'status':status,'name':name,'email':email},
-   		success:function(result){
-   			$("#msg").html('<div class="alert alert-success alert-dismissable"><i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b> Status Updated!</b></div>');
-			$("#msg").show();
-			setTimeout(function(){$("#msg").hide(); }, 1000);
-   		},
-   		error: function (xhr, textStatus, errorThrown){
-   			console.log(xhr.responseText);
-   		}
-   	});
+		var status=$("#o_st"+id+' option:selected').val();
+		var action=$("#o_act"+id+' option:selected').val();
+		var act_det=$("#act_det"+id+' option:selected').val();
+		if(status == ""){
+			action="";
+			act_det="";
+			change_ostatus(id,name,email,status,action,act_det);
+		}
+		else if(action != 'Customer Action Needed'){
+			act_det="";
+			change_ostatus(id,name,email,status,action,act_det);
+		}
+		else if(action=='Customer Action Needed' && act_det != ""){
+			change_ostatus(id,name,email,status,action,act_det);
+		}
+		else{
+			$("#c_act"+id).show(id,name,email,status,action,act_det);
+		}
+   }
+   
+   function change_ostatus(id,name,email,status,action,act_det){
+		$.ajax({
+			url:"<?= base_url(); ?>admin/trades/ch_status",
+			type:'POST',
+			data:{'id':id,'name':name,'email':email,'status':status,'action':action,'act_detail':act_det},
+			success:function(result){
+				$("#msg").html('<div class="alert alert-success alert-dismissable"><i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b> Status Updated!</b></div>');
+				$("#msg").show();
+				setTimeout(function(){location.reload(); }, 1000);
+			},
+			error: function (xhr, textStatus, errorThrown){
+				console.log(xhr.responseText);
+			}
+		});
    }
 </script>

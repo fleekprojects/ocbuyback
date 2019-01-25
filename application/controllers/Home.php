@@ -10,6 +10,7 @@
 		}
 		
 		public function index(){
+			$viewdata['home_blogs']=$this->m_form->get_home_blogs();
 			$this->LoadView('home',$viewdata);
 		}
 		

@@ -53,7 +53,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-4">
-									<input type="submit" id="addSubmit" value="Submit" class="btn btn-success" >
+									<input type="submit" id="addSubmit" value="Submit" class="btn btn-default" >
 								</div>
 							</div>
 							</form>
@@ -129,7 +129,7 @@
 			  
 			  <!-- Edit modal -->
                   <div class="modal fade bs-example-modal-lg" id="ModalEdit" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
@@ -151,8 +151,8 @@
 							</div>
                         </div>
                         <div class="modal-footer">
-									<input type="submit" value="Submit" class="btn btn-success" >
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<input type="submit" value="Submit" class="btn btn-warning" >
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 						  </form>
                         </div>
                       </div>
